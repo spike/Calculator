@@ -174,35 +174,47 @@
         android:id="@+id/button_zero"
         android:layout_width="59dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_period"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_one" />
 
     <Button
         android:id="@+id/button_period"
         android:layout_width="59dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
         android:text="."
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_two"
-        tools:layout_editor_absoluteX="124dp" />
+        app:layout_constraintEnd_toStartOf="@+id/button_positive_or_negative"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_zero"
+        app:layout_constraintTop_toBottomOf="@+id/button_two" />
 
     <Button
         android:id="@+id/button_positive_or_negative"
         android:layout_width="59dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
         android:text="+/-"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_three"
-        tools:layout_editor_absoluteX="215dp" />
+        app:layout_constraintEnd_toStartOf="@+id/button_equal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_period"
+        app:layout_constraintTop_toBottomOf="@+id/button_three" />
 
     <Button
         android:id="@+id/button_equal"
         android:layout_width="59dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
         android:text="="
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_parenthesis"
-        tools:layout_editor_absoluteX="310dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_positive_or_negative"
+        app:layout_constraintTop_toBottomOf="@+id/button_parenthesis" />
 </androidx.constraintlayout.widget.ConstraintLayout>
