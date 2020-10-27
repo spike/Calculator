@@ -2,6 +2,7 @@ package com.calculator.calc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
@@ -30,45 +31,80 @@ class MainActivity : AppCompatActivity() {
         val buttonPositiveNegative = findViewById<Button>(R.id.button_positive_or_negative)
         val buttonEqual = findViewById<Button>(R.id.button_equal)
 
+        fun keyTyped(c: Char): Double {
+            Log.i("Key Typed", " $c")
+            return when (c) {
+                'c' -> 0.0
+                '1' -> 1.0
+                '2' -> 2.0
+                '3' -> 3.0
+                '4' -> 4.0
+                '5' -> 5.0
+                '6' -> 6.0
+                '7' -> 7.0
+                '8' -> 8.0
+                '9' -> 9.0
+                '/' -> 0.0
+                else -> 0.0
+            }
+        }
      buttonClear.setOnClickListener{
+            keyTyped('C')
      }
         buttonDivide.setOnClickListener{
+            keyTyped('/')
         }
         buttonDelete.setOnClickListener{
+            keyTyped('d')
         }
         buttonSeven.setOnClickListener{
+            keyTyped('7')
         }
         buttonEight.setOnClickListener{
+            keyTyped('8')
         }
         buttonNine.setOnClickListener{
+            keyTyped('9')
         }
         buttonMinus.setOnClickListener{
+            keyTyped('-')
         }
         buttonFour.setOnClickListener{
+            keyTyped('4')
         }
         buttonFive.setOnClickListener{
+            keyTyped('5')
         }
         buttonSix.setOnClickListener{
+            keyTyped('6')
         }
         buttonPlus.setOnClickListener{
+            keyTyped('+')
         }
         buttonOne.setOnClickListener{
+            keyTyped('1')
         }
         buttonTwo.setOnClickListener{
+            keyTyped('2')
         }
         buttonThree.setOnClickListener{
+            keyTyped('3')
         }
         buttonParenthesis.setOnClickListener{
+            keyTyped('p')
         }
         buttonZero.setOnClickListener{
+            keyTyped('0')
         }
         buttonPeriod.setOnClickListener{
+            keyTyped('.')
         }
         buttonPositiveNegative.setOnClickListener{
+            keyTyped('n')
         }
         buttonEqual.setOnClickListener{
+            keyTyped('=')
         }
-
 
     }
 }
