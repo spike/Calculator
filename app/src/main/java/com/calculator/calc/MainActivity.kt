@@ -31,21 +31,31 @@ class MainActivity : AppCompatActivity() {
         val buttonPositiveNegative = findViewById<Button>(R.id.button_positive_or_negative)
         val buttonEqual = findViewById<Button>(R.id.button_equal)
 
-        fun keyTyped(c: Char): Double {
+        var stacklist  = StackWithList()
+
+
+        fun keyTyped(c: Char): Boolean {
             Log.i("Key Typed", " $c")
             return when (c) {
-                'c' -> 0.0
-                '1' -> 1.0
-                '2' -> 2.0
-                '3' -> 3.0
-                '4' -> 4.0
-                '5' -> 5.0
-                '6' -> 6.0
-                '7' -> 7.0
-                '8' -> 8.0
-                '9' -> 9.0
-                '/' -> 0.0
-                else -> 0.0
+                'c' -> stacklist.push('c')
+                'd' -> stacklist.push('d')
+                '1' -> stacklist.push(1.0)
+                '2' -> stacklist.push(2.0)
+                '3' -> stacklist.push(3.0)
+                '4' -> stacklist.push(4.0)
+                '5' -> stacklist.push(5.0)
+                '6' -> stacklist.push(6.0)
+                '7' -> stacklist.push(7.0)
+                '8' -> stacklist.push(8.0)
+                '9' -> stacklist.push(9.0)
+                '/' -> stacklist.push('/')
+                '.' -> stacklist.push('.')
+                '+' -> stacklist.push('+')
+                '-' -> stacklist.push('-')
+                'n' -> stacklist.push('n')
+                '*' -> stacklist.push('*')
+                '=' -> stacklist.push('=')
+                else -> false
             }
         }
      buttonClear.setOnClickListener{
@@ -107,4 +117,23 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+}
+
+class StackWithList {
+    val elements: MutableList<Any> = mutableListOf()
+
+    fun isEmpty() = elements.isEmpty()
+    fun size() = elements.size
+
+    fun push(item: Any) = elements.add(item)
+    fun pop(): Any? {
+        val item = elements.lastOrNull()
+        if (!isEmpty()){
+            elements.removeAt(elements.size -1)
+        }
+        return item
+    }
+    fun peek(): Any? = elements.lastOrNull()
+
+    override fun toString(): String = elements.toString()
 }
