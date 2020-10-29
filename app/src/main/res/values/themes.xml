@@ -1,0 +1,5 @@
+<resources>
+    <style name="YourApplicationTheme" parent="android:style/Theme.NoTitleBar">
+        <item name="android:buttonStyle">@style/button</item>
+    </style>
+</resources>
