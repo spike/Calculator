@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         val screenView = findViewById<TextView>(R.id.calculator_screen)
         val buttonClear = findViewById<Button>(R.id.button_clear)
         val buttonDivide = findViewById<Button>(R.id.button_divide)
+        val buttonMultiply = findViewById<Button>(R.id.button_multiply)
         val buttonDelete = findViewById<Button>(R.id.button_delete)
         val buttonSeven = findViewById<Button>(R.id.button_seven)
         val buttonEight = findViewById<Button>(R.id.button_eight)
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                 'd' -> {
                     stackList.pop()
                     }
+                '0' -> stackList.push(0)
                 '1' -> stackList.push(1)
                 '2' -> stackList.push(2)
                 '3' -> stackList.push(3)
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 '+' -> stackList.push('+')
                 '-' -> stackList.push('-')
                 'n' -> stackList.push('n')
-                '*' -> stackList.push('*')
+                'X' -> stackList.push('*')
                 '=' -> stackList.push('=')
                 else -> false
             }
@@ -95,6 +97,9 @@ class MainActivity : AppCompatActivity() {
         buttonPlus.setOnClickListener{
             keyTyped('+')
         }
+        buttonZero.setOnClickListener{
+            keyTyped('0')
+        }
         buttonOne.setOnClickListener{
             keyTyped('1')
         }
@@ -115,6 +120,9 @@ class MainActivity : AppCompatActivity() {
         }
         buttonPositiveNegative.setOnClickListener{
             keyTyped('n')
+        }
+        buttonMultiply.setOnClickListener{
+            keyTyped('X')
         }
         buttonEqual.setOnClickListener{
             keyTyped('=')
