@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val screenView = findViewById<TextView>(R.id.calculator_screen)
         val buttonClear = findViewById<Button>(R.id.button_clear)
         val buttonDivide = findViewById<Button>(R.id.button_divide)
         val buttonDelete = findViewById<Button>(R.id.button_delete)
@@ -31,35 +32,38 @@ class MainActivity : AppCompatActivity() {
         val buttonPositiveNegative = findViewById<Button>(R.id.button_positive_or_negative)
         val buttonEqual = findViewById<Button>(R.id.button_equal)
 
-        var stacklist  = StackWithList()
+        var stackList  = StackWithList()
 
 
         fun keyTyped(c: Char): Boolean {
-            Log.i("OnScreen", " ${stacklist.toString()}")
-            return when (c) {
-                'c' -> stacklist.push('c')
-                'd' -> stacklist.push('d')
-                '1' -> stacklist.push(1)
-                '2' -> stacklist.push(2)
-                '3' -> stacklist.push(3)
-                '4' -> stacklist.push(4)
-                '5' -> stacklist.push(5)
-                '6' -> stacklist.push(6)
-                '7' -> stacklist.push(7)
-                '8' -> stacklist.push(8)
-                '9' -> stacklist.push(9)
-                '/' -> stacklist.push('/')
-                '.' -> stacklist.push('.')
-                '+' -> stacklist.push('+')
-                '-' -> stacklist.push('-')
-                'n' -> stacklist.push('n')
-                '*' -> stacklist.push('*')
-                '=' -> stacklist.push('=')
+            when (c) {
+                'c' -> stackList.clear()
+                'd' -> {
+                    stackList.pop()
+                    }
+                '1' -> stackList.push(1)
+                '2' -> stackList.push(2)
+                '3' -> stackList.push(3)
+                '4' -> stackList.push(4)
+                '5' -> stackList.push(5)
+                '6' -> stackList.push(6)
+                '7' -> stackList.push(7)
+                '8' -> stackList.push(8)
+                '9' -> stackList.push(9)
+                '/' -> stackList.push('/')
+                '.' -> stackList.push('.')
+                '+' -> stackList.push('+')
+                '-' -> stackList.push('-')
+                'n' -> stackList.push('n')
+                '*' -> stackList.push('*')
+                '=' -> stackList.push('=')
                 else -> false
             }
+            screenView.setText(stackList.toScreen())
+            return true
         }
      buttonClear.setOnClickListener{
-            keyTyped('C')
+            keyTyped('c')
      }
         buttonDivide.setOnClickListener{
             keyTyped('/')
@@ -136,4 +140,21 @@ class StackWithList {
     fun peek(): Any? = elements.lastOrNull()
 
     override fun toString(): String = elements.toString()
+
+    fun toScreen(): String {
+        var result = ""
+        for (e in elements) {
+            result += "" + e
+        }
+        return result
+    }
+
+    fun clear(): Boolean {
+        elements.clear()
+        return true
+    }
+
+    fun toCharArray() = elements.toString().toCharArray()
+
+
 }
