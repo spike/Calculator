@@ -2,7 +2,6 @@ package com.calculator.calc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -11,7 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val screenView = findViewById<TextView>(R.id.calculator_screen)
+        val screenView = findViewById<TextView>(R.id.calculator_screen0)
+        val screenView2 = findViewById<TextView>(R.id.calculator_screen)
         val buttonClear = findViewById<Button>(R.id.button_clear)
         val buttonDivide = findViewById<Button>(R.id.button_divide)
         val buttonMultiply = findViewById<Button>(R.id.button_multiply)
@@ -34,13 +34,26 @@ class MainActivity : AppCompatActivity() {
         val buttonEqual = findViewById<Button>(R.id.button_equal)
 
         var stackList  = StackWithList()
+        var numberOfMathematicalSigns = 0
 
+        fun computeResult(): Int {
+
+
+            return 0
+        }
 
         fun keyTyped(c: Char): Boolean {
             when (c) {
-                'c' -> stackList.clear()
+                'c' -> {
+                    stackList.clear()
+                    numberOfMathematicalSigns = 0
+                }
                 'd' -> {
-                    stackList.pop()
+                    if (stackList.pop() in 0..9) {
+
+                    } else {
+                        numberOfMathematicalSigns--
+                    }
                     }
                 '0' -> stackList.push(0)
                 '1' -> stackList.push(1)
@@ -52,16 +65,44 @@ class MainActivity : AppCompatActivity() {
                 '7' -> stackList.push(7)
                 '8' -> stackList.push(8)
                 '9' -> stackList.push(9)
-                '/' -> stackList.push('/')
-                '.' -> stackList.push('.')
-                '+' -> stackList.push('+')
-                '-' -> stackList.push('-')
-                'n' -> stackList.push('n')
-                'X' -> stackList.push('*')
-                '=' -> stackList.push('=')
+                '/' -> {
+                    stackList.push('/')
+                }
+                '.' -> {
+                    stackList.push('.')
+                    numberOfMathematicalSigns++
+                }
+                '+' -> {
+                    stackList.push('+')
+                    numberOfMathematicalSigns++
+                }
+                '-' -> {
+                    stackList.push('-')
+                    numberOfMathematicalSigns++
+                }
+                'n' -> {
+                    stackList.push('n')
+                }
+                'X' -> {
+                    stackList.push('*')
+                    numberOfMathematicalSigns++
+                }
+                '=' -> {
+                    computeResult()
+                    // stackList.push('=')
+                }
                 else -> false
             }
-            screenView.setText(stackList.toScreen())
+            if (stackList.isEmpty()) {
+                screenView.setText("0")
+            } else {
+                screenView.setText(stackList.toScreen())
+            }
+            if (numberOfMathematicalSigns == 0) {
+                screenView2.setText("")
+            } else {
+                screenView2.setText(computeResult())
+            }
             return true
         }
      buttonClear.setOnClickListener{
