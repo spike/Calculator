@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         numberOfMathematicalSigns--
                     }
-                    }
+                }
                 '0' -> stackList.push(0)
                 '1' -> stackList.push(1)
                 '2' -> stackList.push(2)
@@ -101,13 +101,13 @@ class MainActivity : AppCompatActivity() {
             if (numberOfMathematicalSigns == 0) {
                 screenView2.setText("")
             } else {
-                screenView2.setText(computeResult())
+               // screenView2.setText(computeResult())
             }
             return true
         }
-     buttonClear.setOnClickListener{
+        buttonClear.setOnClickListener{
             keyTyped('c')
-     }
+        }
         buttonDivide.setOnClickListener{
             keyTyped('/')
         }
