@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val screenView = findViewById<TextView>(R.id.calculator_screen0)
-        val screenView2 = findViewById<TextView>(R.id.calculator_screen)
         val buttonClear = findViewById<Button>(R.id.button_clear)
         val buttonDivide = findViewById<Button>(R.id.button_divide)
         val buttonMultiply = findViewById<Button>(R.id.button_multiply)
@@ -97,11 +96,6 @@ class MainActivity : AppCompatActivity() {
                 screenView.setText("0")
             } else {
                 screenView.setText(stackList.toScreen())
-            }
-            if (numberOfMathematicalSigns == 0) {
-                screenView2.setText("")
-            } else {
-               // screenView2.setText(computeResult())
             }
             return true
         }

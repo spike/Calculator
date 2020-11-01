@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Moccasin"
     android:theme="@style/YourApplicationTheme"
-    tools:context=".MainActivity"
-    android:background="@color/Moccasin" >
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/calculator_screen0"
@@ -15,8 +15,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:gravity="start|top"
         android:background="@color/White"
+        android:gravity="start|top"
         android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/Black"
@@ -26,40 +26,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
 
-    <TextView
-        android:id="@+id/calculator_screen"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@color/White"
-        android:gravity="start|top"
-        android:text="0"
-        android:textAlignment="textEnd"
-        android:textColor="@color/Gray"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen0"
-        tools:ignore="RtlCompat" />
-
     <Button
         android:id="@+id/button_multiply"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:text="X"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_nine"
         app:layout_constraintStart_toEndOf="@+id/button_divide"
         app:layout_constraintStart_toStartOf="@+id/button_nine"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen0" />
 
     <Button
         android:id="@+id/button_clear"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:text="C"
         android:textColor="@color/SandyBrown"
         android:textSize="28sp"
@@ -67,31 +48,29 @@
         app:layout_constraintEnd_toStartOf="@+id/button_divide"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen0" />
 
     <Button
         android:id="@+id/button_divide"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:text="/"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_eight"
         app:layout_constraintStart_toEndOf="@+id/button_clear"
         app:layout_constraintStart_toStartOf="@+id/button_eight"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen0" />
 
     <Button
         android:id="@+id/button_delete"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:text="del"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_minus"
         app:layout_constraintStart_toEndOf="@+id/button_multiply"
         app:layout_constraintStart_toStartOf="@+id/button_minus"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen0" />
 
     <Button
         android:id="@+id/button_seven"
