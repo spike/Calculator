@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val screenView = findViewById<TextView>(R.id.calculator_screen0)
         val buttonClear = findViewById<Button>(R.id.button_clear)
-        val buttonDivide = findViewById<Button>(R.id.button_divide)
+        val buttonPercent = findViewById<Button>(R.id.button_percent)
         val buttonMultiply = findViewById<Button>(R.id.button_multiply)
         val buttonDelete = findViewById<Button>(R.id.button_delete)
         val buttonSeven = findViewById<Button>(R.id.button_seven)
@@ -26,10 +26,10 @@ class MainActivity : AppCompatActivity() {
         val buttonOne = findViewById<Button>(R.id.button_one)
         val buttonTwo = findViewById<Button>(R.id.button_two)
         val buttonThree = findViewById<Button>(R.id.button_three)
-        val buttonParenthesis = findViewById<Button>(R.id.button_parenthesis)
+        val buttonDivide = findViewById<Button>(R.id.button_divide)
         val buttonZero = findViewById<Button>(R.id.button_zero)
         val buttonPeriod = findViewById<Button>(R.id.button_period)
-        val buttonPositiveNegative = findViewById<Button>(R.id.button_positive_or_negative)
+        val buttonPreferences = findViewById<Button>(R.id.button_preferences)
         val buttonEqual = findViewById<Button>(R.id.button_equal)
 
         var stackList  = StackWithList()
@@ -71,6 +71,10 @@ class MainActivity : AppCompatActivity() {
                     stackList.push('.')
                     numberOfMathematicalSigns++
                 }
+                '%' -> {
+                    stackList.push('%')
+                    numberOfMathematicalSigns++
+                }
                 '+' -> {
                     stackList.push('+')
                     numberOfMathematicalSigns++
@@ -79,8 +83,8 @@ class MainActivity : AppCompatActivity() {
                     stackList.push('-')
                     numberOfMathematicalSigns++
                 }
-                'n' -> {
-                    stackList.push('n')
+                'p' -> {
+                    // Open preferences
                 }
                 'X' -> {
                     stackList.push('*')
@@ -102,8 +106,8 @@ class MainActivity : AppCompatActivity() {
         buttonClear.setOnClickListener{
             keyTyped('c')
         }
-        buttonDivide.setOnClickListener{
-            keyTyped('/')
+        buttonPercent.setOnClickListener{
+            keyTyped('%')
         }
         buttonDelete.setOnClickListener{
             keyTyped('d')
@@ -144,8 +148,8 @@ class MainActivity : AppCompatActivity() {
         buttonThree.setOnClickListener{
             keyTyped('3')
         }
-        buttonParenthesis.setOnClickListener{
-            keyTyped('p')
+        buttonDivide.setOnClickListener{
+            keyTyped('/')
         }
         buttonZero.setOnClickListener{
             keyTyped('0')
@@ -153,8 +157,8 @@ class MainActivity : AppCompatActivity() {
         buttonPeriod.setOnClickListener{
             keyTyped('.')
         }
-        buttonPositiveNegative.setOnClickListener{
-            keyTyped('n')
+        buttonPreferences.setOnClickListener{
+            keyTyped('p')
         }
         buttonMultiply.setOnClickListener{
             keyTyped('X')
