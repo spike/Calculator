@@ -2,6 +2,7 @@ package com.calculator.calc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         var stackList  = StackWithList()
         var numberOfMathematicalSigns = 0
+        var operand1 = 0.0
+        var operand2 = 0.0
+        var operator = ""
 
         fun computeResult(): Int {
 
@@ -69,19 +73,21 @@ class MainActivity : AppCompatActivity() {
                 }
                 '.' -> {
                     stackList.push('.')
-                    numberOfMathematicalSigns++
+
                 }
                 '%' -> {
-                    stackList.push('%')
-                    numberOfMathematicalSigns++
+                    operand1 = stackList.contentToString().toDouble()
+                    operand1 = operand1 / 100.0
+                    stackList.clear()
+                    stackList.push(operand1)
                 }
                 '+' -> {
-                    stackList.push('+')
-                    numberOfMathematicalSigns++
+                    operand1 = stackList.contentToString().toDouble()
+                    operator = "+"
+                    // make it blink and change color of the background slightly
                 }
                 '-' -> {
                     stackList.push('-')
-                    numberOfMathematicalSigns++
                 }
                 'p' -> {
                     // Open preferences
@@ -99,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             if (stackList.isEmpty()) {
                 screenView.setText("0")
             } else {
-                screenView.setText(stackList.toScreen())
+                screenView.setText(stackList.contentToString())
             }
             return true
         }
@@ -188,7 +194,7 @@ class StackWithList {
 
     override fun toString(): String = elements.toString()
 
-    fun toScreen(): String {
+    fun contentToString(): String {
         var result = ""
         for (e in elements) {
             result += "" + e
