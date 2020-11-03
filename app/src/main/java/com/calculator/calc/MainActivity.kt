@@ -3,6 +3,7 @@ package com.calculator.calc
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
@@ -172,6 +173,18 @@ class MainActivity : AppCompatActivity() {
         buttonEqual.setOnClickListener{
             keyTyped('=')
         }
+    }
+
+    fun operand(v: View) {
+
+    }
+    fun operator(v: View) {
+
+    }
+    fun resultIs(v: View) {
+
+    }
+    fun clearScreen(v: View) {
 
     }
 }
