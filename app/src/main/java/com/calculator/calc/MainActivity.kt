@@ -70,6 +70,9 @@ class MainActivity : AppCompatActivity() {
             "/" -> firstOperand.toDouble() / secondOperand.toDouble()
             else -> 0
         }
+        operandNumber = result.toString()
+        firstOperand = result.toString()
+        isFirstOperand = true
         screen.setText(result.toString())
     }
 
