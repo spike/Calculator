@@ -174,19 +174,55 @@ class MainActivity : AppCompatActivity() {
             keyTyped('=')
         }
     }
-
+    var firstOperand = ""
+    var secondOperand = ""
+    var operator = ""
     fun operand(v: View) {
+        var buttonClicked = v
+        firstOperand += when(buttonClicked.id) {
+                            R.id.button_one -> "1"
+                            R.id.button_two -> "2"
+                            R.id.button_three -> "3"
+                            R.id.button_four -> "4"
+                            R.id.button_five -> "5"
+                            R.id.button_six -> "6"
+                            R.id.button_seven -> "7"
+                            R.id.button_eight -> "8"
+                            R.id.button_nine -> "9"
+                            R.id.button_zero -> "0"
+                            else -> 0
+        }
 
     }
     fun operator(v: View) {
+        var buttonClicked = v
+        operator = when(buttonClicked.id) {
+                        R.id.button_plus -> "+"
+                        R.id.button_minus -> "-"
+                        R.id.button_multiply -> "*"
+                        R.id.button_divide -> "/"
+                        else -> ""
+        }
 
     }
     fun resultIs(v: View) {
+        var buttonClicked = v
+
 
     }
     fun clearScreen(v: View) {
+        var buttonClicked = v
+        firstOperand = ""
+    }
+    fun deleteOneCharacter (v: View) {
+        var buttonClicked = v
 
     }
+    fun openPreferences(v: View) {
+
+    }
+
+
 }
 
 class StackWithList {
