@@ -1,6 +1,7 @@
 package com.calculator.calc
 
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,218 +9,74 @@ import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
+    var firstOperand = ""
+    var secondOperand = ""
+    var operator = ""
+    var operandNumber = ""
+    var isFirstOperand = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val screenView = findViewById<TextView>(R.id.calculator_screen)
-        val buttonClear = findViewById<Button>(R.id.button_clear)
-        val buttonPercent = findViewById<Button>(R.id.button_percent)
-        val buttonMultiply = findViewById<Button>(R.id.button_multiply)
-        val buttonDelete = findViewById<Button>(R.id.button_delete)
-        val buttonSeven = findViewById<Button>(R.id.button_seven)
-        val buttonEight = findViewById<Button>(R.id.button_eight)
-        val buttonNine = findViewById<Button>(R.id.button_nine)
-        val buttonPlus = findViewById<Button>(R.id.button_plus)
-        val buttonFour = findViewById<Button>(R.id.button_four)
-        val buttonFive = findViewById<Button>(R.id.button_five)
-        val buttonSix = findViewById<Button>(R.id.button_six)
-        val buttonMinus = findViewById<Button>(R.id.button_minus)
-        val buttonOne = findViewById<Button>(R.id.button_one)
-        val buttonTwo = findViewById<Button>(R.id.button_two)
-        val buttonThree = findViewById<Button>(R.id.button_three)
-        val buttonDivide = findViewById<Button>(R.id.button_divide)
-        val buttonZero = findViewById<Button>(R.id.button_zero)
-        val buttonPeriod = findViewById<Button>(R.id.button_period)
-        val buttonPreferences = findViewById<Button>(R.id.button_preferences)
-        val buttonEqual = findViewById<Button>(R.id.button_equal)
+        fun display() {
 
-        var stackList  = StackWithList()
-        var numberOfMathematicalSigns = 0
-        var operand1 = 0.0
-        var operand2 = 0.0
-        var operator = ""
-
-        fun computeResult(): Int {
-
-
-            return 0
-        }
-
-        fun keyTyped(c: Char): Boolean {
-            when (c) {
-                'c' -> {
-                    stackList.clear()
-                    numberOfMathematicalSigns = 0
-                }
-                'd' -> {
-                    if (stackList.pop() in 0..9) {
-
-                    } else {
-                        numberOfMathematicalSigns--
-                    }
-                }
-                '0' -> stackList.push(0)
-                '1' -> stackList.push(1)
-                '2' -> stackList.push(2)
-                '3' -> stackList.push(3)
-                '4' -> stackList.push(4)
-                '5' -> stackList.push(5)
-                '6' -> stackList.push(6)
-                '7' -> stackList.push(7)
-                '8' -> stackList.push(8)
-                '9' -> stackList.push(9)
-                '/' -> {
-                    stackList.push('/')
-                }
-                '.' -> {
-                    stackList.push('.')
-
-                }
-                '%' -> {
-                    operand1 = stackList.contentToString().toDouble()
-                    operand1 = operand1 / 100.0
-                    stackList.clear()
-                    stackList.push(operand1)
-                }
-                '+' -> {
-                    operand1 = stackList.contentToString().toDouble()
-                    operator = "+"
-                    // make it blink and change color of the background slightly
-                }
-                '-' -> {
-                    stackList.push('-')
-                }
-                'p' -> {
-                    // Open preferences
-                }
-                'X' -> {
-                    stackList.push('*')
-                    numberOfMathematicalSigns++
-                }
-                '=' -> {
-                    computeResult()
-                    // stackList.push('=')
-                }
-                else -> false
-            }
-            if (stackList.isEmpty()) {
-                screenView.setText("0")
-            } else {
-                screenView.setText(stackList.contentToString())
-            }
-            return true
-        }
-        buttonClear.setOnClickListener{
-            keyTyped('c')
-        }
-        buttonPercent.setOnClickListener{
-            keyTyped('%')
-        }
-        buttonDelete.setOnClickListener{
-            keyTyped('d')
-        }
-        buttonSeven.setOnClickListener{
-            keyTyped('7')
-        }
-        buttonEight.setOnClickListener{
-            keyTyped('8')
-        }
-        buttonNine.setOnClickListener{
-            keyTyped('9')
-        }
-        buttonMinus.setOnClickListener{
-            keyTyped('-')
-        }
-        buttonFour.setOnClickListener{
-            keyTyped('4')
-        }
-        buttonFive.setOnClickListener{
-            keyTyped('5')
-        }
-        buttonSix.setOnClickListener{
-            keyTyped('6')
-        }
-        buttonPlus.setOnClickListener{
-            keyTyped('+')
-        }
-        buttonZero.setOnClickListener{
-            keyTyped('0')
-        }
-        buttonOne.setOnClickListener{
-            keyTyped('1')
-        }
-        buttonTwo.setOnClickListener{
-            keyTyped('2')
-        }
-        buttonThree.setOnClickListener{
-            keyTyped('3')
-        }
-        buttonDivide.setOnClickListener{
-            keyTyped('/')
-        }
-        buttonZero.setOnClickListener{
-            keyTyped('0')
-        }
-        buttonPeriod.setOnClickListener{
-            keyTyped('.')
-        }
-        buttonPreferences.setOnClickListener{
-            keyTyped('p')
-        }
-        buttonMultiply.setOnClickListener{
-            keyTyped('X')
-        }
-        buttonEqual.setOnClickListener{
-            keyTyped('=')
         }
     }
-    var firstOperand = ""
-    var secondOperand = ""
-    var operator = ""
+
     fun operand(v: View) {
+        val screen = findViewById<TextView>(R.id.calculator_screen)
         var buttonClicked = v
-        firstOperand += when(buttonClicked.id) {
-                            R.id.button_one -> "1"
-                            R.id.button_two -> "2"
-                            R.id.button_three -> "3"
-                            R.id.button_four -> "4"
-                            R.id.button_five -> "5"
-                            R.id.button_six -> "6"
-                            R.id.button_seven -> "7"
-                            R.id.button_eight -> "8"
-                            R.id.button_nine -> "9"
-                            R.id.button_zero -> "0"
-                            else -> 0
+        operandNumber += when (buttonClicked.id) {
+            R.id.button_one -> "1"
+            R.id.button_two -> "2"
+            R.id.button_three -> "3"
+            R.id.button_four -> "4"
+            R.id.button_five -> "5"
+            R.id.button_six -> "6"
+            R.id.button_seven -> "7"
+            R.id.button_eight -> "8"
+            R.id.button_nine -> "9"
+            R.id.button_zero -> "0"
+            else -> 0
         }
-
+        if (isFirstOperand) {
+            firstOperand = operandNumber
+        } else {
+            secondOperand = operandNumber
+        }
+       screen.setText(operandNumber)
+        // change color of the screen or something
     }
+
     fun operator(v: View) {
         var buttonClicked = v
-        operator = when(buttonClicked.id) {
-                        R.id.button_plus -> "+"
-                        R.id.button_minus -> "-"
-                        R.id.button_multiply -> "*"
-                        R.id.button_divide -> "/"
-                        else -> ""
+        operator = when (buttonClicked.id) {
+            R.id.button_plus -> "+"
+            R.id.button_minus -> "-"
+            R.id.button_multiply -> "*"
+            R.id.button_divide -> "/"
+            else -> ""
         }
-
+        isFirstOperand = false
+        operandNumber = ""
     }
+
     fun resultIs(v: View) {
-        var buttonClicked = v
-
-
     }
+
     fun clearScreen(v: View) {
         var buttonClicked = v
         firstOperand = ""
+        isFirstOperand = true
     }
-    fun deleteOneCharacter (v: View) {
-        var buttonClicked = v
 
+    fun deleteOneCharacter(v: View) {
+        val screen = findViewById<TextView>(R.id.calculator_screen)
+        operandNumber = operandNumber.dropLast(1)
+        screen.setText(operandNumber)
     }
+
     fun openPreferences(v: View) {
-
     }
 
 
@@ -234,11 +91,12 @@ class StackWithList {
     fun push(item: Any) = elements.add(item)
     fun pop(): Any? {
         val item = elements.lastOrNull()
-        if (!isEmpty()){
-            elements.removeAt(elements.size -1)
+        if (!isEmpty()) {
+            elements.removeAt(elements.size - 1)
         }
         return item
     }
+
     fun peek(): Any? = elements.lastOrNull()
 
     override fun toString(): String = elements.toString()
@@ -258,5 +116,5 @@ class StackWithList {
 
     fun toCharArray() = elements.toString().toCharArray()
 
-
 }
+
