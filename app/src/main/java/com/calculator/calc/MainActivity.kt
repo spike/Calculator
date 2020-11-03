@@ -62,12 +62,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun resultIs(v: View) {
+        val screen = findViewById<TextView>(R.id.calculator_screen)
+        val result = when(operator) {
+            "+" -> firstOperand.toInt() + secondOperand.toInt()
+            "-" -> firstOperand.toInt() - secondOperand.toInt()
+            "*" -> firstOperand.toInt() * secondOperand.toInt()
+            "/" -> firstOperand.toDouble() / secondOperand.toDouble()
+            else -> 0
+        }
+        screen.setText(result.toString())
     }
 
     fun clearScreen(v: View) {
-        var buttonClicked = v
+        val screen = findViewById<TextView>(R.id.calculator_screen)
         firstOperand = ""
         isFirstOperand = true
+        screen.setText("0")
     }
 
     fun deleteOneCharacter(v: View) {
