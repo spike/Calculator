@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     var operator = ""
     var operandNumber = ""
     var isFirstOperand = true
+    var isDecimal = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,12 +80,15 @@ class MainActivity : AppCompatActivity() {
     fun clearScreen(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         firstOperand = ""
+        secondOperand = ""
+        operator = ""
         isFirstOperand = true
         screen.setText("0")
     }
 
     fun deleteOneCharacter(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
+        if (operandNumber.last().equals('.')) isDecimal = false
         operandNumber = operandNumber.dropLast(1)
         screen.setText(operandNumber)
     }
@@ -94,7 +98,10 @@ class MainActivity : AppCompatActivity() {
 
     fun decimal(view: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        operandNumber += "."
+        if (! isDecimal) {
+            operandNumber += "."
+            isDecimal = true
+        }
         screen.setText(operandNumber)
 
     }
