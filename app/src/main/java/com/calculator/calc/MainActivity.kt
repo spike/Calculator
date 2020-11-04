@@ -90,6 +90,10 @@ class MainActivity : AppCompatActivity() {
     fun openPreferences(v: View) {
     }
 
+    fun decimal(view: View) {
+
+    }
+
 
 }
 
