@@ -32,14 +32,17 @@ class MainActivity : AppCompatActivity() {
             R.id.button_eight -> "8"
             R.id.button_nine -> "9"
             R.id.button_zero -> "0"
-            else -> 0
+            else -> "0"
         }
         if (isFirstOperand) {
             firstOperand = operandNumber
         } else {
             secondOperand = operandNumber
         }
-       screen.setText(operandNumber)
+        while ((operandNumber.length > 1) && (operandNumber.first().equals('0'))) {
+            operandNumber = operandNumber.drop(1)
+        }
+        screen.setText(operandNumber)
         // change color of the screen or something
     }
 
