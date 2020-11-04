@@ -39,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             secondOperand = operandNumber
         }
-        while ((operandNumber.length > 1) && (operandNumber.first().equals('0'))) {
+        while ((operandNumber.length > 1) &&
+            (operandNumber.first().equals('0')) &&
+            (!operandNumber.last().equals('.'))) {
             operandNumber = operandNumber.drop(1)
         }
         screen.setText(operandNumber)
@@ -91,6 +93,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun decimal(view: View) {
+        val screen = findViewById<TextView>(R.id.calculator_screen)
+        operandNumber += "."
+        screen.setText(operandNumber)
 
     }
 
