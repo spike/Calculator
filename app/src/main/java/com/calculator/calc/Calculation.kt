@@ -1,17 +1,21 @@
 package com.calculator.calc
 
 class Calculation {
-    fun addNumber(): String {
-        return ""
-    }
-    fun clear(): String {
-        return ""
+    fun loadOperand(s: String): Boolean {
+        return false
+
     }
 
-    fun compute(operandOne: String, operandTwo: String, operatorSign: String): String {
-        return ""
+    fun loadOperator(s: String): Boolean {
+        return false
+
     }
-    fun delete(): String {
+
+    fun getResult(): String {
+        return ""
+
+    }
+    fun clear(): String {
         return ""
     }
 }
