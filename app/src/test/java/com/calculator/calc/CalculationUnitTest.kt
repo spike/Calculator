@@ -3,6 +3,7 @@ package com.calculator.calc
 import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.After
 
 class CalculationUnitTest {
     private lateinit var c: Calculation
@@ -33,6 +34,9 @@ class CalculationUnitTest {
     fun testMultiplication() {
         assertEquals("250", compute("25", "10", "*"))
     }
-
+    @After
+    fun tearDown(): Unit {
+        c.clear()
+    }
 }
 
