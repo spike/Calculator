@@ -3,45 +3,24 @@ package com.calculator.calc
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Before
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-    @Test
-    fun test_key_typed() {
-        assertEquals(7.0, keyTyped('7'))
-    }
+    private lateinit var c: Calculation
 
-    fun keyTyped(c: Char): Double {
-        return when (c) {
-            '7' -> 7.0
-            else -> 0.0
-        }
+    fun compute(opOne: String, opTwo: String, sign: String): String {
+        c.loadOperand(opOne)
+        c.loadOperator(sign)
+        c.loadOperand(opTwo)
+        return c.getResult()
+    }
+    @Before
+    fun setUp(): Unit {
+        c = Calculation()
+    }
+    @Test
+    fun testSubtraction() {
+        assertEquals("123400", compute("123456", "56", "-"))
     }
 }
 
-class StackWithList {
-    val elements: MutableList<Any> = mutableListOf()
-
-    fun isEmpty() = elements.isEmpty()
-    fun size() = elements.size
-
-    fun push(item: Any) = elements.add(item)
-    fun pop(): Any? {
-        val item = elements.lastOrNull()
-        if (!isEmpty()){
-            elements.removeAt(elements.size -1)
-        }
-        return item
-    }
-    fun peek(): Any? = elements.lastOrNull()
-
-    override fun toString(): String = elements.toString()
-}
