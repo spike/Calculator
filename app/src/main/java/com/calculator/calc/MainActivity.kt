@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     var operandNumber = ""
     var isFirstOperand = true
     var isDecimal = false
+    val c = Calculation()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
