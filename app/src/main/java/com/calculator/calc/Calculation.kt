@@ -20,7 +20,7 @@ class Calculation {
                 in 49..57 -> oneThroughNine(e)
                 48 -> zero()
                 46 -> decimalPoint()
-                45 -> minusSign()
+               // 45 -> minusSign()
                 in 42..47 -> operatorSign(e)
                 61 -> equalSign()
                 98 -> backSpace()
@@ -49,7 +49,7 @@ class Calculation {
         } else {
             if (operator.equals(buf.first().toString())) {
                 buf = buf.drop(1) + e
-
+                println("==$operator ${buf.first().toString()}")
             } else {
                 buf += e
             }
@@ -72,11 +72,11 @@ class Calculation {
         secondOperand = buf
         if (firstNumber && secondNumber) {
             buf = when (operator) {
-                "+" -> (firstOperand.toInt() + secondOperand.toInt()).toString()
-                "*" -> (firstOperand.toInt() * secondOperand.toInt()).toString()
-                "/" -> (firstOperand.toInt() / secondOperand.toInt()).toString()
-                "-" -> (firstOperand.toInt() - secondOperand.toInt()).toString()
-                else -> "0"
+                "+" -> (firstOperand.toBigDecimal() + secondOperand.toBigDecimal()).toString()
+                "*" -> (firstOperand.toBigDecimal() * secondOperand.toBigDecimal()).toString()
+                "/" -> (firstOperand.toBigDecimal() / secondOperand.toBigDecimal()).toString()
+                "-" -> (firstOperand.toBigDecimal() - secondOperand.toBigDecimal()).toString()
+                else -> "?"
             }
         }
         return buf
