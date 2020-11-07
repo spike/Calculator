@@ -99,7 +99,20 @@ class Calculation {
     }
 
     fun decimalPoint(): String {
-        return ""
+        if (leadingCharacter) {
+            buf = "0."
+            leadingCharacter = false
+        } else {
+            if (!buf.contains('.')) { // no duplicates
+                buf += "."
+            }
+        }
+        if (firstNumber) {
+            firstOperand = buf
+        } else {
+            secondOperand = buf
+        }
+        return buf
     }
 
 
