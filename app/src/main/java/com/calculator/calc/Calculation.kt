@@ -12,12 +12,12 @@ class Calculation {
 
     fun calculate(a: String): List<String> {
         for (e in a) {
-            when (e.toChar().toInt()) {
-                in 49..57 -> oneThroughNine()
+            when (e.toInt()) {
+                in 49..57 -> oneThroughNine(e)
                 48 -> zero()
                 46 -> decimalPoint()
                 45 -> minusSign()
-                in 42..47 -> operatorSign()
+                in 42..47 -> operatorSign(e)
                 61 -> equalSign()
                 98 -> backSpace()
                // else -> // error
@@ -26,33 +26,35 @@ class Calculation {
         return result
     }
 
-    private fun backSpace() {
+    fun zero() {
         TODO("Not yet implemented")
     }
 
-    private fun equalSign() {
+    fun oneThroughNine(e: Char) {
+
+    }
+
+    fun backSpace() {
         TODO("Not yet implemented")
     }
 
-    private fun operatorSign() {
+    fun equalSign() {
         TODO("Not yet implemented")
     }
 
-    private fun minusSign() {
+    fun operatorSign(e: Char) {
         TODO("Not yet implemented")
     }
 
-    private fun decimalPoint() {
+    fun minusSign() {
         TODO("Not yet implemented")
     }
 
-    private fun zero() {
+    fun decimalPoint() {
         TODO("Not yet implemented")
     }
 
-    private fun oneThroughNine() {
-        TODO("Not yet implemented")
-    }
+
 
     fun loadOperand(s: String): Boolean {
         return false
