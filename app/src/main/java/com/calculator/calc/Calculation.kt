@@ -49,7 +49,6 @@ class Calculation {
         } else {
             if (operator.equals(buf.first().toString())) {
                 buf = buf.drop(1) + e
-                println("==$operator ${buf.first().toString()}")
             } else {
                 buf += e
             }
