@@ -86,7 +86,6 @@ class Calculation {
             firstNumber = false
             firstOperand = buf
             operator = e.toString()
-           // buf = e.toString()
         } else {
 
         }
