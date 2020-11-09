@@ -5,7 +5,6 @@ import java.math.BigDecimal
 class Calculation {
     // "12345+5="
     // listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
-    var dotless: Boolean = true
     var leadingCharacter: Boolean = true
     var workingOnFirstOperand: Boolean = true
     var secondNumber: Boolean = false
