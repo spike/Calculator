@@ -1,13 +1,16 @@
 package com.calculator.calc
 
+import java.math.BigDecimal
+
 class Calculation {
     // "12345+5="
     // listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
     var dotless: Boolean = true
     var operatorless: Boolean = true
     var leadingCharacter: Boolean = true
-    var firstNumber: Boolean = true
+    var workingOnFirstOperand: Boolean = true
     var secondNumber: Boolean = false
+    var operatorSet: Boolean = false
     var result: MutableList<String> = mutableListOf()
     var buf: String = ""
     var screen: String = ""
@@ -21,8 +24,13 @@ class Calculation {
                 48 -> zero()
                 46 -> decimalPoint()
                // 45 -> minusSign()
-                in 42..47 -> operatorSign(e)
-                61 -> equalSign()
+                in 42..47 -> {
+                    println("sign")
+                    operatorSign(e)
+                }
+                61 -> { println("Hey")
+                    equalSign()
+                }
                 98 -> backSpace()
                 99 -> clearScreen()
                 else -> ""
@@ -43,7 +51,7 @@ class Calculation {
     }
 
     fun oneThroughNine(e: Char): String {
-        if (firstNumber) {
+        if (workingOnFirstOperand) { // working on first operand
             buf += e
             leadingCharacter = false
         } else {
@@ -62,29 +70,40 @@ class Calculation {
             buf = buf.dropLast(1)
         } else {
             buf = "0"
-            firstNumber = true
+            workingOnFirstOperand = true
         }
         return buf
     }
+    var num: BigDecimal = BigDecimal.valueOf(0)
+    var num2: Double = 0.0
+
 
     fun equalSign(): String {
         secondOperand = buf
-        if (firstNumber && secondNumber) {
-            buf = when (operator) {
-                "+" -> (firstOperand.toBigDecimal() + secondOperand.toBigDecimal()).toString()
-                "*" -> (firstOperand.toBigDecimal() * secondOperand.toBigDecimal()).toString()
-                "/" -> (firstOperand.toBigDecimal() / secondOperand.toBigDecimal()).toString()
-                "-" -> (firstOperand.toBigDecimal() - secondOperand.toBigDecimal()).toString()
-                else -> "?"
+        println("$workingOnFirstOperand and $secondNumber")
+        if (secondNumber) {
+
+            num2 = when (operator) {
+                "+" -> {
+                    println("==${(firstOperand.toDouble())} + ${secondOperand.toDouble()}")
+                    (firstOperand.toDouble() + secondOperand.toDouble())
+                }
+                "*" -> (firstOperand.toDouble() * secondOperand.toDouble())
+                "/" -> (firstOperand.toDouble() / secondOperand.toDouble())
+                "-" -> (firstOperand.toDouble() - secondOperand.toDouble())
+                else -> 999999.9
             }
         }
+        operatorSet = true
+        buf = num2.toString()
         return buf
     }
 
     fun operatorSign(e: Char): String {
-        if (firstNumber) {
-            firstNumber = false
+        if (workingOnFirstOperand) {
+            workingOnFirstOperand = false
             firstOperand = buf
+            secondOperand = ""
             operator = e.toString()
         } else {
 
@@ -105,7 +124,7 @@ class Calculation {
                 buf += "."
             }
         }
-        if (firstNumber) {
+        if (workingOnFirstOperand) {
             firstOperand = buf
         } else {
             secondOperand = buf
