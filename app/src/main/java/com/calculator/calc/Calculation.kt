@@ -24,12 +24,8 @@ class Calculation {
                 48 -> zero()
                 46 -> decimalPoint()
                // 45 -> minusSign()
-                in 42..47 -> {
-                    operatorSign(e)
-                }
-                61 -> {
-                    equalSign()
-                }
+                in 42..47 -> operatorSign(e)
+                61 -> equalSign()
                 98 -> backSpace()
                 99 -> clearScreen()
                 else -> ""
