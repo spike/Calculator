@@ -25,10 +25,9 @@ class Calculation {
                 46 -> decimalPoint()
                // 45 -> minusSign()
                 in 42..47 -> {
-                    println("sign")
                     operatorSign(e)
                 }
-                61 -> { println("Hey")
+                61 -> {
                     equalSign()
                 }
                 98 -> backSpace()
