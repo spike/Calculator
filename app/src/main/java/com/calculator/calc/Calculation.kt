@@ -23,7 +23,6 @@ class Calculation {
                 in 49..57 -> oneThroughNine(e)
                 48 -> zero()
                 46 -> decimalPoint()
-               // 45 -> minusSign()
                 in 42..47 -> operatorSign(e)
                 61 -> equalSign()
                 98 -> backSpace()
