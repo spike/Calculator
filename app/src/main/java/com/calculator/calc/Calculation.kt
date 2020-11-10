@@ -6,14 +6,14 @@ class Calculation {
     // "12345+5="
     // listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
     var leadingCharacter: Boolean = true
-    var workingOnFirstOperand: Boolean = true
+    var workingOnFirstNumber: Boolean = true
     var completedSecondNumber: Boolean = false
     var operatorSet: Boolean = false
     var result: MutableList<String> = mutableListOf()
     var buf: String = ""
     var screen: String = ""
-    var firstOperand = ""
-    var secondOperand = ""
+    var firstOperandAsString = ""
+    var secondOperandAsString = ""
     var operator = ""
     fun calculate(a: String): List<String> {
         for (e in a) {
@@ -36,17 +36,9 @@ class Calculation {
         return ""
     }
 
-    fun zero(): String {
-        buf += "0"
-        leadingCharacter = false
-        return buf
-    }
-
-
-
     fun backSpace(): String {
         // backSpaceOnOperator()
-        return if (workingOnFirstOperand) {
+        return if (workingOnFirstNumber) {
             backSpaceOnFirstNumber()
         } else {
             backSpaceOnSecondNumber()
@@ -54,18 +46,18 @@ class Calculation {
     }
 
     private fun backSpaceOnFirstNumber(): String {
-        return if (firstOperand.length > 0) {
-            firstOperand.dropLast(1)
+        return if (firstOperandAsString.length > 0) {
+            firstOperandAsString.dropLast(1)
         } else {
-            firstOperand
+            firstOperandAsString
         }
     }
 
     private fun backSpaceOnSecondNumber(): String {
-        return if (secondOperand.length > 0) {
-            secondOperand.dropLast(1)
+        return if (secondOperandAsString.length > 0) {
+            secondOperandAsString.dropLast(1)
         } else {
-            secondOperand
+            secondOperandAsString
         }
     }
 
@@ -73,49 +65,49 @@ class Calculation {
         var num3: BigDecimal = BigDecimal.valueOf(0.0)
         if (completedSecondNumber) {
             num3 = when (operator) {
-                "+" -> BigDecimal.valueOf(firstOperand.toDouble()) + BigDecimal.valueOf(secondOperand.toDouble())
-                "*" -> BigDecimal.valueOf(firstOperand.toDouble()) * BigDecimal.valueOf(secondOperand.toDouble())
-                "/" -> BigDecimal.valueOf(firstOperand.toDouble()) / BigDecimal.valueOf(secondOperand.toDouble())
-                "-" -> BigDecimal.valueOf(firstOperand.toDouble()) - BigDecimal.valueOf(secondOperand.toDouble())
+                "+" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) + BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "*" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) * BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "/" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) / BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) - BigDecimal.valueOf(secondOperandAsString.toDouble())
                 else -> BigDecimal.valueOf(99999.999)
             }
         }
 
-        secondOperand = ""
+        secondOperandAsString = ""
         completedSecondNumber = false
-        firstOperand = num3.toString()
-        workingOnFirstOperand = false
-        return firstOperand
+        firstOperandAsString = num3.setScale(0).toString()
+        workingOnFirstNumber = false
+        return firstOperandAsString
     }
 
     fun zeroThroughNine(e: Char): String {
-        return if (workingOnFirstOperand) {
+        return if (workingOnFirstNumber) {
             partOfFirstNumber(e)
         } else
             partOfSecondNumber(e)
     }
 
     private fun partOfFirstNumber(e: Char): String {
-        firstOperand += e
-        return firstOperand
+        firstOperandAsString += e
+        return firstOperandAsString
     }
 
     private fun partOfSecondNumber(e: Char): String {
         completedSecondNumber = true
-        secondOperand +=e
-        return secondOperand
+        secondOperandAsString +=e
+        return secondOperandAsString
     }
 
     fun operatorSign(e: Char): String {
-        return if (workingOnFirstOperand) {
+        return if (workingOnFirstNumber) {
             firstOperatorMiddle(e)
         } else {
             secondOperator(e)
         }
     }
     private fun firstOperatorMiddle(e: Char): String {
-        workingOnFirstOperand = false
-        secondOperand = ""
+        workingOnFirstNumber = false
+        secondOperandAsString = ""
         operator = e.toString()
         return operator
     }
@@ -130,7 +122,7 @@ class Calculation {
     }
 
     fun decimalPoint(): String {
-        return if (workingOnFirstOperand) {
+        return if (workingOnFirstNumber) {
             decimalPointInFirstNumber()
         } else {
             decimalPointInSecondNumber()
@@ -138,20 +130,29 @@ class Calculation {
     }
 
     fun decimalPointInFirstNumber(): String {
-        if (firstOperand.length > 0) {
-            firstOperand += "."
+        if (firstOperandAsString.length > 0) {
+            firstOperandAsString += "."
         } else {
-            firstOperand = "0."
+            firstOperandAsString = "0."
         }
-        return firstOperand
+        return firstOperandAsString
     }
     private fun decimalPointInSecondNumber(): String {
-        if (secondOperand.length > 0) {
-            secondOperand += "."
+        if (secondOperandAsString.length > 0) {
+            secondOperandAsString += "."
         } else {
-            secondOperand = "0."
+            secondOperandAsString = "0."
         }
-        return secondOperand
+        return secondOperandAsString
+    }
+
+    fun clear() {
+        firstOperandAsString = ""
+        secondOperandAsString = ""
+        operator = ""
+        buf = ""
+        workingOnFirstNumber = true
+        completedSecondNumber = false
     }
 
 }
