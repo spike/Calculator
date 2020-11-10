@@ -1,6 +1,7 @@
 package com.calculator.calc
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 class Calculation {
     // "12345+5="
@@ -77,7 +78,7 @@ class Calculation {
         }
         secondOperandAsString = ""
         completedSecondNumber = false
-        firstOperandAsString = num3.setScale(0).toString()
+        firstOperandAsString = num3.stripTrailingZeros().toString()
         workingOnFirstNumber = false
         return firstOperandAsString
     }
@@ -131,21 +132,29 @@ class Calculation {
             decimalPointInSecondNumber()
         }
     }
+    var noDecimalPointInFirstYet = true
+    var noDecimalPointInSecondYet = true
 
     fun decimalPointInFirstNumber(): String {
-        if (firstOperandAsString.length > 0) {
-            firstOperandAsString += "."
-        } else {
-            firstOperandAsString = "0."
+        if (noDecimalPointInFirstYet) {
+            if (firstOperandAsString.length > 0) {
+                firstOperandAsString += "."
+            } else {
+                firstOperandAsString = "0."
+            }
         }
+        noDecimalPointInFirstYet = false
         return firstOperandAsString
     }
     private fun decimalPointInSecondNumber(): String {
-        if (secondOperandAsString.length > 0) {
-            secondOperandAsString += "."
-        } else {
-            secondOperandAsString = "0."
+        if (noDecimalPointInSecondYet) {
+            if (secondOperandAsString.length > 0) {
+                secondOperandAsString += "."
+            } else {
+                secondOperandAsString = "0."
+            }
         }
+        noDecimalPointInSecondYet = false
         return secondOperandAsString
     }
 
