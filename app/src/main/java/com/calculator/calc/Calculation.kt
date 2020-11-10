@@ -1,11 +1,8 @@
 package com.calculator.calc
 
 import java.math.BigDecimal
-import java.math.RoundingMode
 
 class Calculation {
-    // "12345+5="
-    // listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
     var leadingCharacter: Boolean = true
     var workingOnFirstNumber: Boolean = true
     var completedSecondNumber: Boolean = false
@@ -89,10 +86,14 @@ class Calculation {
             completedSecondNumber = false
             workingOnFirstNumber = false
             lastCalledEqual = true
-            firstOperandAsString = num3.stripTrailingZeros().toString()
+            firstOperandAsString = removeTrailingZeros(num3)
             lastResult = firstOperandAsString
         }
         return firstOperandAsString
+    }
+
+    private fun removeTrailingZeros(bd: BigDecimal): String {
+        return bd.toString().replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
     }
 
     fun zeroThroughNine(e: Char): String {
