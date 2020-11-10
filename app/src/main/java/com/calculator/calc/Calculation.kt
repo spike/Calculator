@@ -7,7 +7,7 @@ class Calculation {
     // listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
     var leadingCharacter: Boolean = true
     var workingOnFirstOperand: Boolean = true
-    var secondNumber: Boolean = false
+    var completedSecondNumber: Boolean = false
     var operatorSet: Boolean = false
     var result: MutableList<String> = mutableListOf()
     var buf: String = ""
@@ -18,8 +18,8 @@ class Calculation {
     fun calculate(a: String): List<String> {
         for (e in a) {
             screen = when (e.toInt()) {
-                in 49..57 -> oneThroughNine(e)
-                48 -> zero()
+                in 48..57 -> oneThroughNine(e)
+               // 48 -> zero()
                 46 -> decimalPoint()
                 in 42..47 -> operatorSign(e)
                 61 -> equalSign()
@@ -42,23 +42,7 @@ class Calculation {
         return buf
     }
 
-    fun oneThroughNine(e: Char): String {
-        return if (workingOnFirstOperand) {
-            partOfFirstNumber(e)
-        } else
-            partOfSecondNumber(e)
-    }
 
-    private fun partOfFirstNumber(e: Char): String {
-        firstOperand += e
-        return firstOperand
-    }
-
-    private fun partOfSecondNumber(e: Char): String {
-        secondNumber = true
-        secondOperand +=e
-        return secondOperand
-    }
 
     fun backSpace(): String {
         // backSpaceOnOperator()
@@ -85,21 +69,41 @@ class Calculation {
         }
     }
 
-    var num: BigDecimal = BigDecimal.valueOf(0)
-    var num2: Double = 0.0
-
-
     fun equalSign(): String {
-        if (secondNumber) {
-            num2 = when (operator) {
-                "+" -> (firstOperand.toDouble() + secondOperand.toDouble())
-                "*" -> (firstOperand.toDouble() * secondOperand.toDouble())
-                "/" -> (firstOperand.toDouble() / secondOperand.toDouble())
-                "-" -> (firstOperand.toDouble() - secondOperand.toDouble())
-                else -> 999999.9
+        var num3: BigDecimal = BigDecimal.valueOf(0.0)
+        if (completedSecondNumber) {
+            num3 = when (operator) {
+                "+" -> BigDecimal.valueOf(firstOperand.toDouble()) + BigDecimal.valueOf(secondOperand.toDouble())
+                "*" -> BigDecimal.valueOf(firstOperand.toDouble()) * BigDecimal.valueOf(secondOperand.toDouble())
+                "/" -> BigDecimal.valueOf(firstOperand.toDouble()) / BigDecimal.valueOf(secondOperand.toDouble())
+                "-" -> BigDecimal.valueOf(firstOperand.toDouble()) - BigDecimal.valueOf(secondOperand.toDouble())
+                else -> BigDecimal.valueOf(99999.999)
             }
         }
-        return num2.toString()
+
+        secondOperand = ""
+        completedSecondNumber = false
+        firstOperand = num3.toString()
+        workingOnFirstOperand = false
+        return firstOperand
+    }
+
+    fun oneThroughNine(e: Char): String {
+        return if (workingOnFirstOperand) {
+            partOfFirstNumber(e)
+        } else
+            partOfSecondNumber(e)
+    }
+
+    private fun partOfFirstNumber(e: Char): String {
+        firstOperand += e
+        return firstOperand
+    }
+
+    private fun partOfSecondNumber(e: Char): String {
+        completedSecondNumber = true
+        secondOperand +=e
+        return secondOperand
     }
 
     fun operatorSign(e: Char): String {
@@ -118,6 +122,7 @@ class Calculation {
     private fun secondOperator(e: Char): String {
         operator = e.toString()
         return "(${equalSign()})${e.toString()}"
+        // return "()${e.toString()}"
     }
 
     fun minusSign(): String {

@@ -16,8 +16,8 @@ class CalculationUnitTest {
         "0", "0.8", "0.82", "79")
     val aaa ="12345+5="
     val bbb = listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
-    val aaaa = "3+2="
-    val bbbb = listOf("3", "+", "2", "5")
+    val aaaa = "3+2+10=="
+    val bbbb = listOf("3", "+", "2", "(5)+", "1", "10", "15", "15")
 
     @Test
     fun testCalculateFirstCase() {
