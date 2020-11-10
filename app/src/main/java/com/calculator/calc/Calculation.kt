@@ -3,17 +3,14 @@ package com.calculator.calc
 import java.math.BigDecimal
 
 class Calculation {
-    var leadingCharacter: Boolean = true
     var workingOnFirstNumber: Boolean = true
     var completedSecondNumber: Boolean = false
-    var operatorSet: Boolean = false
     var result: MutableList<String> = mutableListOf()
     var buf: String = ""
     var screen: String = ""
     var firstOperandAsString = ""
     var secondOperandAsString = ""
     var operator = ""
-
 
     fun calculate(a: String): List<String> {
         for (e in a) {

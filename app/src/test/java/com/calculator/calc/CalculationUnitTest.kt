@@ -16,8 +16,8 @@ class CalculationUnitTest {
         "0.", "0.8", "0.82", "79")
     val aaa ="12345+5="
     val bbb = listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
-    val aaaa = "3*2+10=="
-    val bbbb = listOf("3", "*", "2", "(6)+", "1", "10", "16", "16")
+    val aaaa = "3+*2+10=="
+    val bbbb = listOf("3", "+", "*", "2", "(6)+", "1", "10", "16", "16")
     // ++ case doesn't work
     @Test
     fun testCalculateFirstCase() {
@@ -35,32 +35,9 @@ class CalculationUnitTest {
     fun testCalculateFourthCase() {
         assertEquals(bbbb, c.calculate(aaaa))
     }
-
-/*    fun compute(opOne: String, opTwo: String, sign: String): String {
-        c.loadOperand(opOne)
-        c.loadOperator(sign)
-        c.loadOperand(opTwo)
-        return c.getResult()
-    }*/
     @Before
     fun setUp(): Unit {
         c = Calculation()
-    }
-   // @Test
-    fun testSubtraction() {
-        //assertEquals("123400", compute("123456", "56", "-"))
-    }
-   // @Test
-    fun testAddition() {
-       // assertEquals("123496", compute("123456", "40", "+"))
-    }
-   // @Test
-    fun testDivision() {
-        //assertEquals("5", compute("20", "4", "/"))
-    }
-   // @Test
-    fun testMultiplication() {
-        //assertEquals("250", compute("25", "10", "*"))
     }
     @After
     fun tearDown() {
