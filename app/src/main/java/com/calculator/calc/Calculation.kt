@@ -18,7 +18,7 @@ class Calculation {
     fun calculate(a: String): List<String> {
         for (e in a) {
             screen = when (e.toInt()) {
-                in 48..57 -> oneThroughNine(e)
+                in 48..57 -> zeroThroughNine(e)
                // 48 -> zero()
                 46 -> decimalPoint()
                 in 42..47 -> operatorSign(e)
@@ -88,7 +88,7 @@ class Calculation {
         return firstOperand
     }
 
-    fun oneThroughNine(e: Char): String {
+    fun zeroThroughNine(e: Char): String {
         return if (workingOnFirstOperand) {
             partOfFirstNumber(e)
         } else
