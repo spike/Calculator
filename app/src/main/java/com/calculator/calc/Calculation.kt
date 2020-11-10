@@ -43,29 +43,47 @@ class Calculation {
     }
 
     fun oneThroughNine(e: Char): String {
-        if (workingOnFirstOperand) { // working on first operand
-            buf += e
-            leadingCharacter = false
-        } else {
-            if (operator.equals(buf.first().toString())) {
-                buf = buf.drop(1) + e
-            } else {
-                buf += e
-            }
-            secondNumber = true
-        }
-        return buf
+        return if (workingOnFirstOperand) {
+            partOfFirstNumber(e)
+        } else
+            partOfSecondNumber(e)
+    }
+
+    private fun partOfFirstNumber(e: Char): String {
+        firstOperand += e
+        return firstOperand
+    }
+
+    private fun partOfSecondNumber(e: Char): String {
+        secondOperand +=e
+        return secondOperand
     }
 
     fun backSpace(): String {
-        if (buf.length > 1) {
-            buf = buf.dropLast(1)
+        // backSpaceOnOperator()
+        return if (workingOnFirstOperand) {
+            backSpaceOnFirstNumber()
         } else {
-            buf = "0"
-            workingOnFirstOperand = true
+            backSpaceOnSecondNumber()
         }
-        return buf
     }
+
+    private fun backSpaceOnFirstNumber(): String {
+        return if (firstOperand.length > 0) {
+            firstOperand.dropLast(1)
+        } else {
+            firstOperand
+        }
+    }
+
+    private fun backSpaceOnSecondNumber(): String {
+        return if (secondOperand.length > 0) {
+            secondOperand.dropLast(1)
+        } else {
+            secondOperand
+        }
+    }
+
     var num: BigDecimal = BigDecimal.valueOf(0)
     var num2: Double = 0.0
 
@@ -92,15 +110,22 @@ class Calculation {
     }
 
     fun operatorSign(e: Char): String {
-        if (workingOnFirstOperand) {
-            workingOnFirstOperand = false
-            firstOperand = buf
-            secondOperand = ""
-            operator = e.toString()
+        return if (workingOnFirstOperand) {
+            firstOperatorMiddle(e)
         } else {
-
+            secondOperatorMiddle(e)
         }
-        return buf
+    }
+    private fun firstOperatorMiddle(e: Char): String {
+        workingOnFirstOperand = false
+        secondOperand = ""
+        operator = e.toString()
+        return operator
+    }
+    private fun secondOperatorMiddle(e: Char): String {
+        //operator = e.toString()
+        //return operator
+        return ""
     }
 
     fun minusSign(): String {
@@ -108,20 +133,18 @@ class Calculation {
     }
 
     fun decimalPoint(): String {
-        if (leadingCharacter) {
-            buf = "0."
-            leadingCharacter = false
+        return if (workingOnFirstOperand) {
+            decimalPointInFirstNumber()
         } else {
-            if (!buf.contains('.')) { // no duplicates
-                buf += "."
-            }
+            decimalPointInSecondNumber()
         }
-        if (workingOnFirstOperand) {
-            firstOperand = buf
-        } else {
-            secondOperand = buf
-        }
-        return buf
+    }
+
+    private fun decimalPointInFirstNumber(): String {
+        return ""
+    }
+    private fun decimalPointInSecondNumber(): String {
+        return ""
     }
 
 }
