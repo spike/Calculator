@@ -16,6 +16,8 @@ class Calculation {
     var firstOperandAsString = ""
     var secondOperandAsString = ""
     var operator = ""
+
+
     fun calculate(a: String): List<String> {
         for (e in a) {
             screen = when (e.toInt()) {
@@ -61,7 +63,9 @@ class Calculation {
             secondOperandAsString
         }
     }
-
+    var lastCalledOperator = false
+    var lastCalledEqual = false
+    var lastResult = ""
     fun equalSign(): String {
         var num3: BigDecimal = BigDecimal.valueOf(0.0)
         if (completedSecondNumber) {
@@ -76,14 +80,21 @@ class Calculation {
         if (upcomingOperator.length > 0) {
             operator = upcomingOperator
         }
-        secondOperandAsString = ""
-        completedSecondNumber = false
-        firstOperandAsString = num3.stripTrailingZeros().toString()
-        workingOnFirstNumber = false
+        if (lastCalledEqual) {
+            firstOperandAsString = lastResult
+        } else {
+            secondOperandAsString = ""
+            completedSecondNumber = false
+            workingOnFirstNumber = false
+            lastCalledEqual = true
+            firstOperandAsString = num3.stripTrailingZeros().toString()
+            lastResult = firstOperandAsString
+        }
         return firstOperandAsString
     }
 
     fun zeroThroughNine(e: Char): String {
+        lastCalledEqual = false
         return if (workingOnFirstNumber) {
             partOfFirstNumber(e)
         } else
@@ -107,6 +118,7 @@ class Calculation {
         } else {
             secondOperator(e)
         }
+
     }
     private fun firstOperatorMiddle(e: Char): String {
         workingOnFirstNumber = false
@@ -126,6 +138,7 @@ class Calculation {
     }
 
     fun decimalPoint(): String {
+        lastCalledEqual = false
         return if (workingOnFirstNumber) {
             decimalPointInFirstNumber()
         } else {
