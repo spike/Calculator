@@ -55,6 +55,7 @@ class Calculation {
     }
 
     private fun partOfSecondNumber(e: Char): String {
+        secondNumber = true
         secondOperand +=e
         return secondOperand
     }
@@ -89,31 +90,23 @@ class Calculation {
 
 
     fun equalSign(): String {
-        secondOperand = buf
-        println("$workingOnFirstOperand and $secondNumber")
         if (secondNumber) {
-
             num2 = when (operator) {
-                "+" -> {
-                    println("==${(firstOperand.toDouble())} + ${secondOperand.toDouble()}")
-                    (firstOperand.toDouble() + secondOperand.toDouble())
-                }
+                "+" -> (firstOperand.toDouble() + secondOperand.toDouble())
                 "*" -> (firstOperand.toDouble() * secondOperand.toDouble())
                 "/" -> (firstOperand.toDouble() / secondOperand.toDouble())
                 "-" -> (firstOperand.toDouble() - secondOperand.toDouble())
                 else -> 999999.9
             }
         }
-        operatorSet = true
-        buf = num2.toString()
-        return buf
+        return num2.toString()
     }
 
     fun operatorSign(e: Char): String {
         return if (workingOnFirstOperand) {
             firstOperatorMiddle(e)
         } else {
-            secondOperatorMiddle(e)
+            secondOperator(e)
         }
     }
     private fun firstOperatorMiddle(e: Char): String {
@@ -122,10 +115,9 @@ class Calculation {
         operator = e.toString()
         return operator
     }
-    private fun secondOperatorMiddle(e: Char): String {
-        //operator = e.toString()
-        //return operator
-        return ""
+    private fun secondOperator(e: Char): String {
+        operator = e.toString()
+        return "(${equalSign()})${e.toString()}"
     }
 
     fun minusSign(): String {
@@ -140,11 +132,21 @@ class Calculation {
         }
     }
 
-    private fun decimalPointInFirstNumber(): String {
-        return ""
+    fun decimalPointInFirstNumber(): String {
+        if (firstOperand.length > 0) {
+            firstOperand += "."
+        } else {
+            firstOperand = "0."
+        }
+        return firstOperand
     }
     private fun decimalPointInSecondNumber(): String {
-        return ""
+        if (secondOperand.length > 0) {
+            secondOperand += "."
+        } else {
+            secondOperand = "0."
+        }
+        return secondOperand
     }
 
 }
