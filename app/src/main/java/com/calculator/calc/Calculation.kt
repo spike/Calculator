@@ -72,7 +72,9 @@ class Calculation {
                 else -> BigDecimal.valueOf(99999.999)
             }
         }
-
+        if (upcomingOperator.length > 0) {
+            operator = upcomingOperator
+        }
         secondOperandAsString = ""
         completedSecondNumber = false
         firstOperandAsString = num3.setScale(0).toString()
@@ -111,8 +113,9 @@ class Calculation {
         operator = e.toString()
         return operator
     }
+    var upcomingOperator = ""
     private fun secondOperator(e: Char): String {
-        operator = e.toString()
+        upcomingOperator = e.toString()
         return "(${equalSign()})${e.toString()}"
         // return "()${e.toString()}"
     }
@@ -150,6 +153,7 @@ class Calculation {
         firstOperandAsString = ""
         secondOperandAsString = ""
         operator = ""
+        upcomingOperator = ""
         buf = ""
         workingOnFirstNumber = true
         completedSecondNumber = false
