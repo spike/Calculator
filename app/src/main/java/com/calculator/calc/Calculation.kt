@@ -49,19 +49,21 @@ class Calculation {
     }
 
     private fun backSpaceOnFirstNumber(): String {
-        return if (firstOperandAsString.length > 0) {
-            firstOperandAsString.dropLast(1)
+        if (firstOperandAsString.length > 0) {
+            firstOperandAsString = firstOperandAsString.dropLast(1)
         } else {
             firstOperandAsString
         }
+        return firstOperandAsString
     }
 
     private fun backSpaceOnSecondNumber(): String {
-        return if (secondOperandAsString.length > 0) {
-            secondOperandAsString.dropLast(1)
+        if (secondOperandAsString.length > 0) {
+            secondOperandAsString = secondOperandAsString.dropLast(1)
         } else {
             secondOperandAsString
         }
+        return secondOperandAsString
     }
     var lastCalledOperator = false
     var lastCalledEqual = false
@@ -102,7 +104,12 @@ class Calculation {
     }
 
     private fun partOfFirstNumber(e: Char): String {
-        firstOperandAsString += e
+        if ((firstOperandAsString.length == 1) &&
+            firstOperandAsString.first().equals('0')) {
+            firstOperandAsString = firstOperandAsString.drop(1) + e
+        } else {
+            firstOperandAsString += e
+        }
         return firstOperandAsString
     }
 
@@ -124,10 +131,12 @@ class Calculation {
         workingOnFirstNumber = false
         secondOperandAsString = ""
         operator = e.toString()
+        noDecimalPointInSecondYet = true
         return operator
     }
     var upcomingOperator = ""
     private fun secondOperator(e: Char): String {
+        noDecimalPointInSecondYet = true
         upcomingOperator = e.toString()
         return "(${equalSign()})${e.toString()}"
         // return "()${e.toString()}"
@@ -179,6 +188,8 @@ class Calculation {
         buf = ""
         workingOnFirstNumber = true
         completedSecondNumber = false
+        noDecimalPointInSecondYet = true
+        noDecimalPointInFirstYet = true
     }
 
 }
