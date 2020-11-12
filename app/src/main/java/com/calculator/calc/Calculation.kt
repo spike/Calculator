@@ -16,7 +16,6 @@ class Calculation {
         for (e in a) {
             screen = when (e.toInt()) {
                 in 48..57 -> zeroThroughNine(e)
-               // 48 -> zero()
                 46 -> decimalPoint()
                 in 42..47 -> operatorSign(e)
                 61 -> equalSign()

@@ -18,7 +18,7 @@ class CalculationUnitTest {
     val bbb = listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
     val aaaa = "3+*2+10=="
     val bbbb = listOf("3", "+", "*", "2", "(6)+", "1", "10", "16", "16")
-    // ++ case doesn't work
+
     @Test
     fun testCalculateFirstCase() {
         assertEquals(b, c.calculate(a))
