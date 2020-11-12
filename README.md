@@ -1,4 +1,4 @@
-# Calculator
+# Android Calculator
 
 This is a basic Android calculator written in Kotlin and licensed under Apache 2.0.
 
