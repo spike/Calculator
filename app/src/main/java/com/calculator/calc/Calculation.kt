@@ -139,10 +139,6 @@ class Calculation {
         // return "()${e.toString()}"
     }
 
-    fun minusSign(): String {
-        return ""
-    }
-
     fun decimalPoint(): String {
         lastCalledEqual = false
         return if (workingOnFirstNumber) {
