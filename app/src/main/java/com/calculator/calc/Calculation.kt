@@ -11,6 +11,7 @@ class Calculation {
     var firstOperandAsString = ""
     var secondOperandAsString = ""
     var operator = ""
+    var isPreviousOperatorConsecutive = false
 
     fun calculate(a: String): List<String> {
         for (e in a) {
@@ -101,6 +102,7 @@ class Calculation {
     }
 
     private fun partOfFirstNumber(e: Char): String {
+        isPreviousOperatorConsecutive = false
         if ((firstOperandAsString.length == 1) &&
             firstOperandAsString.first().equals('0')) {
             firstOperandAsString = firstOperandAsString.drop(1) + e
@@ -111,6 +113,7 @@ class Calculation {
     }
 
     private fun partOfSecondNumber(e: Char): String {
+        isPreviousOperatorConsecutive = false
         completedSecondNumber = true
         secondOperandAsString +=e
         return secondOperandAsString
@@ -129,14 +132,21 @@ class Calculation {
         secondOperandAsString = ""
         operator = e.toString()
         noDecimalPointInSecondYet = true
+        isPreviousOperatorConsecutive = true
         return operator
     }
     var upcomingOperator = ""
     private fun secondOperator(e: Char): String {
+        var secondResult = ""
         noDecimalPointInSecondYet = true
         upcomingOperator = e.toString()
-        return "(${equalSign()})${e.toString()}"
-        // return "()${e.toString()}"
+        if (isPreviousOperatorConsecutive) {
+            secondResult = e.toString()
+        } else {
+            secondResult = "(${equalSign()})${e.toString()}"
+        }
+        isPreviousOperatorConsecutive = true
+        return secondResult
     }
 
     fun decimalPoint(): String {
@@ -179,6 +189,7 @@ class Calculation {
         operator = ""
         upcomingOperator = ""
         buf = ""
+        isPreviousOperatorConsecutive = false
         workingOnFirstNumber = true
         completedSecondNumber = false
         noDecimalPointInSecondYet = true
