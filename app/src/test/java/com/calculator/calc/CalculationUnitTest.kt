@@ -22,10 +22,7 @@ class CalculationUnitTest {
     val aaaaa = "37/100="
     val bbbbb = listOf("3", "37", "/", "1", "10", "100", "0.37")
 
-    @Test
-    fun testRoundingError() {
-        assertEquals(bbbbb, c.calculate(aaaaa))
-    }
+
     @Test
     fun testCalculateFirstCase() {
         assertEquals(b, c.calculate(a))
@@ -41,6 +38,10 @@ class CalculationUnitTest {
     @Test
     fun testCalculateFourthCase() {
         assertEquals(bbbb, c.calculate(aaaa))
+    }
+    @Test
+    fun testRoundingError() {
+        assertEquals(bbbbb, c.calculate(aaaaa))
     }
     @Before
     fun setUp(): Unit {
