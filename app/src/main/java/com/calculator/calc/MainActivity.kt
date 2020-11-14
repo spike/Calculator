@@ -2,105 +2,64 @@ package com.calculator.calc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    var firstOperand = ""
-    var secondOperand = ""
-    var operator = ""
-    var operandNumber = ""
-    var isFirstOperand = true
-    var isDecimal = false
+    var operator: Char = ' '
+    var operandNumber: Char = ' '
     val c = Calculation()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
     }
 
     fun operand(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         var buttonClicked = v
-        operandNumber += when (buttonClicked.id) {
-            R.id.button_one -> "1"
-            R.id.button_two -> "2"
-            R.id.button_three -> "3"
-            R.id.button_four -> "4"
-            R.id.button_five -> "5"
-            R.id.button_six -> "6"
-            R.id.button_seven -> "7"
-            R.id.button_eight -> "8"
-            R.id.button_nine -> "9"
-            R.id.button_zero -> "0"
-            else -> "0"
+        operandNumber = when (buttonClicked.id) {
+            R.id.button_one -> '1'
+            R.id.button_two -> '2'
+            R.id.button_three -> '3'
+            R.id.button_four -> '4'
+            R.id.button_five -> '5'
+            R.id.button_six -> '6'
+            R.id.button_seven -> '7'
+            R.id.button_eight -> '8'
+            R.id.button_nine -> '9'
+            R.id.button_zero -> '0'
+            else -> '0'
         }
-        if (isFirstOperand) {
-            firstOperand = operandNumber
-        } else {
-            secondOperand = operandNumber
-        }
-        while ((operandNumber.length > 1) &&
-            (operandNumber.first().equals('0')) &&
-            (!operandNumber.last().equals('.'))) {
-            operandNumber = operandNumber.drop(1)
-        }
-        screen.setText(operandNumber)
-        // change color of the screen or something
+        screen.setText(c.zeroThroughNine(operandNumber))
     }
 
     fun operator(v: View) {
         var buttonClicked = v
         operator = when (buttonClicked.id) {
-            R.id.button_plus -> "+"
-            R.id.button_minus -> "-"
-            R.id.button_multiply -> "*"
-            R.id.button_divide -> "/"
-            else -> ""
+            R.id.button_plus -> '+'
+            R.id.button_minus -> '-'
+            R.id.button_multiply -> '*'
+            R.id.button_divide -> '/'
+            else -> ' '
         }
-        isFirstOperand = false
-        operandNumber = ""
+        c.operatorSign(operator)
     }
 
     fun resultIs(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        val result = when(operator) {
-            "+" -> firstOperand.toDouble() + secondOperand.toDouble()
-            "-" -> firstOperand.toDouble() - secondOperand.toDouble()
-            "*" -> firstOperand.toDouble() * secondOperand.toDouble()
-            "/" -> firstOperand.toDouble() / secondOperand.toDouble()
-            else -> 0
-        }
-        var strResult = result.toString()
-        operandNumber = strResult
-        firstOperand = strResult
-        secondOperand = ""
-        isFirstOperand = true
- /*       while (strResult.contains(".") &&
-            (strResult.last().equals('0') ||
-                    (strResult.last().equals('.') && (strResult.length > 1))))  {
-            strResult = strResult.dropLast(1)
-        } */
-        screen.setText(strResult)
+        screen.setText(c.equalSign())
     }
 
     fun clearScreen(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        firstOperand = ""
-        secondOperand = ""
-        operandNumber = ""
-        operator = ""
-        isFirstOperand = true
+        c.clear()
         screen.setText("0")
     }
 
     fun deleteOneCharacter(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        if (operandNumber.last().equals('.')) isDecimal = false
-        operandNumber = operandNumber.dropLast(1)
-        screen.setText(operandNumber)
+        screen.setText(c.backSpace())
     }
 
     fun openPreferences(v: View) {
@@ -108,50 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     fun decimal(view: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        if (! isDecimal) {
-            operandNumber += "."
-            isDecimal = true
-        }
-        screen.setText(operandNumber)
+        screen.setText(c.decimalPoint())
 
     }
-
-
 }
-
-class StackWithList {
-    val elements: MutableList<Any> = mutableListOf()
-
-    fun isEmpty() = elements.isEmpty()
-    fun size() = elements.size
-
-    fun push(item: Any) = elements.add(item)
-    fun pop(): Any? {
-        val item = elements.lastOrNull()
-        if (!isEmpty()) {
-            elements.removeAt(elements.size - 1)
-        }
-        return item
-    }
-
-    fun peek(): Any? = elements.lastOrNull()
-
-    override fun toString(): String = elements.toString()
-
-    fun contentToString(): String {
-        var result = ""
-        for (e in elements) {
-            result += "" + e
-        }
-        return result
-    }
-
-    fun clear(): Boolean {
-        elements.clear()
-        return true
-    }
-
-    fun toCharArray() = elements.toString().toCharArray()
-
-}
-
