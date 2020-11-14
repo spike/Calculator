@@ -1,5 +1,6 @@
 package com.calculator.calc
 
+import android.util.Log
 import java.math.BigDecimal
 
 class Calculation {
@@ -62,14 +63,15 @@ class Calculation {
     var lastCalledOperator = false
     var lastCalledEqual = false
     var lastResult = ""
+
     fun equalSign(): String {
         var num3: BigDecimal = BigDecimal.valueOf(0.0)
         if (completedSecondNumber) {
             num3 = when (operator) {
-                "+" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) + BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "*" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) * BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "/" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) / BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble()) - BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "+" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) + BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "*" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "/" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) - BigDecimal.valueOf(secondOperandAsString.toDouble())
                 else -> BigDecimal.valueOf(99999.999)
             }
         }

@@ -4,6 +4,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.After
+import java.math.BigDecimal
 
 class CalculationUnitTest {
     private lateinit var c: Calculation
@@ -18,7 +19,13 @@ class CalculationUnitTest {
     val bbb = listOf("1", "12", "123", "1234", "12345", "+", "5", "12350")
     val aaaa = "3+*2=="
     val bbbb = listOf("3", "+", "*", "2", "6", "6")
+    val aaaaa = "37/100="
+    val bbbbb = listOf("3", "37", "/", "1", "10", "100", "0.37")
 
+    @Test
+    fun testRoundingError() {
+        assertEquals(bbbbb, c.calculate(aaaaa))
+    }
     @Test
     fun testCalculateFirstCase() {
         assertEquals(b, c.calculate(a))
