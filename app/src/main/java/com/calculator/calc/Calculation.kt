@@ -141,6 +141,7 @@ class Calculation {
         noDecimalPointInSecondYet = true
         upcomingOperator = e.toString()
         if (isPreviousOperatorConsecutive) {
+            operator = e.toString()
             secondResult = e.toString()
         } else {
             secondResult = "(${equalSign()})${e.toString()}"
