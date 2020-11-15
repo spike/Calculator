@@ -199,5 +199,13 @@ class Calculation {
         noDecimalPointInFirstYet = true
     }
 
+    fun percentOperator(): String {
+        operatorSign('/')
+        zeroThroughNine('1')
+        zeroThroughNine('0')
+        zeroThroughNine('0')
+        return equalSign()
+    }
+
 }
 

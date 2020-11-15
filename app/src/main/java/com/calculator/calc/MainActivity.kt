@@ -48,11 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     fun percentOperator(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        c.operatorSign('/')
-        c.zeroThroughNine('1')
-        c.zeroThroughNine('0')
-        c.zeroThroughNine('0')
-        screen.setText(c.equalSign())
+        screen.setText(c.percentOperator())
     }
 
     fun resultIs(v: View) {
