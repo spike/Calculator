@@ -1,9 +1,11 @@
 package com.calculator.calc
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
     var operator: Char = ' '
@@ -72,6 +74,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openPreferences(v: View) {
+        val i = Intent(this, MyPreferencesActivity::class.java)
+        startActivity(i)
     }
 
     fun decimal(view: View) {
