@@ -124,17 +124,9 @@ class Calculation {
     fun operatorSign(e: Char): String {
 
         return if (workingOnFirstNumber) {
-            if (e.equals('%')) {
-
-            } else {
-                firstOperatorMiddle(e)
-            }
+            firstOperatorMiddle(e)
         } else {
-            if (e.equals('%')) {
-
-            } else {
-                secondOperator(e)
-            }
+            secondOperator(e)
         }
 
     }
