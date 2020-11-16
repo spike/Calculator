@@ -207,5 +207,14 @@ class Calculation {
         return equalSign()
     }
 
+    fun makeNegative(): String {
+
+      /*  operatorSign('*')
+        zeroThroughNine('1')
+        zeroThroughNine('0')
+        zeroThroughNine('0') */
+        return equalSign()
+    }
+
 }
 
