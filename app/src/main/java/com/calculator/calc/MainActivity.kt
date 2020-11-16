@@ -41,13 +41,16 @@ class MainActivity : AppCompatActivity() {
             R.id.button_minus -> '-'
             R.id.button_multiply -> '*'
             R.id.button_divide -> '/'
-            R.id.button_divide -> '%'
+            R.id.button_percent -> {
+                percentOperator()
+                '%'
+            }
             else -> ' '
         }
         c.operatorSign(operator)
     }
 
-    fun percentOperator(v: View) {
+    fun percentOperator() {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         screen.setText(c.percentOperator())
     }
