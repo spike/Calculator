@@ -122,7 +122,6 @@ class Calculation {
     }
 
     fun operatorSign(e: Char): String {
-
         return if (workingOnFirstNumber) {
             firstOperatorMiddle(e)
         } else {
