@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/calculator_screen"
-        android:layout_width="340dp"
-        android:layout_height="62dp"
+        android:layout_width="342dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
@@ -26,31 +26,48 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
 
+    <TextView
+        android:id="@+id/calculator_screen2"
+        android:layout_width="342dp"
+        android:layout_height="9dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/White"
+        android:gravity="start|top"
+        android:text=" "
+        android:textAlignment="textEnd"
+        android:textColor="@color/Black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen"
+        tools:ignore="RtlCompat" />
+
     <Button
         android:id="@+id/button_multiply"
         android:layout_width="80dp"
         android:layout_height="60dp"
+        android:onClick="operator"
         android:text="×"
         android:textSize="28sp"
-        android:onClick="operator"
         app:layout_constraintBottom_toTopOf="@+id/button_nine"
         app:layout_constraintStart_toEndOf="@+id/button_percent"
         app:layout_constraintStart_toStartOf="@+id/button_nine"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
 
     <Button
         android:id="@+id/button_clear"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:text="C"
         android:onClick="clearScreen"
+        android:text="C"
         android:textColor="@color/SandyBrown"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_seven"
         app:layout_constraintEnd_toStartOf="@+id/button_percent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
 
     <Button
         android:id="@+id/button_percent"
@@ -62,7 +79,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_eight"
         app:layout_constraintStart_toEndOf="@+id/button_clear"
         app:layout_constraintStart_toStartOf="@+id/button_eight"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
 
     <Button
         android:id="@+id/button_delete"
@@ -74,7 +91,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_plus"
         app:layout_constraintStart_toEndOf="@+id/button_multiply"
         app:layout_constraintStart_toStartOf="@+id/button_plus"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
 
     <Button
         android:id="@+id/button_seven"
@@ -193,8 +210,8 @@
         android:onClick="operand"
         android:text="3"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_preferences"
-        app:layout_constraintStart_toStartOf="@+id/button_preferences"
+        app:layout_constraintBottom_toTopOf="@+id/button_minus_or_plus"
+        app:layout_constraintStart_toStartOf="@+id/button_minus_or_plus"
         app:layout_constraintTop_toBottomOf="@+id/button_six" />
 
     <Button
@@ -231,18 +248,18 @@
         android:text="."
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_preferences"
+        app:layout_constraintEnd_toStartOf="@+id/button_minus_or_plus"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_zero"
         app:layout_constraintTop_toBottomOf="@+id/button_two" />
 
     <Button
-        android:id="@+id/button_preferences"
+        android:id="@+id/button_minus_or_plus"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
-        android:onClick="openPreferences"
-        android:text="+/-"
+        android:onClick="operatorMinusOrPlus"
+        android:text="-/+"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_equal"
@@ -261,6 +278,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_preferences"
+        app:layout_constraintStart_toEndOf="@+id/button_minus_or_plus"
         app:layout_constraintTop_toBottomOf="@+id/button_divide" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         screen.setText(c.backSpace())
     }
 
-    fun openPreferences(v: View) {
+    fun operatorMinusOrPlus(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         screen.setText(c.makeNegative())
 
