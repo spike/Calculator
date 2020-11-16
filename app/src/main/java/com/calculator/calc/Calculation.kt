@@ -69,8 +69,8 @@ class Calculation {
         if (completedSecondNumber) {
             num3 = when (operator) {
                 "+" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) + BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "*" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "/" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "×" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "÷" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
                 "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) - BigDecimal.valueOf(secondOperandAsString.toDouble())
                 else -> BigDecimal.valueOf(99999.999)
             }

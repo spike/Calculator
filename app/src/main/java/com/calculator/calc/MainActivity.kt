@@ -37,18 +37,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun operator(v: View) {
+        val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         var buttonClicked = v
+
         operator = when (buttonClicked.id) {
             R.id.button_plus -> '+'
             R.id.button_minus -> '-'
-            R.id.button_multiply -> '*'
-            R.id.button_divide -> '/'
+            R.id.button_multiply -> '×'
+            R.id.button_divide -> '÷'
             R.id.button_percent -> {
                 percentOperator()
                 '%'
             }
             else -> ' '
         }
+        operationScreen.setText(operator.toString())
         c.operatorSign(operator)
     }
 
