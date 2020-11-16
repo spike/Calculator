@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         screen.setText("0")
     }
 
-    fun deleteOneCharacter(v: View) {
+    fun doBackspace(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         screen.setText(c.backSpace())
     }

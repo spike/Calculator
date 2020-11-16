@@ -82,11 +82,11 @@
         app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
 
     <Button
-        android:id="@+id/button_delete"
+        android:id="@+id/button_backspace"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:onClick="deleteOneCharacter"
-        android:text="DEL"
+        android:onClick="doBackspace"
+        android:text="⌫"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_plus"
         app:layout_constraintStart_toEndOf="@+id/button_multiply"
@@ -135,7 +135,7 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_minus"
         app:layout_constraintStart_toStartOf="@+id/button_minus"
-        app:layout_constraintTop_toBottomOf="@+id/button_delete" />
+        app:layout_constraintTop_toBottomOf="@+id/button_backspace" />
 
     <Button
         android:id="@+id/button_four"
