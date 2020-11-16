@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     fun operand(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
+        val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         var buttonClicked = v
         operandNumber = when (buttonClicked.id) {
             R.id.button_one -> '1'
@@ -34,12 +35,12 @@ class MainActivity : AppCompatActivity() {
             else -> '0'
         }
         screen.setText(c.zeroThroughNine(operandNumber))
+        operationScreen.setText("")
     }
 
     fun operator(v: View) {
         val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         var buttonClicked = v
-
         operator = when (buttonClicked.id) {
             R.id.button_plus -> '+'
             R.id.button_minus -> '-'
@@ -61,14 +62,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun resultIs(v: View) {
+        val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         val screen = findViewById<TextView>(R.id.calculator_screen)
         screen.setText(c.equalSign())
+        operationScreen.setText("")
     }
 
     fun clearScreen(v: View) {
+        val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         val screen = findViewById<TextView>(R.id.calculator_screen)
         c.clear()
         screen.setText("0")
+        operationScreen.setText("")
     }
 
     fun doBackspace(v: View) {
@@ -85,6 +90,5 @@ class MainActivity : AppCompatActivity() {
     fun decimal(view: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         screen.setText(c.decimalPoint())
-
     }
 }
