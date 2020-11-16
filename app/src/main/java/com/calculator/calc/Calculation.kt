@@ -122,13 +122,19 @@ class Calculation {
     }
 
     fun operatorSign(e: Char): String {
-        if (e.equals('%')) {
 
-        }
         return if (workingOnFirstNumber) {
-            firstOperatorMiddle(e)
+            if (e.equals('%')) {
+
+            } else {
+                firstOperatorMiddle(e)
+            }
         } else {
-            secondOperator(e)
+            if (e.equals('%')) {
+
+            } else {
+                secondOperator(e)
+            }
         }
 
     }
