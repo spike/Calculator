@@ -74,8 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openPreferences(v: View) {
-        val i = Intent(this, MyPreferencesActivity::class.java)
-        startActivity(i)
+
     }
 
     fun decimal(view: View) {
