@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             R.id.button_minus -> '-'
             R.id.button_multiply -> '*'
             R.id.button_divide -> '/'
+            R.id.button_divide -> '%'
             else -> ' '
         }
         c.operatorSign(operator)
