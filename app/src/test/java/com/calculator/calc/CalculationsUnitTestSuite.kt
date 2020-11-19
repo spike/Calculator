@@ -52,6 +52,20 @@ class CalculationsUnitTestSuite {
         val expected = listOf("3", "37", "/", "1", "10", "100", "0.37")
         assertEquals(expected, c.calculate(input))
     }
+    @Test
+    fun testPercentUnaryOperator() {
+        val input = "38%+2="
+        val expected = listOf("3", "38", "%", "+", "2", "40")
+        assertEquals(expected, c.calculate(input))
+    }
+    @Test
+    fun testMinusOrPlusUnaryOperator() {
+        val input = "35m+5="
+        val expected = listOf("3", "35", "-35", "+", "5", "-30")
+        assertEquals(expected, c.calculate(input))
+    }
+
+
 
     @After
     fun tearDown() {
