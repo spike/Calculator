@@ -77,9 +77,7 @@ class Calculation {
                     .setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
                 "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble())
                     .setScale(20) - BigDecimal.valueOf(secondOperandAsString.toDouble())
-                else -> { BigDecimal.valueOf(0.0)
-                // throw IllegalArgumentException("Wrong operator sent")
-                }
+                else -> throw IllegalArgumentException("No operator found: else -> ?")
             }
         }
         if (upcomingOperator.length > 0) {
