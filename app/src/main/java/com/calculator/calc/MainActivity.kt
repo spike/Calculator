@@ -93,7 +93,11 @@ class MainActivity : AppCompatActivity() {
 
     fun operatorMinusOrPlus(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        screen.setText(c.makeNegative())
+        try {
+            screen.setText(c.makeNegative())
+        } catch (e: Exception) {
+            screen.setText("Error: ${e.message}")
+        }
 
     }
 

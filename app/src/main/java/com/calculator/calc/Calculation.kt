@@ -69,11 +69,17 @@ class Calculation {
         var num3: BigDecimal = BigDecimal.valueOf(0.0)
         if (completedSecondNumber) {
             num3 = when (operator) {
-                "+" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) + BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "×" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "÷" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
-                "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) - BigDecimal.valueOf(secondOperandAsString.toDouble())
-                else -> throw IllegalArgumentException("Wrong operator sent")
+                "+" -> BigDecimal.valueOf(firstOperandAsString.toDouble())
+                    .setScale(20) + BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "×", "*" -> BigDecimal.valueOf(firstOperandAsString.toDouble())
+                    .setScale(20) * BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "÷", "/" -> BigDecimal.valueOf(firstOperandAsString.toDouble())
+                    .setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
+                "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble())
+                    .setScale(20) - BigDecimal.valueOf(secondOperandAsString.toDouble())
+                else -> { BigDecimal.valueOf(0.0)
+                // throw IllegalArgumentException("Wrong operator sent")
+                }
             }
         }
         if (upcomingOperator.length > 0) {
