@@ -1,6 +1,5 @@
 package com.calculator.calc
 
-import android.util.Log
 import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
