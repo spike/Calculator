@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.IllegalArgumentException
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,19 +42,24 @@ class MainActivity : AppCompatActivity() {
     fun operator(v: View) {
         val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         var buttonClicked = v
-        operator = when (buttonClicked.id) {
-            R.id.button_plus -> '+'
-            R.id.button_minus -> '-'
-            R.id.button_multiply -> '×'
-            R.id.button_divide -> '÷'
-            R.id.button_percent -> {
-                percentOperator()
-                '%'
+        val screen = findViewById<TextView>(R.id.calculator_screen)
+        try {
+            operator = when (buttonClicked.id) {
+                R.id.button_plus -> '+'
+                R.id.button_minus -> '-'
+                R.id.button_multiply -> '×'
+                R.id.button_divide -> '÷'
+                R.id.button_percent -> {
+                    percentOperator()
+                    '%'
+                }
+                else -> throw IllegalArgumentException("Operator not found")
             }
-            else -> ' '
+            operationScreen.setText(operator.toString())
+            c.operatorSign(operator)
+        } catch (e: Exception) {
+            screen.setText("Error: ${e.message} ")
         }
-        operationScreen.setText(operator.toString())
-        c.operatorSign(operator)
     }
 
     fun percentOperator() {
@@ -64,8 +70,13 @@ class MainActivity : AppCompatActivity() {
     fun resultIs(v: View) {
         val operationScreen = findViewById<TextView>(R.id.calculator_screen2)
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        screen.setText(c.equalSign())
+        try {
+            screen.setText(c.equalSign())
+        } catch (e: Exception) {
+            screen.setText("ERROR: ${e.message}")
+        }
         operationScreen.setText("")
+
     }
 
     fun clearScreen(v: View) {

@@ -1,6 +1,7 @@
 package com.calculator.calc
 
 import android.util.Log
+import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
 class Calculation {
@@ -72,7 +73,7 @@ class Calculation {
                 "×" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(secondOperandAsString.toDouble())
                 "÷" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(secondOperandAsString.toDouble())
                 "-" -> BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) - BigDecimal.valueOf(secondOperandAsString.toDouble())
-                else -> BigDecimal.valueOf(99999.999)
+                else -> throw IllegalArgumentException("Wrong operator sent")
             }
         }
         if (upcomingOperator.length > 0) {
