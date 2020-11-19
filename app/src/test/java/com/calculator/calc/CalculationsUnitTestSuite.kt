@@ -26,14 +26,14 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
     @Test
-    fun testCalculateBackspaceAndRedundantEqualSign() {
+    fun testCalculateBackspaceAndExtraneousEqualSign() {
         val input = "0567b+2.56-.5=="
         val expected = listOf("0", "5", "56", "567", "56", "+", "2", "2.", "2.5", "2.56",
             "(58.56)-", "0.", "0.5", "58.06", "58.06" )
         assertEquals(expected, c.calculate(input))
     }
     @Test
-    fun testCalculateRedundantDecimalPoints() {
+    fun testCalculateExtraneousDecimalPoints() {
         val input = "1..3.2+0.5+78*1-.82="
         val expected = listOf("1", "1.", "1.", "1.3", "1.3", "1.32", "+", "0", "0.",
             "0.5", "(1.82)+", "7", "78", "(79.82)*", "1", "(79.82)-",
