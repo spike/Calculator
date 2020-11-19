@@ -36,7 +36,6 @@ class Calculation {
     }
 
     fun backSpace(): String {
-        // backSpaceOnOperator()
         return if (workingOnFirstNumber) {
             backSpaceOnFirstNumber()
         } else {
@@ -47,8 +46,9 @@ class Calculation {
     private fun backSpaceOnFirstNumber(): String {
         if (firstOperandAsString.length > 0) {
             firstOperandAsString = firstOperandAsString.dropLast(1)
-        } else {
-            firstOperandAsString
+        }
+        if (firstOperandAsString.length == 0) {
+            firstOperandAsString = "0"
         }
         return firstOperandAsString
     }
@@ -56,8 +56,9 @@ class Calculation {
     private fun backSpaceOnSecondNumber(): String {
         if (secondOperandAsString.length > 0) {
             secondOperandAsString = secondOperandAsString.dropLast(1)
-        } else {
-            secondOperandAsString
+        }
+        if (secondOperandAsString.length == 0) {
+            secondOperandAsString = "0"
         }
         return secondOperandAsString
     }
