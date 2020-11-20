@@ -20,6 +20,8 @@ class Calculation {
                 in 48..57 -> zeroThroughNine(e)
                 46 -> decimalPoint()
                 in 42..47 -> operatorSign(e)
+                37 -> percentOperator()
+                112 -> makeNegative()
                 61 -> equalSign()
                 98 -> backSpace()
                 99 -> clearScreen()

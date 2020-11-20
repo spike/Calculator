@@ -26,6 +26,18 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
     @Test
+    fun testDecimalResult() {
+        val input = "37/100="
+        val expected = listOf("3", "37", "/", "1", "10", "100", "0.37")
+        assertEquals(expected, c.calculate(input))
+    }
+    @Test
+    fun testCalculateExtraneousOperator() {
+        val input = "3+*2=="
+        val expected = listOf("3", "+", "*", "2", "6", "6")
+        assertEquals(expected, c.calculate(input))
+    }
+    @Test
     fun testCalculateBackspaceAndExtraneousEqualSign() {
         val input = "0567b+2.56-.5=="
         val expected = listOf("0", "5", "56", "567", "56", "+", "2", "2.", "2.5", "2.56",
@@ -41,21 +53,9 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
     @Test
-    fun testCalculateRedundantOperator() {
-        val input = "3+*2=="
-        val expected = listOf("3", "+", "*", "2", "6", "6")
-        assertEquals(expected, c.calculate(input))
-    }
-    @Test
-    fun testDecimalResult() {
-        val input = "37/100="
-        val expected = listOf("3", "37", "/", "1", "10", "100", "0.37")
-        assertEquals(expected, c.calculate(input))
-    }
-    @Test
     fun testPercentUnaryOperator() {
         val input = "38%+2="
-        val expected = listOf("3", "38", "%", "+", "2", "40")
+        val expected = listOf("3", "38", "0.38", "(0.38)+", "2", "2.38")
         assertEquals(expected, c.calculate(input))
     }
     @Test
@@ -64,8 +64,6 @@ class CalculationsUnitTestSuite {
         val expected = listOf("3", "35", "-35", "+", "5", "-30")
         assertEquals(expected, c.calculate(input))
     }
-
-
 
     @After
     fun tearDown() {
