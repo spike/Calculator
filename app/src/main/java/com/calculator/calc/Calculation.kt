@@ -24,7 +24,7 @@ class Calculation {
                 112 -> makeNegative()
                 61 -> equalSign()
                 98 -> backSpace()
-                99 -> clearScreen()
+                99 -> clearResult()
                 else -> ""
             }
             result.add(screen)
@@ -32,7 +32,7 @@ class Calculation {
         return result
     }
 
-    fun clearScreen(): String {
+    fun clearResult(): String {
         return ""
     }
 
@@ -63,7 +63,7 @@ class Calculation {
         }
         return secondOperandAsString
     }
-    var lastCalledOperator = false
+  //  var lastCalledOperator = false
     var lastCalledEqual = false
     var lastResult = ""
 
@@ -215,13 +215,22 @@ class Calculation {
     }
 
     fun makeNegative(): String {
-
-      /*  operatorSign('*')
-        zeroThroughNine('1')
-        zeroThroughNine('0')
-        zeroThroughNine('0') */
-        return equalSign()
+        return if (workingOnFirstNumber) {
+            makeNegativeFirstOperand()
+        } else {
+            makeNegativeSecondOperand()
+        }
     }
+    fun makeNegativeFirstOperand(): String {
+        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()) * BigDecimal.valueOf(-1.0)).toString()
+        return firstOperandAsString
+    }
+    fun makeNegativeSecondOperand(): String {
+        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()) * BigDecimal.valueOf(-1.0)).toString()
+        return secondOperandAsString
+    }
+
+
 
 }
 
