@@ -207,11 +207,6 @@ class Calculation {
     }
 
     fun percentOperator(): String {
-       /* operatorSign('/')
-        zeroThroughNine('1')
-        zeroThroughNine('0')
-        zeroThroughNine('0')
-        return equalSign() */
         return if (workingOnFirstNumber) {
             percentOnFirstOperand()
         } else {
@@ -219,13 +214,13 @@ class Calculation {
         }
     }
 
-    private fun percentOnSecondOperand(): String {
-        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()) / BigDecimal.valueOf(100.0)).toString()
+    private fun percentOnFirstOperand(): String {
+        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(100.0)).toString()
         return firstOperandAsString
     }
 
-    private fun percentOnFirstOperand(): String {
-        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()) / BigDecimal.valueOf(100.0)).toString()
+    private fun percentOnSecondOperand(): String {
+        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(100.0)).toString()
         return secondOperandAsString
     }
 
@@ -237,15 +232,12 @@ class Calculation {
         }
     }
     fun makeNegativeFirstOperand(): String {
-        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()) * BigDecimal.valueOf(-1.0)).toString()
+        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(-1.0)).toString()
         return firstOperandAsString
     }
     fun makeNegativeSecondOperand(): String {
-        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()) * BigDecimal.valueOf(-1.0)).toString()
+        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(-1.0)).toString()
         return secondOperandAsString
     }
-
-
-
 }
 

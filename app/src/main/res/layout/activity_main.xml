@@ -28,7 +28,7 @@
         tools:ignore="RtlCompat" />
 
     <TextView
-        android:id="@+id/calculator_screen2"
+        android:id="@+id/calculator_subscreen_for_current_operator"
         android:layout_width="342dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_nine"
         app:layout_constraintStart_toEndOf="@+id/button_percent"
         app:layout_constraintStart_toStartOf="@+id/button_nine"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
 
     <Button
         android:id="@+id/button_clear"
@@ -68,19 +68,19 @@
         app:layout_constraintEnd_toStartOf="@+id/button_percent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
 
     <Button
         android:id="@+id/button_percent"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:onClick="operator"
+        android:onClick="percentOperator()"
         android:text="%"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_eight"
         app:layout_constraintStart_toEndOf="@+id/button_clear"
         app:layout_constraintStart_toStartOf="@+id/button_eight"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
 
     <Button
         android:id="@+id/button_backspace"
@@ -92,7 +92,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_plus"
         app:layout_constraintStart_toEndOf="@+id/button_multiply"
         app:layout_constraintStart_toStartOf="@+id/button_plus"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen2" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
 
     <Button
         android:id="@+id/button_seven"
