@@ -63,7 +63,7 @@ class Calculation {
         }
         return secondOperandAsString
     }
-  //  var lastCalledOperator = false
+
     var lastCalledEqual = false
     var lastResult = ""
 
@@ -207,11 +207,26 @@ class Calculation {
     }
 
     fun percentOperator(): String {
-        operatorSign('/')
+       /* operatorSign('/')
         zeroThroughNine('1')
         zeroThroughNine('0')
         zeroThroughNine('0')
-        return equalSign()
+        return equalSign() */
+        return if (workingOnFirstNumber) {
+            percentOnFirstOperand()
+        } else {
+            percentOnSecondOperand()
+        }
+    }
+
+    private fun percentOnSecondOperand(): String {
+        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()) / BigDecimal.valueOf(100.0)).toString()
+        return firstOperandAsString
+    }
+
+    private fun percentOnFirstOperand(): String {
+        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()) / BigDecimal.valueOf(100.0)).toString()
+        return secondOperandAsString
     }
 
     fun makeNegative(): String {
