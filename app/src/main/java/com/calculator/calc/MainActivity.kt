@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun percentOperator() {
+    fun percentOperator(v: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
         try {
             screen.setText(c.percentOperator())
