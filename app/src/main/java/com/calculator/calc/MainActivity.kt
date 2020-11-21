@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
             R.id.button_seven -> '7'
             R.id.button_eight -> '8'
             R.id.button_nine -> '9'
-            R.id.button_zero -> '0'
             else -> '0'
         }
         screen.setText(c.zeroThroughNine(operandNumber))
