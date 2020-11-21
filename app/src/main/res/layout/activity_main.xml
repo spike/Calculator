@@ -74,7 +74,7 @@
         android:id="@+id/button_percent"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:onClick="percentOperator()"
+        android:onClick="percentOperator"
         android:text="%"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_eight"

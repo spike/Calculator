@@ -21,7 +21,7 @@ class Calculation {
                 46 -> decimalPoint()
                 in 42..47 -> operatorSign(e)
                 37 -> percentOperator()
-                112 -> makeNegative()
+                109 -> makeNegative()
                 61 -> equalSign()
                 98 -> backSpace()
                 99 -> clearResult()

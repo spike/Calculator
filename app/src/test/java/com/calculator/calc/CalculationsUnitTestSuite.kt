@@ -65,8 +65,6 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
 
-    // test percent sign when it's the second operand
-
     // test minus or plus when invoked first before an actual number
 
     @After
