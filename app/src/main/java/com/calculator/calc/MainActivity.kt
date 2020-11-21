@@ -46,10 +46,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_minus -> '-'
                 R.id.button_multiply -> '×'
                 R.id.button_divide -> '÷'
-              /*  R.id.button_percent -> {
-                    percentOperator()
-                    '%'
-                } */
                 else -> throw IllegalArgumentException("Operator not found")
             }
             operationSubscreen.setText(operator.toString())
