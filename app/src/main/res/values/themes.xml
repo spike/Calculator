@@ -2,7 +2,5 @@
     <style name="YourApplicationTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
         <item name="android:buttonStyle">@style/button</item>
         <item name="android:windowBackground">@color/Black</item>
-        <dimen name="buttonPercentageHeight">0.12</dimen>
-        <dimen name="buttonPercentageWidth">0.16</dimen>
     </style>
 </resources>

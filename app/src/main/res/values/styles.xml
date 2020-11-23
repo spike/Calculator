@@ -4,6 +4,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/Moccasin</item>
+        <item name="layout_constraintWidth_percent">0.20</item>
+        <item name="layout_constraintHeight_percent">0.16</item>
     </style>
     <style name="button" parent="@android:style/Widget.Button">
         <item name="layout_constraintWidth_percent">0.20</item>
@@ -20,4 +22,7 @@
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
     </style>
+
+    <item name="layout_constraintWidth_percent" type="">0.20</item>
+    <item name="layout_constraintHeight_percent">0.16</item>
 </resources>
