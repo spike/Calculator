@@ -1,5 +1,5 @@
 <resources>
-    <style name="YourApplicationTheme" parent="android:style/Theme.NoTitleBar">
+    <style name="YourApplicationTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
         <item name="android:buttonStyle">@style/button</item>
         <item name="android:windowBackground">@color/Moccasin</item>
     </style>
