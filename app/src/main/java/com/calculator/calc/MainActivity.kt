@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         val currentOperationSubscreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
         val screen = findViewById<TextView>(R.id.calculator_screen)
         c.clear()
-        screen.setText("0")
+        screen.setText(c.clear())
         currentOperationSubscreen.setText("")
     }
 

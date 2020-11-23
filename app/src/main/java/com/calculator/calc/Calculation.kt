@@ -193,9 +193,9 @@ class Calculation {
         return secondOperandAsString
     }
 
-    fun clear() {
-        firstOperandAsString = ""
-        secondOperandAsString = ""
+    fun clear(): String {
+        firstOperandAsString = "0"
+        secondOperandAsString = "0"
         operator = ""
         upcomingOperator = ""
         buf = ""
@@ -204,6 +204,7 @@ class Calculation {
         completedSecondNumber = false
         noDecimalPointInSecondYet = true
         noDecimalPointInFirstYet = true
+        return firstOperandAsString
     }
 
     fun percentOperator(): String {
