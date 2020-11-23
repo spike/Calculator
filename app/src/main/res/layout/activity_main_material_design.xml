@@ -11,11 +11,8 @@
     <TextView
         android:id="@+id/calculator_screen"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.88"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="@color/White"
         android:gravity="start|top"
         android:text="0"
@@ -26,15 +23,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.88"
         tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/calculator_subscreen_for_current_operator"
-        android:layout_height="24dp"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.88"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="24dp"
         android:background="@color/White"
         android:gravity="start|top"
         android:text=" "
@@ -44,65 +39,70 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculator_screen"
+        app:layout_constraintWidth_percent="0.88"
         tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/button_multiply"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
+        android:layout_marginTop="8dp"
         android:onClick="operator"
         android:text="×"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_nine"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toEndOf="@+id/button_percent"
         app:layout_constraintStart_toStartOf="@+id/button_nine"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintWidth_percent="0.22" />
 
     <Button
         android:id="@+id/button_clear"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
+        android:layout_marginTop="8dp"
         android:onClick="clearScreen"
         android:text="C"
         android:textColor="@color/SandyBrown"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_seven"
         app:layout_constraintEnd_toStartOf="@+id/button_percent"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintWidth_percent="0.22" />
 
     <Button
         android:id="@+id/button_percent"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
+        android:layout_marginTop="8dp"
         android:onClick="percentOperator"
         android:text="%"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_eight"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toEndOf="@+id/button_clear"
         app:layout_constraintStart_toStartOf="@+id/button_eight"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintWidth_percent="0.22" />
 
     <Button
         android:id="@+id/button_backspace"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
+        android:layout_marginTop="8dp"
         android:onClick="doBackspace"
         android:text="⌫"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/button_plus"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toEndOf="@+id/button_multiply"
         app:layout_constraintStart_toStartOf="@+id/button_plus"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator" />
+        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintWidth_percent="0.22" />
 
 
     <Button
@@ -268,66 +268,66 @@
     <Button
         android:id="@+id/button_zero"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:onClick="operand"
         android:text="0"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_period"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_one" />
+        app:layout_constraintTop_toBottomOf="@+id/button_one"
+        app:layout_constraintWidth_percent="0.22" />
 
     <Button
         android:id="@+id/button_period"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:onClick="decimal"
         android:text="."
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_minus_or_plus"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_zero"
-        app:layout_constraintTop_toBottomOf="@+id/button_two" />
+        app:layout_constraintTop_toBottomOf="@+id/button_two"
+        app:layout_constraintWidth_percent="0.22" />
 
     <Button
         android:id="@+id/button_minus_or_plus"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:onClick="operatorMinusOrPlus"
         android:text="-/+"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_equal"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_period"
-        app:layout_constraintTop_toBottomOf="@+id/button_three" />
+        app:layout_constraintTop_toBottomOf="@+id/button_three"
+        app:layout_constraintWidth_percent="0.22" />
 
     <Button
         android:id="@+id/button_equal"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.22"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:onClick="resultIs"
         android:text="="
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_minus_or_plus"
-        app:layout_constraintTop_toBottomOf="@+id/button_divide" />
+        app:layout_constraintTop_toBottomOf="@+id/button_divide"
+        app:layout_constraintWidth_percent="0.22" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
