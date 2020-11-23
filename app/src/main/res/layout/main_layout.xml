@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
+
         android:id="@+id/calculator_screen"
         android:layout_width="0dp"
         android:layout_height="40dp"

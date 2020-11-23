@@ -23,6 +23,4 @@
         <item name="android:clickable">true</item>
     </style>
 
-    <item name="layout_constraintWidth_percent" type="">0.20</item>
-    <item name="layout_constraintHeight_percent">0.16</item>
 </resources>
