@@ -189,7 +189,7 @@
         android:onClick="operand"
         android:text="1"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_zero"
+        app:layout_constraintBottom_toTopOf="@+id/button_minus_or_plus_sign"
         app:layout_constraintStart_toStartOf="@+id/button_four"
         app:layout_constraintTop_toBottomOf="@+id/button_four" />
 
@@ -200,8 +200,8 @@
         android:onClick="operand"
         android:text="2"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_period"
-        app:layout_constraintStart_toStartOf="@+id/button_period"
+        app:layout_constraintBottom_toTopOf="@+id/button_zero"
+        app:layout_constraintStart_toStartOf="@+id/button_zero"
         app:layout_constraintTop_toBottomOf="@+id/button_five" />
 
     <Button
@@ -211,8 +211,8 @@
         android:onClick="operand"
         android:text="3"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_minus_or_plus"
-        app:layout_constraintStart_toStartOf="@+id/button_minus_or_plus"
+        app:layout_constraintBottom_toTopOf="@+id/button_decimal_point"
+        app:layout_constraintStart_toStartOf="@+id/button_decimal_point"
         app:layout_constraintTop_toBottomOf="@+id/button_six" />
 
     <Button
@@ -227,7 +227,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_minus" />
 
     <Button
-        android:id="@+id/button_zero"
+        android:id="@+id/button_minus_or_plus_sign"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
@@ -235,13 +235,13 @@
         android:text="0"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_period"
+        app:layout_constraintEnd_toStartOf="@+id/button_zero"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_one" />
 
     <Button
-        android:id="@+id/button_period"
+        android:id="@+id/button_zero"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
@@ -249,13 +249,13 @@
         android:text="."
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_minus_or_plus"
+        app:layout_constraintEnd_toStartOf="@+id/button_decimal_point"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_zero"
+        app:layout_constraintStart_toEndOf="@+id/button_minus_or_plus_sign"
         app:layout_constraintTop_toBottomOf="@+id/button_two" />
 
     <Button
-        android:id="@+id/button_minus_or_plus"
+        android:id="@+id/button_decimal_point"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
@@ -265,7 +265,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_equal"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_period"
+        app:layout_constraintStart_toEndOf="@+id/button_zero"
         app:layout_constraintTop_toBottomOf="@+id/button_three" />
 
     <Button
@@ -279,6 +279,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_minus_or_plus"
+        app:layout_constraintStart_toEndOf="@+id/button_decimal_point"
         app:layout_constraintTop_toBottomOf="@+id/button_divide" />
 </androidx.constraintlayout.widget.ConstraintLayout>

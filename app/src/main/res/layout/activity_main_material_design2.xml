@@ -13,11 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="32dp"
-        android:background="@color/White"
+        android:background="@color/Black"
         android:gravity="start|top"
         android:text="0"
         android:textAlignment="textEnd"
-        android:textColor="@color/Black"
+        android:textColor="@color/LightBlue"
         android:textSize="36sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,11 +30,11 @@
         android:id="@+id/calculator_subscreen_for_current_operator"
         android:layout_width="0dp"
         android:layout_height="24dp"
-        android:background="@color/White"
+        android:background="@color/Black"
         android:gravity="start|top"
         android:text=" "
         android:textAlignment="textEnd"
-        android:textColor="@color/Black"
+        android:textColor="@color/LightBlue"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -222,7 +222,7 @@
         android:onClick="operand"
         android:text="1"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_zero"
+        app:layout_constraintBottom_toTopOf="@+id/button_minus_or_plus_sign"
         app:layout_constraintStart_toStartOf="@+id/button_four"
         app:layout_constraintTop_toBottomOf="@+id/button_four" />
 
@@ -235,8 +235,8 @@
         android:onClick="operand"
         android:text="2"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_period"
-        app:layout_constraintStart_toStartOf="@+id/button_period"
+        app:layout_constraintBottom_toTopOf="@+id/button_zero"
+        app:layout_constraintStart_toStartOf="@+id/button_zero"
         app:layout_constraintTop_toBottomOf="@+id/button_five" />
 
     <Button
@@ -248,8 +248,8 @@
         android:onClick="operand"
         android:text="3"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_minus_or_plus"
-        app:layout_constraintStart_toStartOf="@+id/button_minus_or_plus"
+        app:layout_constraintBottom_toTopOf="@+id/button_decimal_point"
+        app:layout_constraintStart_toStartOf="@+id/button_decimal_point"
         app:layout_constraintTop_toBottomOf="@+id/button_six" />
 
     <Button
@@ -266,6 +266,22 @@
         app:layout_constraintTop_toBottomOf="@+id/button_minus" />
 
     <Button
+        android:id="@+id/button_minus_or_plus_sign"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="operatorMinusOrPlus"
+        android:text="-/+"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_zero"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_one"
+        app:layout_constraintWidth_percent="0.22" />
+
+    <Button
         android:id="@+id/button_zero"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -274,15 +290,15 @@
         android:text="0"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_period"
+        app:layout_constraintEnd_toStartOf="@+id/button_decimal_point"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_one"
+        app:layout_constraintStart_toEndOf="@+id/button_minus_or_plus_sign"
+        app:layout_constraintTop_toBottomOf="@+id/button_two"
         app:layout_constraintWidth_percent="0.22" />
 
     <Button
-        android:id="@+id/button_period"
+        android:id="@+id/button_decimal_point"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -290,26 +306,10 @@
         android:text="."
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_minus_or_plus"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_zero"
-        app:layout_constraintTop_toBottomOf="@+id/button_two"
-        app:layout_constraintWidth_percent="0.22" />
-
-    <Button
-        android:id="@+id/button_minus_or_plus"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="operatorMinusOrPlus"
-        android:text="-/+"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_equal"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_period"
+        app:layout_constraintStart_toEndOf="@+id/button_zero"
         app:layout_constraintTop_toBottomOf="@+id/button_three"
         app:layout_constraintWidth_percent="0.22" />
 
@@ -325,7 +325,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_minus_or_plus"
+        app:layout_constraintStart_toEndOf="@+id/button_decimal_point"
         app:layout_constraintTop_toBottomOf="@+id/button_divide"
         app:layout_constraintWidth_percent="0.22" />
 
