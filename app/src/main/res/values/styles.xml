@@ -1,15 +1,8 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/Moccasin</item>
-        <item name="layout_constraintWidth_percent">0.20</item>
-        <item name="layout_constraintHeight_percent">0.16</item>
+        <item name="android:windowBackground">@color/screenColorBackground</item>
     </style>
     <style name="button" parent="@android:style/Widget.Button">
-        <item name="layout_constraintWidth_percent">0.20</item>
-        <item name="layout_constraintHeight_percent">0.16</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">#FFFFFFFF</item>
         <item name="android:shadowColor">#FF000000</item>

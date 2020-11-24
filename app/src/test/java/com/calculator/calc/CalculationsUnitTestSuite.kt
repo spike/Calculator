@@ -65,6 +65,13 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
 
+    @Test
+    fun testWithMissingFirstOperand() {
+        val input = "/6"
+        val expected = listOf("/", "6")
+        assertEquals(expected, c.calculate(input))
+    }
+
     // test minus or plus when invoked first before an actual number
 
     @After

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="screenColorTextScreenDeepSkyBlue">#05CCFA</color>
+    <color name="screenColorTextScreenBondiBlue">#139DC0</color>
+    <color name="screenColorBackground">#111111</color>
+
+    <color name="buttonColorTextButtonSpecialRawUmber">#795821</color>
+    <color name="buttonColorGray">#262626</color>
+    <color name="buttonColorDarkGrayBlack">#1C1C1C</color>
+
+
 <color name="colorPrimary">#6200EE</color>
 <color name="colorPrimaryDark">#3700B3</color>
 <color name="colorAccent">#03DAC5</color>
