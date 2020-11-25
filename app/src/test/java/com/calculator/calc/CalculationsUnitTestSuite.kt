@@ -67,7 +67,7 @@ class CalculationsUnitTestSuite {
 
     @Test
     fun testWithMissingFirstOperand() {
-        val input = "/6"
+        val input = "/6="
         val expected = listOf("/", "6")
         assertEquals(expected, c.calculate(input))
     }

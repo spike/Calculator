@@ -9,7 +9,7 @@ class Calculation {
     var result: MutableList<String> = mutableListOf()
     var buf: String = ""
     var screen: String = ""
-    var firstOperandAsString = ""
+    var firstOperandAsString = "0"
     var secondOperandAsString = ""
     var operator = ""
     var isPreviousOperatorConsecutive = false
