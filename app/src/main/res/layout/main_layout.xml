@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.88"
+        app:layout_constraintWidth_percent=".96"
         tools:ignore="RtlCompat" />
 
     <TextView
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculator_screen"
-        app:layout_constraintWidth_percent="0.88"
+        app:layout_constraintWidth_percent="0.96"
         tools:ignore="RtlCompat" />
 
     <Button
