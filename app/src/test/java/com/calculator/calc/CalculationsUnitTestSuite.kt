@@ -4,7 +4,6 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.After
-import java.math.BigDecimal
 
 class CalculationsUnitTestSuite {
     private lateinit var c: Calculation
