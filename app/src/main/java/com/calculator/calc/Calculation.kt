@@ -92,7 +92,7 @@ class Calculation {
             completedSecondNumber = false
             workingOnFirstNumber = false
             lastCalledEqual = true
-            firstOperandAsString = removeTrailingZeros(num3)
+            firstOperandAsString = removeZeroExponent(removeTrailingZeros(num3))
             lastResult = firstOperandAsString
         }
         return firstOperandAsString
@@ -101,6 +101,15 @@ class Calculation {
     private fun removeTrailingZeros(bd: BigDecimal): String {
         return bd.toString().replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
     }
+
+    private fun removeZeroExponent(bd: String): String {
+        if (bd.contains("^0E".toRegex()))
+                return "0"
+            else
+                return bd
+    }
+
+
 
     fun zeroThroughNine(e: Char): String {
         lastCalledEqual = false
