@@ -105,6 +105,6 @@ class MainActivity : AppCompatActivity() {
 
     fun decimal(view: View) {
         val screen = findViewById<TextView>(R.id.calculator_screen)
-        screen.setText(c.decimalPoint())
+        screen.setText(c.decimalMarker())
     }
 }

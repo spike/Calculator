@@ -18,7 +18,7 @@ class Calculation {
         for (e in a) {
             screen = when (e.toInt()) {
                 in 48..57 -> zeroThroughNine(e)
-                46 -> decimalPoint()
+                46 -> decimalMarker()
                 in 42..47 -> operatorSign(e)
                 37 -> percentOperator()
                 109 -> makeNegative()
@@ -149,14 +149,14 @@ class Calculation {
         workingOnFirstNumber = false
         secondOperandAsString = ""
         operator = e.toString()
-        noDecimalPointInSecondYet = true
+        noDecimalMarkerInSecondYet = true
         isPreviousOperatorConsecutive = true
         return operator
     }
     var upcomingOperator = ""
     private fun secondOperator(e: Char): String {
         var secondResult = ""
-        noDecimalPointInSecondYet = true
+        noDecimalMarkerInSecondYet = true
         upcomingOperator = e.toString()
         if (isPreviousOperatorConsecutive) {
             operator = e.toString()
@@ -168,37 +168,37 @@ class Calculation {
         return secondResult
     }
 
-    fun decimalPoint(): String {
+    fun decimalMarker(): String {
         lastCalledEqual = false
         return if (workingOnFirstNumber) {
-            decimalPointInFirstNumber()
+            decimalMarkerInFirstNumber()
         } else {
-            decimalPointInSecondNumber()
+            decimalMarkerInSecondNumber()
         }
     }
-    var noDecimalPointInFirstYet = true
-    var noDecimalPointInSecondYet = true
+    var noDecimalMarkerInFirstYet = true
+    var noDecimalMarkerInSecondYet = true
 
-    fun decimalPointInFirstNumber(): String {
-        if (noDecimalPointInFirstYet) {
+    fun decimalMarkerInFirstNumber(): String {
+        if (noDecimalMarkerInFirstYet) {
             if (firstOperandAsString.length > 0) {
                 firstOperandAsString += "."
             } else {
                 firstOperandAsString = "0."
             }
         }
-        noDecimalPointInFirstYet = false
+        noDecimalMarkerInFirstYet = false
         return firstOperandAsString
     }
-    private fun decimalPointInSecondNumber(): String {
-        if (noDecimalPointInSecondYet) {
+    private fun decimalMarkerInSecondNumber(): String {
+        if (noDecimalMarkerInSecondYet) {
             if (secondOperandAsString.length > 0) {
                 secondOperandAsString += "."
             } else {
                 secondOperandAsString = "0."
             }
         }
-        noDecimalPointInSecondYet = false
+        noDecimalMarkerInSecondYet = false
         return secondOperandAsString
     }
 
@@ -211,8 +211,8 @@ class Calculation {
         isPreviousOperatorConsecutive = false
         workingOnFirstNumber = true
         completedSecondNumber = false
-        noDecimalPointInSecondYet = true
-        noDecimalPointInFirstYet = true
+        noDecimalMarkerInSecondYet = true
+        noDecimalMarkerInFirstYet = true
         return firstOperandAsString
     }
 
