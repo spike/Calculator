@@ -319,13 +319,13 @@
         app:layout_constraintTop_toBottomOf="@+id/button_divide"
         app:layout_constraintWidth_percent="@dimen/buttonPercentageWidth" />
 
-    <androidx.constraintlayout.widget.Barrier
+<!--    <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
         app:constraint_referenced_ids="calculator_screen,calculator_subscreen_for_current_operator,button_backspace,button_plus,button_minus,button_divide,button_equal"
-        tools:layout_editor_absoluteX="411dp" />
+        tools:layout_editor_absoluteX="411dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
