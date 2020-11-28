@@ -71,7 +71,12 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
 
-    // test minus or plus when invoked first before an actual number
+    @Test
+    fun testMinusBeforeOperator() {
+        val input = "-6="
+        val expected = listOf("-", "6", "-6")
+        assertEquals(expected, c.calculate(input))
+    }
 
     // add commas instead of decimal points for Europeans
     // add commas/points after every three digits
