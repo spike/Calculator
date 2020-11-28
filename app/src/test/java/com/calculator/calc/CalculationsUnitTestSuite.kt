@@ -73,6 +73,7 @@ class CalculationsUnitTestSuite {
     }
 
     // test minus or plus when invoked first before an actual number
+
     // add commas instead of decimal points for Europeans
     // add commas/points after every three digits
 
