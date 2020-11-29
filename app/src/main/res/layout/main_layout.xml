@@ -18,7 +18,6 @@
         android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/screenColorTextScreenDeepSkyBlue"
-
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

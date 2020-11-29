@@ -79,9 +79,16 @@ class CalculationsUnitTestSuite {
     }
 
     @Test
-    fun testBugMinusBeforeOperator() {
+    fun testBugMinusOrPlusAfterOperator() {
         val input = "1/m4="
         val expected = listOf("1", "/", "-", "-4", "-0.25")
+        assertEquals(expected, c.calculate(input))
+    }
+
+    @Test
+    fun testLeadingZerosInSecondOperand() {
+        val input = "8-002"
+        val expected = listOf("8", "-", "0", "0", "2")
         assertEquals(expected, c.calculate(input))
     }
 
