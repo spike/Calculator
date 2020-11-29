@@ -78,6 +78,13 @@ class CalculationsUnitTestSuite {
         assertEquals(expected, c.calculate(input))
     }
 
+    @Test
+    fun testBugMinusBeforeOperator() {
+        val input = "1/m4="
+        val expected = listOf("1", "/", "-", "-4", "-0.25")
+        assertEquals(expected, c.calculate(input))
+    }
+
     @After
     fun tearDown() {
         c.clear()
