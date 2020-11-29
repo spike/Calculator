@@ -77,9 +77,6 @@ class CalculationsUnitTestSuite {
         val expected = listOf("-", "6", "-6")
         assertEquals(expected, c.calculate(input))
     }
-    // TODO: keep state when switching orientation of phone
-    // TODO: add commas instead of decimal points for Europeans
-    // TODO: add commas/points after every three digits
 
     @After
     fun tearDown() {
