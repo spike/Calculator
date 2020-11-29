@@ -1,7 +1,7 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/screenColorBackground</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">40sp</item>
     </style>
     <style name="button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
