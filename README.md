@@ -6,7 +6,7 @@ Tech Stack:
 
 * ConstraintLayout
 * Auto-sizing TextView
-* onSaveInstance() for keeping state across config changes
+* onSaveInstance for keeping state across config changes
 * JUnit [tests](https://github.com/spike/Calculator/blob/master/app/src/test/java/com/calculator/calc/CalculationUnitTest.kt)
 * UI tests
 
