@@ -2,44 +2,41 @@ package com.calculator.calc
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+// import kotlinx.android.synthetic.main.main_layout.*
 import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
     var operator: Char = ' '
     var operandNumber: Char = ' '
     val c = Calculation()
-
+    private lateinit var screen: TextView
+    private lateinit var opScreen: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         actionBar?.hide()
+        screen = findViewById<TextView>(R.id.calculator_screen)
+        opScreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+/*    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
+        outState.putString("calc_screen", screen.text.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
+        val s = savedInstanceState.getString("calc_screen")
+        screen.setText(s.toString())
+    }*/
 
     fun operand(v: View) {
-        val screen = findViewById<TextView>(R.id.calculator_screen)
-        val operationScreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
         var buttonClicked = v
         operandNumber = when (buttonClicked.id) {
             R.id.button_one -> '1'
@@ -54,13 +51,11 @@ class MainActivity : AppCompatActivity() {
             else -> '0'
         }
         screen.setText(c.zeroThroughNine(operandNumber))
-        operationScreen.setText("")
+        opScreen.setText("")
     }
 
     fun operator(v: View) {
-        val operationSubscreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
         var buttonClicked = v
-        val screen = findViewById<TextView>(R.id.calculator_screen)
         try {
             operator = when (buttonClicked.id) {
                 R.id.button_plus -> '+'
@@ -69,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            operationSubscreen.setText(operator.toString())
+            opScreen.setText(operator.toString())
             c.operatorSign(operator)
         } catch (e: Exception) {
             screen.setText("Error:3 ${e.message} ")
@@ -77,7 +72,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun percentOperator(v: View) {
-        val screen = findViewById<TextView>(R.id.calculator_screen)
         try {
             screen.setText(c.percentOperator())
         } catch (e: Exception) {
@@ -86,32 +80,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun resultIs(v: View) {
-        val currentOperationSubscreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
-        val screen = findViewById<TextView>(R.id.calculator_screen)
         try {
             screen.setText(c.equalSign())
         } catch (e: Exception) {
             screen.setText("ERROR:0 ${e.message}")
         }
-        currentOperationSubscreen.setText("")
-
+        opScreen.setText("")
     }
 
     fun clearScreen(v: View) {
-        val currentOperationSubscreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
-        val screen = findViewById<TextView>(R.id.calculator_screen)
         c.clear()
         screen.setText(c.clear())
-        currentOperationSubscreen.setText("")
+        opScreen.setText("")
     }
 
     fun doBackspace(v: View) {
-        val screen = findViewById<TextView>(R.id.calculator_screen)
         screen.setText(c.backSpace())
     }
 
     fun operatorMinusOrPlus(v: View) {
-        val screen = findViewById<TextView>(R.id.calculator_screen)
         try {
             screen.setText(c.makeNegative())
         } catch (e: Exception) {
