@@ -9,7 +9,7 @@
     tools:ignore="MissingDefaultResource">
 
     <TextView
-        android:id="@+id/calculator_screen"
+        android:id="@+id/rs_screen"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
@@ -26,7 +26,7 @@
         tools:ignore="RtlCompat" />
 
     <TextView
-        android:id="@+id/calculator_subscreen_for_current_operator"
+        android:id="@+id/op_screen"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:background="@color/screenColorBackground"
@@ -37,7 +37,7 @@
         android:textColor="@color/screenColorTextScreenDeepSkyBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_screen"
+        app:layout_constraintTop_toBottomOf="@+id/rs_screen"
         app:layout_constraintWidth_percent="0.96"
         tools:ignore="RtlCompat" />
 
@@ -52,7 +52,7 @@
         app:layout_constraintHeight_percent="@dimen/buttonPercentageHeight"
         app:layout_constraintStart_toEndOf="@+id/button_percent"
         app:layout_constraintStart_toStartOf="@+id/button_nine"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintTop_toBottomOf="@+id/op_screen"
         app:layout_constraintWidth_percent="@dimen/buttonPercentageWidth" />
 
     <Button
@@ -68,7 +68,7 @@
         app:layout_constraintHeight_percent="@dimen/buttonPercentageHeight"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintTop_toBottomOf="@+id/op_screen"
         app:layout_constraintWidth_percent="@dimen/buttonPercentageWidth" />
 
 
@@ -83,7 +83,7 @@
         app:layout_constraintHeight_percent="@dimen/buttonPercentageHeight"
         app:layout_constraintStart_toEndOf="@+id/button_clear"
         app:layout_constraintStart_toStartOf="@+id/button_eight"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintTop_toBottomOf="@+id/op_screen"
         app:layout_constraintWidth_percent="@dimen/buttonPercentageWidth" />
 
 
@@ -98,7 +98,7 @@
         app:layout_constraintHeight_percent="@dimen/buttonPercentageHeight"
         app:layout_constraintStart_toEndOf="@+id/button_multiply"
         app:layout_constraintStart_toStartOf="@+id/button_plus"
-        app:layout_constraintTop_toBottomOf="@+id/calculator_subscreen_for_current_operator"
+        app:layout_constraintTop_toBottomOf="@+id/op_screen"
         app:layout_constraintWidth_percent="@dimen/buttonPercentageWidth" />
 
 

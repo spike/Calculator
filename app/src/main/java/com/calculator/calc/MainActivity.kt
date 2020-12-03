@@ -1,28 +1,22 @@
 package com.calculator.calc
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-// import kotlinx.android.synthetic.main.main_layout.*
+import kotlinx.android.synthetic.main.main_layout.*
 import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
     var operator: Char = ' '
     var operandNumber: Char = ' '
     val c = Calculation()
-    private lateinit var screen: TextView
-    private lateinit var opScreen: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         actionBar?.hide()
-        screen = findViewById<TextView>(R.id.calculator_screen)
-        opScreen = findViewById<TextView>(R.id.calculator_subscreen_for_current_operator)
     }
 
 /*    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
@@ -50,8 +44,8 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> '9'
             else -> '0'
         }
-        screen.setText(c.zeroThroughNine(operandNumber))
-        opScreen.setText("")
+        rs_screen.text = c.zeroThroughNine(operandNumber)
+        op_screen.text = ""
     }
 
     fun operator(v: View) {
@@ -64,50 +58,50 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            opScreen.setText(operator.toString())
+            op_screen.text = operator.toString()
             c.operatorSign(operator)
         } catch (e: Exception) {
-            screen.setText("Error:3 ${e.message} ")
+            rs_screen.text = "Error:3 ${e.message} "
         }
     }
 
     fun percentOperator(v: View) {
         try {
-            screen.setText(c.percentOperator())
+            rs_screen.text = c.percentOperator()
         } catch (e: Exception) {
-            screen.setText("Error:2 ${e.message}")
+            rs_screen.text = "Error:2 ${e.message}"
         }
     }
 
     fun resultIs(v: View) {
         try {
-            screen.setText(c.equalSign())
+            rs_screen.text = c.equalSign()
         } catch (e: Exception) {
-            screen.setText("ERROR:0 ${e.message}")
+            rs_screen.text = "ERROR:0 ${e.message}"
         }
-        opScreen.setText("")
+        op_screen.text = ""
     }
 
     fun clearScreen(v: View) {
         c.clear()
-        screen.setText(c.clear())
-        opScreen.setText("")
+        rs_screen.text = c.clear()
+        op_screen.text = ""
     }
 
     fun doBackspace(v: View) {
-        screen.setText(c.backSpace())
+        rs_screen.text = c.backSpace()
     }
 
     fun operatorMinusOrPlus(v: View) {
         try {
-            screen.setText(c.makeNegative())
+            rs_screen.text = c.makeNegative()
         } catch (e: Exception) {
-            screen.setText("Error:1 ${e.message}")
+            rs_screen.text = "Error:1 ${e.message}"
         }
     }
 
     fun decimal(view: View) {
-        val screen = findViewById<TextView>(R.id.calculator_screen)
-        screen.setText(c.decimalMarker())
+        val screen = findViewById<TextView>(R.id.rs_screen)
+        screen.text = c.decimalMarker()
     }
 }
