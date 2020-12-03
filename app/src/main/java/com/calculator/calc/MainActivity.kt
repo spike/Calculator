@@ -19,16 +19,17 @@ class MainActivity : AppCompatActivity() {
         actionBar?.hide()
     }
 
-/*    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState.putString("calc_screen", screen.text.toString())
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("calc_screen", rs_screen.text.toString())
+        outState.putString("calc_op_screen", op_screen.text.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val s = savedInstanceState.getString("calc_screen")
-        screen.setText(s.toString())
-    }*/
+        rs_screen.text = savedInstanceState.getString("calc_screen")
+        op_screen.text = savedInstanceState.getString("calc_op_screen")
+    }
 
     fun operand(v: View) {
         var buttonClicked = v
