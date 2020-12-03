@@ -5,9 +5,9 @@ This is a basic Android calculator made from scratch in Kotlin and licensed unde
 Tech Stack:
 
 * ConstraintLayout
-* Auto-sizing TextView
+* auto-sizing TextView
 * onSaveInstanceState for keeping state across config changes
-* Kotlin synthetic properties
+* view binding
 * JUnit [tests](https://github.com/spike/Calculator/blob/master/app/src/test/java/com/calculator/calc/CalculationUnitTest.kt)
 * UI tests
 

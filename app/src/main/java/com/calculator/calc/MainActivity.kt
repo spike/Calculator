@@ -2,33 +2,35 @@ package com.calculator.calc
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.main_layout.*
+import com.calculator.calc.databinding.MainLayoutBinding
 import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
-    var operator: Char = ' '
-    var operandNumber: Char = ' '
-    val c = Calculation()
+    private var operator: Char = ' '
+    private var operandNumber: Char = ' '
+    private val c = Calculation()
+    private lateinit var binding: MainLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_layout)
+        binding = MainLayoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         actionBar?.hide()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("calc_screen", rs_screen.text.toString())
-        outState.putString("calc_op_screen", op_screen.text.toString())
+        outState.putString("calc_screen", binding.rsScreen.text.toString())
+        outState.putString("calc_op_screen", binding.opScreen.text.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        rs_screen.text = savedInstanceState.getString("calc_screen")
-        op_screen.text = savedInstanceState.getString("calc_op_screen")
+        binding.rsScreen.text = savedInstanceState.getString("calc_screen")
+        binding.opScreen.text = savedInstanceState.getString("calc_op_screen")
     }
 
     fun operand(v: View) {
@@ -45,8 +47,8 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> '9'
             else -> '0'
         }
-        rs_screen.text = c.zeroThroughNine(operandNumber)
-        op_screen.text = ""
+        binding.rsScreen.text = c.zeroThroughNine(operandNumber)
+        binding.opScreen.text = ""
     }
 
     fun operator(v: View) {
@@ -59,50 +61,49 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            op_screen.text = operator.toString()
+            binding.opScreen.text = operator.toString()
             c.operatorSign(operator)
         } catch (e: Exception) {
-            rs_screen.text = "Error:3 ${e.message} "
+            binding.rsScreen.text = "Error:3 ${e.message} "
         }
     }
 
     fun percentOperator(v: View) {
         try {
-            rs_screen.text = c.percentOperator()
+            binding.rsScreen.text = c.percentOperator()
         } catch (e: Exception) {
-            rs_screen.text = "Error:2 ${e.message}"
+            binding.rsScreen.text = "Error:2 ${e.message}"
         }
     }
 
     fun resultIs(v: View) {
         try {
-            rs_screen.text = c.equalSign()
+            binding.rsScreen.text = c.equalSign()
         } catch (e: Exception) {
-            rs_screen.text = "ERROR:0 ${e.message}"
+            binding.rsScreen.text = "ERROR:0 ${e.message}"
         }
-        op_screen.text = ""
+        binding.opScreen.text = ""
     }
 
     fun clearScreen(v: View) {
         c.clear()
-        rs_screen.text = c.clear()
-        op_screen.text = ""
+        binding.rsScreen.text = c.clear()
+        binding.opScreen.text = ""
     }
 
     fun doBackspace(v: View) {
-        rs_screen.text = c.backSpace()
+        binding.rsScreen.text = c.backSpace()
     }
 
     fun operatorMinusOrPlus(v: View) {
         try {
-            rs_screen.text = c.makeNegative()
+            binding.rsScreen.text = c.makeNegative()
         } catch (e: Exception) {
-            rs_screen.text = "Error:1 ${e.message}"
+            binding.rsScreen.text = "Error:1 ${e.message}"
         }
     }
 
     fun decimal(view: View) {
-        val screen = findViewById<TextView>(R.id.rs_screen)
-        screen.text = c.decimalMarker()
+        binding.rsScreen.text = c.decimalMarker()
     }
 }
