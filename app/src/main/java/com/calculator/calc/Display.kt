@@ -24,6 +24,20 @@ class Display {
             screen + input
         return screen
     }
+    fun addOperator(input: String): String {
+        screen = if (screen == "0" && input == "0")
+            input
+        else
+            screen + input
+        return screen
+    }
+    fun addDecimal(input: String): String {
+        screen = if (screen == "0" && input == "0")
+            input
+        else
+            screen + input
+        return screen
+    }
 
  /* I might not need this anymore
     fun removeTrailingZeros(bd: BigDecimal): String {

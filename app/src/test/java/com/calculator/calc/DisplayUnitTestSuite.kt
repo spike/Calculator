@@ -47,14 +47,14 @@ class DisplayUnitTestSuite {
         display.screen = "9"
         val input = "+"
         val expected = "9+"
-        assertEquals(expected, display.addCharacter(input))
+        assertEquals(expected, display.addOperator(input))
     }
     @Test
     fun testAddPercent() {
         display.screen = "2275"
         val input = "%"
         val expected = "2275%"
-        assertEquals(expected, display.addCharacter(input))
+        assertEquals(expected, display.addOperator(input))
     }
     @Test
     fun testAddUpfrontZeros() {
@@ -62,6 +62,50 @@ class DisplayUnitTestSuite {
         val input = "0"
         val expected = "0"
         assertEquals(expected, display.addCharacter(input))
+    }
+    @Test
+    fun testExtraneousAdjacentOperator() {
+        display.screen = "3+"
+        val input = "*"
+        val expected = "3*"
+        assertEquals(expected, display.addOperator(input))
+    }
+    @Test
+    fun testExtraneousSecondDecimal() {
+        display.screen = "3.4"
+        val input = "."
+        val expected = "3.4"
+        assertEquals(expected, display.addDecimal(input))
+    }
+    @Test
+    fun testSecondDecimalInSecondNumber() {
+        display.screen = "3.4+6"
+        val input = "."
+        val expected = "3.4+6."
+        assertEquals(expected, display.addDecimal(input))
+    }
+    @Test
+    fun testExtraneousSecondDecimalInSecondNumber() {
+        display.screen = "3.4+6.8"
+        val input = "."
+        val expected = "3.4+6.8"
+        assertEquals(expected, display.addDecimal(input))
+    }
+
+
+    @Test
+    fun testPercentThenOperator() {
+        display.screen = "38%"
+        val input = "+"
+        val expected = "38%+"
+        assertEquals(expected, display.addOperator(input))
+    }
+    @Test
+    fun testDecimalRightAfterPercentSign() {
+        display.screen = "38%"
+        val input = "."
+        val expected = "38%"
+        assertEquals(expected, display.addDecimal(input))
     }
 
 
