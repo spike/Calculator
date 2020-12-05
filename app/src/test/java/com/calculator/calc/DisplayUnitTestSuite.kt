@@ -31,35 +31,35 @@ class DisplayUnitTestSuite {
     }
     @Test
     fun testClear() {
-        val input ="90+40"
+        val input = "90+40"
         val expected = "0"
         assertEquals(expected, display.clear(input))
     }
     @Test
     fun testAddDigit() {
-        display.screen="90+4"
-        val input ="8"
+        display.screen = "90+4"
+        val input = "8"
         val expected = "90+48"
         assertEquals(expected, display.addCharacter(input))
     }
     @Test
     fun testAddOperator() {
-        display.screen="9"
-        val input ="+"
+        display.screen = "9"
+        val input = "+"
         val expected = "9+"
         assertEquals(expected, display.addCharacter(input))
     }
     @Test
     fun testAddPercent() {
-        display.screen="2275"
-        val input ="%"
+        display.screen = "2275"
+        val input = "%"
         val expected = "2275%"
         assertEquals(expected, display.addCharacter(input))
     }
     @Test
     fun testAddUpfrontZeros() {
-        display.screen="0"
-        val input ="0"
+        display.screen = "0"
+        val input = "0"
         val expected = "0"
         assertEquals(expected, display.addCharacter(input))
     }
