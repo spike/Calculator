@@ -14,6 +14,17 @@ class Engine {
     var operator = ""
     var isPreviousOperatorConsecutive = false
 
+
+    fun calculate(): String {
+        return "result"
+    }
+    fun addPercentSign(): String {
+        return "percent"
+    }
+    fun negate(): String {
+        return "negated"
+    }
+/*
     fun calculate(a: String): List<String> {
         for (e in a) {
             screen = when (e) {
@@ -29,12 +40,13 @@ class Engine {
         }
         return result
     }
+*/
 
 
 
     var lastCalledEqual = false
     var lastResult = ""
-
+/*
     fun equalSign(): String {
         var num3: BigDecimal = BigDecimal.valueOf(0.0)
         if (completedSecondNumber) {
@@ -75,66 +87,7 @@ class Engine {
                 return "0"
             else
                 return bd
-    }
-
-
-
-    fun zeroThroughNine(e: Char): String {
-        lastCalledEqual = false
-        return if (workingOnFirstNumber) {
-            partOfFirstNumber(e)
-        } else
-            partOfSecondNumber(e)
-    }
-
-    private fun partOfFirstNumber(e: Char): String {
-        isPreviousOperatorConsecutive = false
-        if ((firstOperandAsString.length == 1) &&
-            firstOperandAsString.first().equals('0')) {
-            firstOperandAsString = firstOperandAsString.drop(1) + e
-        } else {
-            firstOperandAsString += e
-        }
-        return firstOperandAsString
-    }
-
-    private fun partOfSecondNumber(e: Char): String {
-        isPreviousOperatorConsecutive = false
-        completedSecondNumber = true
-        secondOperandAsString +=e
-        return secondOperandAsString
-    }
-
-    fun operatorSign(e: Char): String {
-        return if (workingOnFirstNumber) {
-            firstOperatorMiddle(e)
-        } else {
-            secondOperator(e)
-        }
-
-    }
-    private fun firstOperatorMiddle(e: Char): String {
-        workingOnFirstNumber = false
-        secondOperandAsString = ""
-        operator = e.toString()
-        noDecimalMarkerInSecondYet = true
-        isPreviousOperatorConsecutive = true
-        return operator
-    }
-    var upcomingOperator = ""
-    private fun secondOperator(e: Char): String {
-        var secondResult = ""
-        noDecimalMarkerInSecondYet = true
-        upcomingOperator = e.toString()
-        if (isPreviousOperatorConsecutive) {
-            operator = e.toString()
-            secondResult = e.toString()
-        } else {
-            secondResult = "(${equalSign()})${e.toString()}"
-        }
-        isPreviousOperatorConsecutive = true
-        return secondResult
-    }
+    } */
 
     fun decimalMarker(): String {
         lastCalledEqual = false
@@ -174,7 +127,6 @@ class Engine {
         firstOperandAsString = "0"
         secondOperandAsString = "0"
         operator = ""
-        upcomingOperator = ""
         buf = ""
         isPreviousOperatorConsecutive = false
         workingOnFirstNumber = true
@@ -184,38 +136,5 @@ class Engine {
         return firstOperandAsString
     }
 
-    fun percentOperator(): String {
-        return if (workingOnFirstNumber) {
-            percentOnFirstOperand()
-        } else {
-            percentOnSecondOperand()
-        }
-    }
-
-    private fun percentOnFirstOperand(): String {
-        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(100.0)).toString()
-        return firstOperandAsString
-    }
-
-    private fun percentOnSecondOperand(): String {
-        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()).setScale(20) / BigDecimal.valueOf(100.0)).toString()
-        return secondOperandAsString
-    }
-
-    fun makeNegative(): String {
-        return if (workingOnFirstNumber) {
-            makeNegativeFirstOperand()
-        } else {
-            makeNegativeSecondOperand()
-        }
-    }
-    fun makeNegativeFirstOperand(): String {
-        firstOperandAsString = removeTrailingZeros(BigDecimal.valueOf(firstOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(-1.0)).toString()
-        return firstOperandAsString
-    }
-    fun makeNegativeSecondOperand(): String {
-        secondOperandAsString = removeTrailingZeros(BigDecimal.valueOf(secondOperandAsString.toDouble()).setScale(20) * BigDecimal.valueOf(-1.0)).toString()
-        return secondOperandAsString
-    }
 }
 

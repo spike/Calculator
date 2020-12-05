@@ -6,19 +6,19 @@ import java.math.BigDecimal
 class Display {
     var screen: String = "0"
 
-    fun backspace(input: String): String {
-        screen = if (input == "0")
+    fun backspace(): String {
+        screen = if (screen == "0")
             "0"
         else
-            input.dropLast(1)
+            screen.dropLast(1)
         return screen
     }
-    fun clear(input: String): String {
+    fun clear(): String {
         screen = "0"
         return screen
     }
     fun addCharacter(input: String): String {
-        screen = if (screen == "0" && input == "0")
+        screen = if (screen == "0")
             input
         else
             screen + input
@@ -31,11 +31,11 @@ class Display {
             screen + input
         return screen
     }
-    fun addDecimal(input: String): String {
-        screen = if (screen == "0" && input == "0")
-            input
+    fun addDecimal(): String {
+        screen = if (screen == "0")
+            "."
         else
-            screen + input
+            screen + "."
         return screen
     }
 

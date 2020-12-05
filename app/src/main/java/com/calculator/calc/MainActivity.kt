@@ -10,6 +10,10 @@ class MainActivity : AppCompatActivity() {
     private var operator: Char = ' '
     private var operandNumber: Char = ' '
     private val c = Calculation()
+    private val display = Display()
+    private val engine = Engine()
+
+
     private lateinit var binding: MainLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         actionBar?.hide()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
+/*    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("calc_screen", binding.rsScreen.text.toString())
         outState.putString("calc_op_screen", binding.opScreen.text.toString())
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         binding.rsScreen.text = savedInstanceState.getString("calc_screen")
         binding.opScreen.text = savedInstanceState.getString("calc_op_screen")
-    }
+    }*/
 
     fun operand(v: View) {
         var buttonClicked = v
@@ -47,8 +51,7 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> '9'
             else -> '0'
         }
-        binding.rsScreen.text = c.zeroThroughNine(operandNumber)
-        binding.opScreen.text = ""
+        binding.rsScreen.text = display.addCharacter(operandNumber.toString())
     }
 
     fun operator(v: View) {
@@ -61,24 +64,23 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            binding.opScreen.text = operator.toString()
-            c.operatorSign(operator)
+            binding.rsScreen.text = display.addOperator(operator.toString())
         } catch (e: Exception) {
             binding.rsScreen.text = "Error:3 ${e.message} "
         }
     }
 
-    fun percentOperator(v: View) {
+/*    fun percentOperator(v: View) {
         try {
-            binding.rsScreen.text = c.percentOperator()
+            binding.rsScreen.text = engine.addPercentSign()
         } catch (e: Exception) {
             binding.rsScreen.text = "Error:2 ${e.message}"
         }
-    }
+    }*/
 
     fun resultIs(v: View) {
         try {
-            binding.rsScreen.text = c.equalSign()
+            binding.rsScreen.text = engine.calculate()
         } catch (e: Exception) {
             binding.rsScreen.text = "ERROR:0 ${e.message}"
         }
@@ -87,23 +89,22 @@ class MainActivity : AppCompatActivity() {
 
     fun clearScreen(v: View) {
         c.clear()
-        binding.rsScreen.text = c.clear()
-        binding.opScreen.text = ""
+        binding.rsScreen.text = display.clear()
     }
 
     fun doBackspace(v: View) {
-        binding.rsScreen.text = c.backSpace()
+        binding.rsScreen.text = display.backspace()
     }
 
-    fun operatorMinusOrPlus(v: View) {
+/*    fun operatorMinusOrPlus(v: View) {
         try {
-            binding.rsScreen.text = c.makeNegative()
+            binding.rsScreen.text = engine.negate()
         } catch (e: Exception) {
             binding.rsScreen.text = "Error:1 ${e.message}"
         }
-    }
+    }*/
 
     fun decimal(view: View) {
-        binding.rsScreen.text = c.decimalMarker()
+        binding.rsScreen.text = display.addDecimal()
     }
 }

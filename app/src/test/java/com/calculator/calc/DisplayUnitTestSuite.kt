@@ -14,26 +14,25 @@ class DisplayUnitTestSuite {
     }
     @After
     fun tearDown(): Unit {
-        display.screen = "0"
+        display.clear()
     }
 
     @Test
     fun testBackspace() {
         val input ="12345+5"
         val expected = "12345+"
-        assertEquals(expected, display.backspace(input))
+        assertEquals(expected, display.backspace())
     }
     @Test
     fun testBackspaceZero() {
         val input ="0"
         val expected = "0"
-        assertEquals(expected, display.backspace(input))
+        assertEquals(expected, display.backspace())
     }
     @Test
     fun testClear() {
-        val input = "90+40"
         val expected = "0"
-        assertEquals(expected, display.clear(input))
+        assertEquals(expected, display.clear())
     }
     @Test
     fun testAddDigit() {
@@ -75,21 +74,21 @@ class DisplayUnitTestSuite {
         display.screen = "3.4"
         val input = "."
         val expected = "3.4"
-        assertEquals(expected, display.addDecimal(input))
+        assertEquals(expected, display.addDecimal())
     }
     @Test
     fun testSecondDecimalInSecondNumber() {
         display.screen = "3.4+6"
         val input = "."
         val expected = "3.4+6."
-        assertEquals(expected, display.addDecimal(input))
+        assertEquals(expected, display.addDecimal())
     }
     @Test
     fun testExtraneousSecondDecimalInSecondNumber() {
         display.screen = "3.4+6.8"
         val input = "."
         val expected = "3.4+6.8"
-        assertEquals(expected, display.addDecimal(input))
+        assertEquals(expected, display.addDecimal())
     }
     @Test
     fun testPercentThenOperator() {
@@ -110,20 +109,20 @@ class DisplayUnitTestSuite {
         display.screen = "38%"
         val input = "."
         val expected = "38%"
-        assertEquals(expected, display.addDecimal(input))
+        assertEquals(expected, display.addDecimal())
     }
     @Test
     fun testMissingFirstOperator() {
         display.screen = "0"
         val input = "/"
         val expected = "0"
-        assertEquals(expected, display.addDecimal(input))
+        assertEquals(expected, display.addOperator(input))
     }
     @Test
     fun testLeadingZerosInSecondOperator() {
         display.screen = "8-0"
         val input = "0"
         val expected = "8-0"
-        assertEquals(expected, display.addDecimal(input))
+        assertEquals(expected, display.addCharacter(input))
     }
 }
