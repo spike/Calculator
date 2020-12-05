@@ -16,15 +16,15 @@ class Calculation {
 
     fun calculate(a: String): List<String> {
         for (e in a) {
-            screen = when (e.toInt()) {
-                in 48..57 -> zeroThroughNine(e)
-                46 -> decimalMarker()
-                in 42..47 -> operatorSign(e)
-                37 -> percentOperator()
-                109 -> makeNegative()
-                61 -> equalSign()
-                98 -> backSpace()
-                99 -> clearResult()
+            screen = when (e) {
+                in '0'..'9' -> zeroThroughNine(e)
+                '.' -> decimalMarker()
+                in '*'..'/' -> operatorSign(e)
+                '%' -> percentOperator()
+                'm' -> makeNegative()
+                '=' -> equalSign()
+                'b' -> backSpace()
+                'c' -> clearResult()
                 else -> ""
             }
             result.add(screen)
@@ -32,11 +32,11 @@ class Calculation {
         return result
     }
 
-    fun clearResult(): String {
+    fun clearResult(): String { // clear result is not a calculation
         return ""
     }
 
-    fun backSpace(): String {
+    fun backSpace(): String { // backspace is a text operation, not a calculation
         return if (workingOnFirstNumber) {
             backSpaceOnFirstNumber()
         } else {
@@ -98,11 +98,11 @@ class Calculation {
         return firstOperandAsString
     }
 
-    private fun removeTrailingZeros(bd: BigDecimal): String {
+    private fun removeTrailingZeros(bd: BigDecimal): String { // formatting, not a calculation
         return bd.toString().replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
     }
 
-    private fun removeZeroExponent(bd: String): String {
+    private fun removeZeroExponent(bd: String): String {  // formatting, not a calculation
         if (bd.contains("^0E".toRegex()))
                 return "0"
             else
