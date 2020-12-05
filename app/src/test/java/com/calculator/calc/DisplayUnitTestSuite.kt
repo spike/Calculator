@@ -91,13 +91,18 @@ class DisplayUnitTestSuite {
         val expected = "3.4+6.8"
         assertEquals(expected, display.addDecimal(input))
     }
-
-
     @Test
     fun testPercentThenOperator() {
         display.screen = "38%"
         val input = "+"
         val expected = "38%+"
+        assertEquals(expected, display.addOperator(input))
+    }
+    @Test
+    fun testMinusPlusUnaryOperator() {
+        display.screen = "35"
+        val input = "m"
+        val expected = "-35"
         assertEquals(expected, display.addOperator(input))
     }
     @Test
@@ -107,6 +112,18 @@ class DisplayUnitTestSuite {
         val expected = "38%"
         assertEquals(expected, display.addDecimal(input))
     }
-
-
+    @Test
+    fun testMissingFirstOperator() {
+        display.screen = "0"
+        val input = "/"
+        val expected = "0"
+        assertEquals(expected, display.addDecimal(input))
+    }
+    @Test
+    fun testLeadingZerosInSecondOperator() {
+        display.screen = "8-0"
+        val input = "0"
+        val expected = "8-0"
+        assertEquals(expected, display.addDecimal(input))
+    }
 }
