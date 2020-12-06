@@ -9,7 +9,6 @@ import java.lang.IllegalArgumentException
 class MainActivity : AppCompatActivity() {
     private var operator: Char = ' '
     private var operandNumber: Char = ' '
-    private val c = Calculation()
     private val display = Display()
     private val engine = Engine()
 
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> '9'
             else -> '0'
         }
-        binding.rsScreen.text = display.addCharacter(operandNumber.toString())
+        binding.screen.text = display.addDigit(operandNumber.toString())
     }
 
     fun operator(v: View) {
@@ -65,9 +64,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            binding.rsScreen.text = display.addOperator(operator.toString())
+            binding.screen.text = display.addOperator(operator.toString())
         } catch (e: Exception) {
-            binding.rsScreen.text = "Error:3 ${e.message} "
+            binding.screen.text = "Error:3 ${e.message} "
         }
     }
 
@@ -81,20 +80,19 @@ class MainActivity : AppCompatActivity() {
 
     fun resultIs(v: View) {
         try {
-            binding.rsScreen.text = engine.calculate(display.formula)
+            binding.screen.text = engine.calculate(display.formula)
         } catch (e: Exception) {
-            binding.rsScreen.text = "ERROR:0 ${e.message}"
+            binding.screen.text = "ERROR:0 ${e.message}"
         }
         binding.opScreen.text = ""
     }
 
     fun clearScreen(v: View) {
-        c.clear()
-        binding.rsScreen.text = display.clear()
+        binding.screen.text = display.clear()
     }
 
     fun doBackspace(v: View) {
-        binding.rsScreen.text = display.backspace()
+        binding.screen.text = display.backspace()
     }
 
 /*    fun operatorMinusOrPlus(v: View) {
@@ -106,6 +104,6 @@ class MainActivity : AppCompatActivity() {
     }*/
 
     fun decimal(view: View) {
-        binding.rsScreen.text = display.addDecimal()
+        binding.screen.text = display.addDecimal()
     }
 }

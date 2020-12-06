@@ -40,7 +40,7 @@ class DisplayUnitTestSuite {
         display.formula = "90+4"
         val input = "8"
         val expected = "90+48"
-        assertEquals(expected, display.addCharacter(input))
+        assertEquals(expected, display.addDigit(input))
     }
     @Test
     fun testAddOperator() {
@@ -61,7 +61,7 @@ class DisplayUnitTestSuite {
         display.formula = "0"
         val input = "0"
         val expected = "0"
-        assertEquals(expected, display.addCharacter(input))
+        assertEquals(expected, display.addDigit(input))
     }
     @Test
     fun testExtraneousAdjacentOperator() {
@@ -131,6 +131,6 @@ class DisplayUnitTestSuite {
         display.formula = "8-0"
         val input = "0"
         val expected = "8-0"
-        assertEquals(expected, display.addCharacter(input))
+        assertEquals(expected, display.addDigit(input))
     }
 }

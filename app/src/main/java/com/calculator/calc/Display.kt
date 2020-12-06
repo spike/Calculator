@@ -14,7 +14,7 @@ class Display {
         formula = "0"
         return formula
     }
-    fun addCharacter(input: String): String {
+    fun addDigit(input: String): String {
         formula = if (formula == "0")
             input
         else

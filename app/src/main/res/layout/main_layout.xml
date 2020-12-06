@@ -9,7 +9,7 @@
     tools:ignore="MissingDefaultResource">
 
     <TextView
-        android:id="@+id/rs_screen"
+        android:id="@+id/screen"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
@@ -37,7 +37,7 @@
         android:textColor="@color/screenColorTextScreenDeepSkyBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rs_screen"
+        app:layout_constraintTop_toBottomOf="@+id/screen"
         app:layout_constraintWidth_percent="0.96"
         tools:ignore="RtlCompat" />
 
