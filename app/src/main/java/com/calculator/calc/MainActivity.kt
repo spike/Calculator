@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainLayoutBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainLayoutBinding.inflate(layoutInflater)
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     fun resultIs(v: View) {
         try {
-            binding.rsScreen.text = engine.calculate()
+            binding.rsScreen.text = engine.calculate(display.formula)
         } catch (e: Exception) {
             binding.rsScreen.text = "ERROR:0 ${e.message}"
         }

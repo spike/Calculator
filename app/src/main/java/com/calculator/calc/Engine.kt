@@ -5,14 +5,14 @@ import java.math.BigDecimal
 
 class Engine {
 
-    fun calculate(): String {
-        return "result"
+    fun calculate(formula: String): String {
+        return formula
     }
-    fun addPercentSign(): String {
-        return "percent"
+    fun addPercentSign(formula: String): String {
+        return formula
     }
-    fun negate(): String {
-        return "negated"
+    fun negate(formula: String): String {
+        return formula
     }
 
 

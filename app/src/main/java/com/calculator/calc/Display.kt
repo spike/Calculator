@@ -1,42 +1,44 @@
 package com.calculator.calc
 
-import java.lang.IllegalArgumentException
-import java.math.BigDecimal
-
 class Display {
-    var screen: String = "0"
+    var formula: String = "0"
 
     fun backspace(): String {
-        screen = if (screen == "0")
+        formula = if (formula == "0")
             "0"
         else
-            screen.dropLast(1)
-        return screen
+            formula.dropLast(1)
+        return formula
     }
     fun clear(): String {
-        screen = "0"
-        return screen
+        formula = "0"
+        return formula
     }
     fun addCharacter(input: String): String {
-        screen = if (screen == "0")
+        formula = if (formula == "0")
             input
         else
-            screen + input
-        return screen
+            formula + input
+        return formula
     }
     fun addOperator(input: String): String {
-        screen = if (screen == "0" && input == "0")
-            input
-        else
-            screen + input
-        return screen
+        if (listOf('+','-','*','/').contains(formula.last())) {
+            formula = when(input) {
+                "+", "*", "/" -> formula.dropLast(1) + input
+                // "-" ->
+                else -> formula + input
+            }
+        } else {
+            formula += input
+        }
+        return formula
     }
     fun addDecimal(): String {
-        screen = if (screen == "0")
+        formula = if (formula == "0")
             "."
         else
-            screen + "."
-        return screen
+            formula + "."
+        return formula
     }
 
  /* I might not need this anymore

@@ -8,7 +8,7 @@ Tech Stack:
 * auto-sizing TextView
 * onSaveInstanceState for keeping state across config changes
 * view binding
-* JUnit [tests](https://github.com/spike/Calculator/blob/master/app/src/test/java/com/calculator/calc/CalculationUnitTest.kt)
+* JUnit [tests](https://github.com/spike/Calculator/blob/master/app/src/test/java/com/calculator/calc/)
 * UI tests
 
 [Get it](https://play.google.com/store/apps/details?id=com.calculator.calc) on Google Play
