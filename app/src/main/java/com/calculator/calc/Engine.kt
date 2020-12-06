@@ -4,16 +4,6 @@ import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
 class Engine {
-    var workingOnFirstNumber: Boolean = true
-    var completedSecondNumber: Boolean = false
-    var result: MutableList<String> = mutableListOf()
-    var buf: String = ""
-    var screen: String = ""
-    var firstOperandAsString = "0"
-    var secondOperandAsString = ""
-    var operator = ""
-    var isPreviousOperatorConsecutive = false
-
 
     fun calculate(): String {
         return "result"
@@ -24,6 +14,9 @@ class Engine {
     fun negate(): String {
         return "negated"
     }
+
+
+
 /*
     fun calculate(a: String): List<String> {
         for (e in a) {
@@ -42,10 +35,6 @@ class Engine {
     }
 */
 
-
-
-    var lastCalledEqual = false
-    var lastResult = ""
 /*
     fun equalSign(): String {
         var num3: BigDecimal = BigDecimal.valueOf(0.0)
@@ -88,53 +77,6 @@ class Engine {
             else
                 return bd
     } */
-
-    fun decimalMarker(): String {
-        lastCalledEqual = false
-        return if (workingOnFirstNumber) {
-            decimalMarkerInFirstNumber()
-        } else {
-            decimalMarkerInSecondNumber()
-        }
-    }
-    var noDecimalMarkerInFirstYet = true
-    var noDecimalMarkerInSecondYet = true
-
-    fun decimalMarkerInFirstNumber(): String {
-        if (noDecimalMarkerInFirstYet) {
-            if (firstOperandAsString.length > 0) {
-                firstOperandAsString += "."
-            } else {
-                firstOperandAsString = "0."
-            }
-        }
-        noDecimalMarkerInFirstYet = false
-        return firstOperandAsString
-    }
-    private fun decimalMarkerInSecondNumber(): String {
-        if (noDecimalMarkerInSecondYet) {
-            if (secondOperandAsString.length > 0) {
-                secondOperandAsString += "."
-            } else {
-                secondOperandAsString = "0."
-            }
-        }
-        noDecimalMarkerInSecondYet = false
-        return secondOperandAsString
-    }
-
-    fun clear(): String {
-        firstOperandAsString = "0"
-        secondOperandAsString = "0"
-        operator = ""
-        buf = ""
-        isPreviousOperatorConsecutive = false
-        workingOnFirstNumber = true
-        completedSecondNumber = false
-        noDecimalMarkerInSecondYet = true
-        noDecimalMarkerInFirstYet = true
-        return firstOperandAsString
-    }
 
 }
 
