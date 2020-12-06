@@ -9,10 +9,37 @@ class Engine {
         return formula
     }
     fun calculatePercentage(formula: String): String {
-        return formula
+        val regex = """[\d]*$""".toRegex()
+        val matchResult = regex.find(formula)
+        if (matchResult != null) {
+            var result = BigDecimal.valueOf(
+                matchResult.value.toDouble()).setScale(20) * BigDecimal.valueOf(0.01)
+            val resultString = removeTrailingZeros(result)
+            return regex.replaceFirst(formula, resultString)
+        } else {
+            return formula
+        }
     }
+    private fun removeTrailingZeros(bd: BigDecimal): String {
+        return bd.toString().replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
+    }
+
     fun calculateNegation(formula: String): String {
-        return formula
+        var regex = """-[\d]*$""".toRegex()
+        var matchResult = regex.find(formula)
+        if (matchResult == null) {
+            regex = """[\d]*$""".toRegex()
+            matchResult = regex.find(formula)
+        }
+        if (matchResult != null) {
+            var result = BigDecimal.valueOf(
+                matchResult.value.toDouble()
+            ).setScale(20) * BigDecimal.valueOf(-1.0)
+            val resultString = removeTrailingZeros(result)
+            return regex.replaceFirst(formula, resultString)
+        } else {
+            return formula
+        }
     }
 
 

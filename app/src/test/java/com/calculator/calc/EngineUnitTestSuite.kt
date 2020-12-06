@@ -43,9 +43,21 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculatePercentage(buffer.formula))
     }
     @Test
+    fun testPercentAsSecondOperand() {
+        buffer.formula = "20*62"
+        val expected = "20*0.62"
+        assertEquals(expected, engine.calculatePercentage(buffer.formula))
+    }
+    @Test
     fun testNegate() {
         buffer.formula = "5"
         val expected = "-5"
+        assertEquals(expected, engine.calculateNegation(buffer.formula))
+    }
+    @Test
+    fun testNegateTheOtherWay() {
+        buffer.formula = "-2"
+        val expected = "2"
         assertEquals(expected, engine.calculateNegation(buffer.formula))
     }
 }
