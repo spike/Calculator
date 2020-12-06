@@ -9,9 +9,8 @@ import java.lang.IllegalArgumentException
 class MainActivity : AppCompatActivity() {
     private var operator: Char = ' '
     private var operandNumber: Char = ' '
-    private val display = Display()
+    private val buffer = Buffer()
     private val engine = Engine()
-
 
     private lateinit var binding: MainLayoutBinding
 
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> '9'
             else -> '0'
         }
-        binding.screen.text = display.addDigit(operandNumber.toString())
+        binding.screen.text = buffer.addDigit(operandNumber.toString())
     }
 
     fun operator(v: View) {
@@ -64,23 +63,23 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            binding.screen.text = display.addOperator(operator.toString())
+            binding.screen.text = buffer.addOperator(operator.toString())
         } catch (e: Exception) {
             binding.screen.text = "Error:3 ${e.message} "
         }
     }
 
-/*    fun percentOperator(v: View) {
+    fun percentOperator(v: View) {
         try {
-            binding.rsScreen.text = engine.addPercentSign()
+            binding.screen.text = engine.calculatePercentage(buffer.formula)
         } catch (e: Exception) {
-            binding.rsScreen.text = "Error:2 ${e.message}"
+            binding.screen.text = "Error:2 ${e.message}"
         }
-    }*/
+    }
 
     fun resultIs(v: View) {
         try {
-            binding.screen.text = engine.calculate(display.formula)
+            binding.screen.text = engine.calculate(buffer.formula)
         } catch (e: Exception) {
             binding.screen.text = "ERROR:0 ${e.message}"
         }
@@ -88,22 +87,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clearScreen(v: View) {
-        binding.screen.text = display.clear()
+        binding.screen.text = buffer.clear()
     }
 
     fun doBackspace(v: View) {
-        binding.screen.text = display.backspace()
+        binding.screen.text = buffer.backspace()
     }
 
-/*    fun operatorMinusOrPlus(v: View) {
+    fun operatorMinusOrPlus(v: View) {
         try {
-            binding.rsScreen.text = engine.negate()
+            binding.screen.text = engine.calculateNegation(buffer.formula)
         } catch (e: Exception) {
-            binding.rsScreen.text = "Error:1 ${e.message}"
+            binding.screen.text = "Error:1 ${e.message}"
         }
-    }*/
+    }
 
     fun decimal(view: View) {
-        binding.screen.text = display.addDecimal()
+        binding.screen.text = buffer.addDecimal()
     }
 }

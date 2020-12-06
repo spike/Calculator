@@ -1,6 +1,6 @@
 package com.calculator.calc
 
-class Display {
+class Buffer {
     var formula: String = "0"
 
     fun backspace(): String {

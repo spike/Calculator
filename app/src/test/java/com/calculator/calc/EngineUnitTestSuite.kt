@@ -7,46 +7,46 @@ import org.junit.After
 
 class EngineUnitTestSuite {
     private lateinit var engine: Engine
-    private lateinit var display: Display
+    private lateinit var buffer: Buffer
 
     @Before
     fun setUp(): Unit {
         engine = Engine()
-        display = Display()
+        buffer = Buffer()
     }
     @After
     fun tearDown() {
-        display.clear()
+        buffer.clear()
     }
     @Test
     fun testCalculateAddition() {
-        display.formula ="45+5"
+        buffer.formula ="45+5"
         val expected = "50"
-        assertEquals(expected, engine.calculate(display.formula))
+        assertEquals(expected, engine.calculate(buffer.formula))
     }
     @Test
     fun testCalculateMultiplication() {
-        display.formula = "2*3"
+        buffer.formula = "2*3"
         val expected = "6"
-        assertEquals(expected, engine.calculate(display.formula))
+        assertEquals(expected, engine.calculate(buffer.formula))
     }
     @Test
     fun testDecimalResult() {
-        display.formula = "37/100"
+        buffer.formula = "37/100"
         val expected = "0.37"
-        assertEquals(expected, engine.calculate(display.formula))
+        assertEquals(expected, engine.calculate(buffer.formula))
     }
     @Test
     fun testPercent() {
-        display.formula = "75"
+        buffer.formula = "75"
         val expected = "0.75"
-        assertEquals(expected, engine.addPercentSign(display.formula))
+        assertEquals(expected, engine.calculatePercentage(buffer.formula))
     }
     @Test
     fun testNegate() {
-        display.formula = "5"
+        buffer.formula = "5"
         val expected = "-5"
-        assertEquals(expected, engine.negate(display.formula))
+        assertEquals(expected, engine.calculateNegation(buffer.formula))
     }
 }
 

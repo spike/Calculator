@@ -8,10 +8,10 @@ class Engine {
     fun calculate(formula: String): String {
         return formula
     }
-    fun addPercentSign(formula: String): String {
+    fun calculatePercentage(formula: String): String {
         return formula
     }
-    fun negate(formula: String): String {
+    fun calculateNegation(formula: String): String {
         return formula
     }
 
