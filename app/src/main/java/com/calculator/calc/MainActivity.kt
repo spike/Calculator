@@ -7,32 +7,30 @@ import com.calculator.calc.databinding.MainLayoutBinding
 import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
-    private val buffer = DisplayBuffer()
+    private val displayBuffer = DisplayBuffer()
     private val engine = Engine()
-
     private lateinit var binding: MainLayoutBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainLayoutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         actionBar?.hide()
     }
 
-/*    override fun onSaveInstanceState(outState: Bundle) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("calc_screen", binding.rsScreen.text.toString())
-        outState.putString("calc_op_screen", binding.opScreen.text.toString())
+        binding.screen.text = displayBuffer.formula
+        outState.putString("screen", displayBuffer.formula)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        binding.rsScreen.text = savedInstanceState.getString("calc_screen")
-        binding.opScreen.text = savedInstanceState.getString("calc_op_screen")
-    }*/
+        displayBuffer.formula = savedInstanceState.getString("screen").toString()
+        binding.screen.text = displayBuffer.formula
+    }
 
     fun operand(buttonClicked: View) {
         val inputDigit = when (buttonClicked.id) {
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> "9"
             else -> "0"
         }
-        binding.screen.text = buffer.addDigit(inputDigit)
+        binding.screen.text = displayBuffer.addDigit(inputDigit)
     }
 
     fun operator(buttonClicked: View) {
@@ -59,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> "÷"
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            binding.screen.text = buffer.addOperator(operator)
+            binding.screen.text = displayBuffer.addOperator(operator)
         } catch (e: Exception) {
             binding.screen.text = "Error:3 ${e.message} "
         }
@@ -67,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     fun percentOperator(v: View) {
         try {
-            binding.screen.text = engine.calculatePercentage(buffer.formula)
+            binding.screen.text = engine.calculatePercentage(displayBuffer.formula)
         } catch (e: Exception) {
             binding.screen.text = "Error:2 ${e.message}"
         }
@@ -75,7 +73,8 @@ class MainActivity : AppCompatActivity() {
 
     fun resultIs(v: View) {
         try {
-            binding.screen.text = engine.calculate(buffer.formula)
+            displayBuffer.formula = engine.calculate(displayBuffer.formula)
+            binding.screen.text = displayBuffer.formula
         } catch (e: Exception) {
             binding.screen.text = "ERROR:0 ${e.message}"
         }
@@ -83,22 +82,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clearScreen(v: View) {
-        binding.screen.text = buffer.clear()
+        binding.screen.text = displayBuffer.clear()
     }
 
     fun doBackspace(v: View) {
-        binding.screen.text = buffer.backspace()
+        binding.screen.text = displayBuffer.backspace()
     }
 
     fun operatorMinusOrPlus(v: View) {
         try {
-            binding.screen.text = engine.calculateNegation(buffer.formula)
+            binding.screen.text = engine.calculateNegation(displayBuffer.formula)
         } catch (e: Exception) {
             binding.screen.text = "Error:1 ${e.message}"
         }
     }
 
-    fun decimal(view: View) {
-        binding.screen.text = buffer.addDecimal()
+    fun decimal(v: View) {
+        binding.screen.text = displayBuffer.addDecimal()
     }
 }

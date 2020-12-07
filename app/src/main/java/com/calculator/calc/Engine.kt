@@ -6,7 +6,26 @@ import java.math.BigDecimal
 class Engine {
 
     fun calculate(formula: String): String {
-        return formula
+        val regex = """([-]?[\d|.]+)([\D]?)([-]?[\d|.]+)${'$'}""".toRegex()
+        val matchResult = regex.find(formula)
+        val operand1 = matchResult?.groups?.get(1)?.value
+        val operator = matchResult?.groups?.get(2)?.value
+        val operand2 = matchResult?.groups?.get(3)?.value
+        val lst = matchResult!!.groupValues
+        println(lst)
+
+        var result = when (operator!!) {
+            "+" -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) +
+                    BigDecimal.valueOf(operand2!!.toDouble())
+            "-" -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) -
+                    BigDecimal.valueOf(operand2!!.toDouble())
+            "*", "×" -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) *
+                    BigDecimal.valueOf(operand2!!.toDouble())
+            else -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) /
+                    BigDecimal.valueOf(operand2!!.toDouble())
+        }
+        val resultString = removeTrailingZeros(result)
+            return regex.replaceFirst(formula, resultString)
     }
     fun calculatePercentage(formula: String): String {
         val regex = """[\d]*$""".toRegex()
@@ -41,8 +60,6 @@ class Engine {
             return formula
         }
     }
-
-
 
 /*
     fun calculate(a: String): List<String> {
