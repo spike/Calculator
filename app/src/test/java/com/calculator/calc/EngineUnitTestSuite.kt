@@ -7,58 +7,58 @@ import org.junit.After
 
 class EngineUnitTestSuite {
     private lateinit var engine: Engine
-    private lateinit var buffer: Buffer
+    private lateinit var displayBuffer: DisplayBuffer
 
     @Before
     fun setUp(): Unit {
         engine = Engine()
-        buffer = Buffer()
+        displayBuffer = DisplayBuffer()
     }
     @After
     fun tearDown() {
-        buffer.clear()
+        displayBuffer.clear()
     }
     @Test
     fun testCalculateAddition() {
-        buffer.formula ="45+5"
+        displayBuffer.formula ="45+5"
         val expected = "50"
-        assertEquals(expected, engine.calculate(buffer.formula))
+        assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
     fun testCalculateMultiplication() {
-        buffer.formula = "2*3"
+        displayBuffer.formula = "2*3"
         val expected = "6"
-        assertEquals(expected, engine.calculate(buffer.formula))
+        assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
     fun testDecimalResult() {
-        buffer.formula = "37/100"
+        displayBuffer.formula = "37/100"
         val expected = "0.37"
-        assertEquals(expected, engine.calculate(buffer.formula))
+        assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
     fun testPercent() {
-        buffer.formula = "75"
+        displayBuffer.formula = "75"
         val expected = "0.75"
-        assertEquals(expected, engine.calculatePercentage(buffer.formula))
+        assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
     }
     @Test
     fun testPercentAsSecondOperand() {
-        buffer.formula = "20*62"
+        displayBuffer.formula = "20*62"
         val expected = "20*0.62"
-        assertEquals(expected, engine.calculatePercentage(buffer.formula))
+        assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
     }
     @Test
     fun testNegate() {
-        buffer.formula = "5"
+        displayBuffer.formula = "5"
         val expected = "-5"
-        assertEquals(expected, engine.calculateNegation(buffer.formula))
+        assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
     @Test
     fun testNegateTheOtherWay() {
-        buffer.formula = "-2"
+        displayBuffer.formula = "-2"
         val expected = "2"
-        assertEquals(expected, engine.calculateNegation(buffer.formula))
+        assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
 }
 

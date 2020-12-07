@@ -1,6 +1,6 @@
 package com.calculator.calc
 
-class Buffer {
+class DisplayBuffer {
     var formula: String = "0"
 
     fun backspace(): String {
@@ -25,7 +25,6 @@ class Buffer {
         if (listOf('+','-','*','/').contains(formula.last())) {
             formula = when(input) {
                 "+", "*", "/" -> formula.dropLast(1) + input
-                // "-" ->
                 else -> formula + input
             }
         } else {
