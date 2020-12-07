@@ -43,6 +43,12 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
     }
     @Test
+    fun testPercentWithDecimal() {
+        displayBuffer.formula = "0.72"
+        val expected = "0.0072"
+        assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
+    }
+    @Test
     fun testPercentAsSecondOperand() {
         displayBuffer.formula = "20*62"
         val expected = "20*0.62"
@@ -52,6 +58,18 @@ class EngineUnitTestSuite {
     fun testNegate() {
         displayBuffer.formula = "5"
         val expected = "-5"
+        assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
+    }
+    @Test
+    fun testNegateNegative() {
+        displayBuffer.formula = "-5.8"
+        val expected = "5.8"
+        assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
+    }
+    @Test
+    fun testNegateDecimal() {
+        displayBuffer.formula = "5.1009"
+        val expected = "-5.1009"
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
     @Test

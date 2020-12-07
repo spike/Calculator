@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
 
     fun percentOperator(v: View) {
         try {
-            binding.screen.text = engine.calculatePercentage(displayBuffer.formula)
+            displayBuffer.formula = engine.calculatePercentage(displayBuffer.formula)
+            binding.screen.text = displayBuffer.formula
         } catch (e: Exception) {
             binding.screen.text = "Error:2 ${e.message}"
         }
@@ -91,7 +92,8 @@ class MainActivity : AppCompatActivity() {
 
     fun operatorMinusOrPlus(v: View) {
         try {
-            binding.screen.text = engine.calculateNegation(displayBuffer.formula)
+            displayBuffer.formula = engine.calculateNegation(displayBuffer.formula)
+            binding.screen.text = displayBuffer.formula
         } catch (e: Exception) {
             binding.screen.text = "Error:1 ${e.message}"
         }
