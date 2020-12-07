@@ -22,14 +22,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        binding.screen.text = displayBuffer.formula
+        binding.activeScreen.text = displayBuffer.formula
         outState.putString("screen", displayBuffer.formula)
+        binding.previousScreen.text = displayBuffer.previous
+        outState.putString("previous", displayBuffer.previous)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         displayBuffer.formula = savedInstanceState.getString("screen").toString()
-        binding.screen.text = displayBuffer.formula
+        binding.activeScreen.text = displayBuffer.formula
+        displayBuffer.previous = savedInstanceState.getString("previous").toString()
+        binding.previousScreen.text = displayBuffer.previous
     }
 
     fun operand(buttonClicked: View) {
@@ -45,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             R.id.button_nine -> "9"
             else -> "0"
         }
-        binding.screen.text = displayBuffer.addDigit(inputDigit)
+        binding.activeScreen.text = displayBuffer.addDigit(inputDigit)
     }
 
     fun operator(buttonClicked: View) {
@@ -57,49 +61,51 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> "÷"
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            binding.screen.text = displayBuffer.addOperator(operator)
+            binding.activeScreen.text = displayBuffer.addOperator(operator)
         } catch (e: Exception) {
-            binding.screen.text = "Error:3 ${e.message} "
+            binding.activeScreen.text = "Error:3 ${e.message} "
         }
     }
 
     fun percentOperator(v: View) {
         try {
             displayBuffer.formula = engine.calculatePercentage(displayBuffer.formula)
-            binding.screen.text = displayBuffer.formula
+            binding.activeScreen.text = displayBuffer.formula
         } catch (e: Exception) {
-            binding.screen.text = "Error:2 ${e.message}"
+            binding.activeScreen.text = "Error:2 ${e.message}"
         }
     }
 
     fun resultIs(v: View) {
         try {
+            displayBuffer.previous = displayBuffer.formula
+            binding.previousScreen.text = displayBuffer.previous
             displayBuffer.formula = engine.calculate(displayBuffer.formula)
-            binding.screen.text = displayBuffer.formula
+            binding.activeScreen.text = displayBuffer.formula
         } catch (e: Exception) {
-            binding.screen.text = "ERROR:0 ${e.message}"
+            binding.activeScreen.text = "ERROR:0 ${e.message}"
         }
-        binding.opScreen.text = ""
     }
 
     fun clearScreen(v: View) {
-        binding.screen.text = displayBuffer.clear()
+        binding.activeScreen.text = displayBuffer.clear()
+        binding.previousScreen.text = displayBuffer.previous
     }
 
     fun doBackspace(v: View) {
-        binding.screen.text = displayBuffer.backspace()
+        binding.activeScreen.text = displayBuffer.backspace()
     }
 
     fun operatorMinusOrPlus(v: View) {
         try {
             displayBuffer.formula = engine.calculateNegation(displayBuffer.formula)
-            binding.screen.text = displayBuffer.formula
+            binding.activeScreen.text = displayBuffer.formula
         } catch (e: Exception) {
-            binding.screen.text = "Error:1 ${e.message}"
+            binding.activeScreen.text = "Error:1 ${e.message}"
         }
     }
 
     fun decimal(v: View) {
-        binding.screen.text = displayBuffer.addDecimal()
+        binding.activeScreen.text = displayBuffer.addDecimal()
     }
 }

@@ -2,6 +2,7 @@ package com.calculator.calc
 
 class DisplayBuffer {
     var formula: String = "0"
+    var previous: String = "0"
 
     fun backspace(): String {
         formula = if (formula == "0")
@@ -12,6 +13,7 @@ class DisplayBuffer {
     }
     fun clear(): String {
         formula = "0"
+        previous = ""
         return formula
     }
     fun addDigit(input: String): String {
