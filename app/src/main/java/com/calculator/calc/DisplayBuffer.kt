@@ -15,16 +15,23 @@ class DisplayBuffer {
         return formula
     }
     fun addDigit(input: String): String {
+        val regex = """[\d|.]+$""".toRegex()
+        val matchResult = regex.find(formula)
         formula = if (formula == "0")
             input
-        else
-            formula + input
+        else {
+            if (input == "0" && matchResult!!.value == "0") {
+                formula
+            } else {
+                formula + input
+            }
+        }
         return formula
     }
     fun addOperator(input: String): String {
-        if (listOf('+','-','*','/').contains(formula.last())) {
+        if (listOf('+','-','*', '×','/', '÷').contains(formula.last())) {
             formula = when(input) {
-                "+", "*", "/" -> formula.dropLast(1) + input
+                "+", "*", "×", "/", "÷", "-" -> formula.dropLast(1) + input
                 else -> formula + input
             }
         } else {
@@ -33,10 +40,13 @@ class DisplayBuffer {
         return formula
     }
     fun addDecimal(): String {
-        formula = if (formula == "0")
-            "."
-        else
-            formula + "."
+        val regex = """[\d|.]+$""".toRegex()
+        val matchResult = regex.find(formula)
+        formula = if (matchResult!!.value.contains(".")) {
+                formula
+            } else {
+                formula + "."
+            }
         return formula
     }
 

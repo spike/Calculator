@@ -70,13 +70,6 @@ class DisplayBufferUnitTestSuite {
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
-    fun testAllowedAdjacentMinusOperator() {
-        displayBuffer.formula = "3*"
-        val input = "-"
-        val expected = "3*-"
-        assertEquals(expected, displayBuffer.addOperator(input))
-    }
-    @Test
     fun testExtraneousSecondDecimal() {
         displayBuffer.formula = "3.4"
         val input = "."
@@ -84,31 +77,17 @@ class DisplayBufferUnitTestSuite {
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
+    fun testExtraneousSecondDecimalInSecondOperand() {
+        displayBuffer.formula = "35.2*1.5"
+        val input = "."
+        val expected = "35.2*1.5"
+        assertEquals(expected, displayBuffer.addDecimal())
+    }
+    @Test
     fun testSecondDecimalInSecondNumber() {
         displayBuffer.formula = "3.4+6"
         val input = "."
         val expected = "3.4+6."
-        assertEquals(expected, displayBuffer.addDecimal())
-    }
-    @Test
-    fun testExtraneousSecondDecimalInSecondNumber() {
-        displayBuffer.formula = "3.4+6.8"
-        val input = "."
-        val expected = "3.4+6.8"
-        assertEquals(expected, displayBuffer.addDecimal())
-    }
-    @Test
-    fun testPercentThenOperator() {
-        displayBuffer.formula = "38%"
-        val input = "+"
-        val expected = "38%+"
-        assertEquals(expected, displayBuffer.addOperator(input))
-    }
-    @Test
-    fun testDecimalRightAfterPercentSign() {
-        displayBuffer.formula = "38%"
-        val input = "."
-        val expected = "38%0."
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
@@ -120,9 +99,23 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testLeadingZerosInSecondOperator() {
-        displayBuffer.formula = "8-0"
+        displayBuffer.formula = "5-0"
         val input = "0"
-        val expected = "8-0"
+        val expected = "5-0"
         assertEquals(expected, displayBuffer.addDigit(input))
+    }
+    @Test
+    fun testExtraneousOperator() {
+        displayBuffer.formula = "8-"
+        val input = "-"
+        val expected = "8-"
+        assertEquals(expected, displayBuffer.addOperator(input))
+    }
+    @Test
+    fun testDecimal() {
+        displayBuffer.formula = "0"
+        val input = "."
+        val expected = "0."
+        assertEquals(expected, displayBuffer.addDecimal())
     }
 }

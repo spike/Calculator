@@ -25,6 +25,13 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
+    fun testCalculateSingleOperand() {
+        displayBuffer.formula ="44.5"
+        val expected = "44.5"
+        assertEquals(expected, engine.calculate(displayBuffer.formula))
+    }
+
+    @Test
     fun testCalculateMultiplication() {
         displayBuffer.formula = "2*3"
         val expected = "6"
@@ -78,5 +85,6 @@ class EngineUnitTestSuite {
         val expected = "2"
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
+
 }
 
