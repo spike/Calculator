@@ -14,13 +14,13 @@ class Engine {
             return formula
         }
         var result = when (operator!!) {
-            "+" -> BigDecimal(operand1!!.toString()).setScale(80) +
+            "+" -> BigDecimal(operand1!!.toString()).setScale(27) +
                     BigDecimal(operand2!!.toString())
-            "-" -> BigDecimal(operand1!!.toString()).setScale(80) -
+            "-" -> BigDecimal(operand1!!.toString()).setScale(27) -
                     BigDecimal(operand2!!.toString())
-            "*", "×" -> BigDecimal(operand1!!.toString()).setScale(80) *
+            "*", "×" -> BigDecimal(operand1!!.toString()).setScale(27) *
                     BigDecimal(operand2!!.toString())
-            else -> BigDecimal(operand1!!.toString()).setScale(80) /
+            else -> BigDecimal(operand1!!.toString()).setScale(27) /
                     BigDecimal(operand2!!.toString())
         }
         val resultString = removeTrailingZeros(result.toPlainString())
@@ -30,7 +30,7 @@ class Engine {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(formula)
         var result =
-            BigDecimal(matchResult!!.value).setScale(80) * BigDecimal("0.01")
+            BigDecimal(matchResult!!.value).setScale(27) * BigDecimal("0.01")
         val resultString = removeTrailingZeros(result.toPlainString())
         return regex.replaceFirst(formula, resultString)
     }
@@ -46,7 +46,7 @@ class Engine {
             matchResult = negativeOrPositiveRegex.find(formula)
         }
         var result =
-            BigDecimal(matchResult!!.value).setScale(80) * BigDecimal("-1.0")
+            BigDecimal(matchResult!!.value).setScale(27) * BigDecimal("-1.0")
 
         val resultString = removeTrailingZeros(result.toPlainString())
             return negativeOrPositiveRegex.replaceFirst(formula, resultString)
