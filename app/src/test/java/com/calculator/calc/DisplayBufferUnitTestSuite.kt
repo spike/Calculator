@@ -19,13 +19,13 @@ class DisplayBufferUnitTestSuite {
     @Test
     fun testBackspace() {
         displayBuffer.formula = "12345+5"
-        val expected = "12345+"
+        val expected = Pair(displayBuffer.formula, "12345+")
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test
     fun testBackspaceZero() {
         displayBuffer.formula ="0"
-        val expected = "0"
+        val expected = Pair("0", "0")
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test

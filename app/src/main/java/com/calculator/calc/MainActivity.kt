@@ -106,7 +106,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun doBackspace(v: View) {
-        binding.activeScreen.text = displayBuffer.backspace()
+        val (previous, current) = displayBuffer.backspace()
+        binding.activeScreen.text = current
+        binding.previousScreen.text = previous
     }
 
     fun operatorMinusOrPlus(v: View) {

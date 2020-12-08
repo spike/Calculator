@@ -5,12 +5,18 @@ class DisplayBuffer {
     var previous: String = "0"
     var frozen: Boolean = false
 
-    fun backspace(): String {
+    fun backspace(): Pair<String, String> {
+        previous = formula
+        if (frozen) {
+            formula = "0"
+        }
         formula = if (formula == "0")
             "0"
         else
             formula.dropLast(1)
-        return formula
+        if (formula == "") formula = "0"
+        if (previous == "0") previous = ""
+        return Pair(previous, formula)
     }
     fun clear(): String {
         formula = "0"
