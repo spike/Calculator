@@ -14,28 +14,28 @@ class Engine {
             return formula
         }
         var result = when (operator!!) {
-            "+" -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) +
-                    BigDecimal.valueOf(operand2!!.toDouble())
-            "-" -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) -
-                    BigDecimal.valueOf(operand2!!.toDouble())
-            "*", "×" -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) *
-                    BigDecimal.valueOf(operand2!!.toDouble())
-            else -> BigDecimal.valueOf(operand1!!.toDouble()).setScale(20) /
-                    BigDecimal.valueOf(operand2!!.toDouble())
+            "+" -> BigDecimal(operand1!!.toString()).setScale(20) +
+                    BigDecimal(operand2!!.toString())
+            "-" -> BigDecimal(operand1!!.toString()).setScale(20) -
+                    BigDecimal(operand2!!.toString())
+            "*", "×" -> BigDecimal(operand1!!.toString()).setScale(20) *
+                    BigDecimal(operand2!!.toString())
+            else -> BigDecimal(operand1!!.toString()).setScale(20) /
+                    BigDecimal(operand2!!.toString())
         }
-        val resultString = removeTrailingZeros(result)
+        val resultString = removeTrailingZeros(result.toPlainString())
             return regex2.replaceFirst(formula, resultString)
     }
     fun calculatePercentage(formula: String): String {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(formula)
-        var result = BigDecimal.valueOf(
-            matchResult!!.value.toDouble()).setScale(20) * BigDecimal.valueOf(0.01)
-        val resultString = removeTrailingZeros(result)
+        var result =
+            BigDecimal(matchResult!!.value).setScale(20) * BigDecimal("0.01")
+        val resultString = removeTrailingZeros(result.toPlainString())
         return regex.replaceFirst(formula, resultString)
     }
-    private fun removeTrailingZeros(bd: BigDecimal): String {
-        return bd.toString().replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
+    private fun removeTrailingZeros(number: String): String {
+        return number.replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
     }
 
     fun calculateNegation(formula: String): String {
@@ -45,10 +45,10 @@ class Engine {
             negativeOrPositiveRegex = """[\d|.]+$""".toRegex()
             matchResult = negativeOrPositiveRegex.find(formula)
         }
-        var result = BigDecimal.valueOf(
-            matchResult!!.value.toDouble()).setScale(20) *
-                BigDecimal.valueOf(-1.0)
-        val resultString = removeTrailingZeros(result)
+        var result =
+            BigDecimal(matchResult!!.value).setScale(20) * BigDecimal("-1.0")
+
+        val resultString = removeTrailingZeros(result.toPlainString())
             return negativeOrPositiveRegex.replaceFirst(formula, resultString)
     }
 }
