@@ -48,6 +48,16 @@ class DisplayBufferUnitTestSuite {
         val expected = "9+"
         assertEquals(expected, displayBuffer.addOperator(input))
     }
+/*    @Test
+    fun testAddSecondOperator() {
+        displayBuffer.formula = "9+1"
+        displayBuffer.previous = ""
+        val input = "*"
+        val expectedFormula = "10*"
+        val expectedPrevious = "(9+1)*"
+        assertEquals(expectedFormula, displayBuffer.addOperator(input))
+        assertEquals(expectedPrevious, displayBuffer.previous)
+    }*/
     @Test
     fun testAddPercent() {
         displayBuffer.formula = "2275"

@@ -3,6 +3,7 @@ package com.calculator.calc
 class DisplayBuffer {
     var formula: String = "0"
     var previous: String = "0"
+    var frozen: Boolean = false
 
     fun backspace(): String {
         formula = if (formula == "0")
@@ -14,6 +15,7 @@ class DisplayBuffer {
     fun clear(): String {
         formula = "0"
         previous = ""
+        frozen = false
         return formula
     }
     fun addDigit(input: String): String {
@@ -51,19 +53,4 @@ class DisplayBuffer {
             }
         return formula
     }
-
- /* I might not need this anymore
-    fun removeTrailingZeros(bd: BigDecimal): String {
-        return bd.toString().replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
-    } */
-
-
-/* Let's wait and see for that one
-    private fun removeZeroExponent(bd: String): String {
-        if (bd.contains("^0E".toRegex()))
-            return "0"
-        else
-            return bd
-    } */
-
 }

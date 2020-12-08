@@ -21,44 +21,44 @@ class EngineUnitTestSuite {
     @Test
     fun testCalculateAddition() {
         displayBuffer.formula ="45+5"
-        val expected = "50"
+        val expected = Pair("45+5", "50")
         assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
     fun testCalculateSingleOperand() {
         displayBuffer.formula ="44.5"
-        val expected = "44.5"
+        val expected = Pair("44.5", "44.5")
         assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
 
     @Test
     fun testCalculateMultiplication() {
         displayBuffer.formula = "2*3"
-        val expected = "6"
+        val expected = Pair("2*3", "6")
         assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
     fun testDecimalResult() {
         displayBuffer.formula = "37/100"
-        val expected = "0.37"
+        val expected = Pair("37/100","0.37")
         assertEquals(expected, engine.calculate(displayBuffer.formula))
     }
     @Test
     fun testPercent() {
         displayBuffer.formula = "75"
-        val expected = "0.75"
+        val expected = Pair("75%", "0.75")
         assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
     }
     @Test
     fun testPercentWithDecimal() {
         displayBuffer.formula = "0.72"
-        val expected = "0.0072"
+        val expected = Pair("0.72%", "0.0072")
         assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
     }
     @Test
     fun testPercentAsSecondOperand() {
         displayBuffer.formula = "20*62"
-        val expected = "20*0.62"
+        val expected = Pair("20*62%", "20*0.62")
         assertEquals(expected, engine.calculatePercentage(displayBuffer.formula))
     }
     @Test

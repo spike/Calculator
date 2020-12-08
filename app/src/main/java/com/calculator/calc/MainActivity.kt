@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         outState.putString("screen", displayBuffer.formula)
         binding.previousScreen.text = displayBuffer.previous
         outState.putString("previous", displayBuffer.previous)
+        outState.putBoolean("frozen", displayBuffer.frozen)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -34,9 +35,14 @@ class MainActivity : AppCompatActivity() {
         binding.activeScreen.text = displayBuffer.formula
         displayBuffer.previous = savedInstanceState.getString("previous").toString()
         binding.previousScreen.text = displayBuffer.previous
+        displayBuffer.frozen = savedInstanceState.getBoolean("frozen")
     }
 
     fun operand(buttonClicked: View) {
+        if (displayBuffer.frozen) {
+            displayBuffer.clear()
+            binding.previousScreen.text = ""
+        }
         val inputDigit = when (buttonClicked.id) {
             R.id.button_one -> "1"
             R.id.button_two -> "2"
@@ -53,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun operator(buttonClicked: View) {
+        displayBuffer.frozen = false
         try {
             val operator = when (buttonClicked.id) {
                 R.id.button_plus -> "+"
@@ -69,8 +76,12 @@ class MainActivity : AppCompatActivity() {
 
     fun percentOperator(v: View) {
         try {
-            displayBuffer.formula = engine.calculatePercentage(displayBuffer.formula)
+            displayBuffer.frozen = true
+            val (previous, current) = engine.calculatePercentage(displayBuffer.formula)
+            displayBuffer.previous = previous
+            displayBuffer.formula = current
             binding.activeScreen.text = displayBuffer.formula
+            binding.previousScreen.text = displayBuffer.previous
         } catch (e: Exception) {
             binding.activeScreen.text = "Error:2 ${e.message}"
         }
@@ -78,9 +89,11 @@ class MainActivity : AppCompatActivity() {
 
     fun resultIs(v: View) {
         try {
-            displayBuffer.previous = displayBuffer.formula
+            displayBuffer.frozen = true
+            val (previous, current) = engine.calculate(displayBuffer.formula)
+            displayBuffer.previous = previous
+            displayBuffer.formula = current
             binding.previousScreen.text = displayBuffer.previous
-            displayBuffer.formula = engine.calculate(displayBuffer.formula)
             binding.activeScreen.text = displayBuffer.formula
         } catch (e: Exception) {
             binding.activeScreen.text = "ERROR:0 ${e.message}"
