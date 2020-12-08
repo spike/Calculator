@@ -39,8 +39,22 @@ class Engine {
     }
 
     fun calculateNegation(formula: String): String {
-        var negativeOrPositiveRegex = """-[\d|.]+$""".toRegex()
+
+
+        var negativeOrPositiveRegex = """^-[\d|.]+$""".toRegex()
         var matchResult = negativeOrPositiveRegex.find(formula)
+        if (matchResult == null) {
+            negativeOrPositiveRegex = """-[\d|.]+$""".toRegex()
+            matchResult = negativeOrPositiveRegex.find(formula)
+            if (matchResult == null) {
+
+            } else {
+                var result =
+                    BigDecimal(matchResult!!.value).setScale(27) * BigDecimal("-1.0")
+                val resultString = "+" + removeTrailingZeros(result.toPlainString())
+                return negativeOrPositiveRegex.replaceFirst(formula, resultString)
+            }
+        }
         if (matchResult == null) {
             negativeOrPositiveRegex = """[\d|.]+$""".toRegex()
             matchResult = negativeOrPositiveRegex.find(formula)

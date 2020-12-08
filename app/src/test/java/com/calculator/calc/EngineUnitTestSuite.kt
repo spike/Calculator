@@ -74,15 +74,21 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
     @Test
+    fun testNegateTheOtherWay() {
+        displayBuffer.formula = "-2"
+        val expected = "2"
+        assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
+    }
+    @Test
     fun testNegateDecimal() {
         displayBuffer.formula = "5.1009"
         val expected = "-5.1009"
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
     @Test
-    fun testNegateTheOtherWay() {
-        displayBuffer.formula = "-2"
-        val expected = "2"
+    fun testNegateAnExpressionWithAMinusOperator() {
+        displayBuffer.formula = "2-5"
+        val expected = "2+5"
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
 

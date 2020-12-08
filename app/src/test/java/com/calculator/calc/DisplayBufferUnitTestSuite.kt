@@ -25,7 +25,7 @@ class DisplayBufferUnitTestSuite {
     @Test
     fun testBackspaceZero() {
         displayBuffer.formula ="0"
-        val expected = Pair("0", "0")
+        val expected = Pair("", "0")
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test
