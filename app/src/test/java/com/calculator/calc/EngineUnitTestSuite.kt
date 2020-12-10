@@ -92,9 +92,15 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
     @Test
-    fun testNegateAnExpressionWithAPlusAndMinusOperator() {
+    fun testNegateAnExpressionWithPlusAndMinusOperator() {
         displayBuffer.formula = "2+-3"
         val expected = "2+3"
+        assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
+    }
+    @Test
+    fun testNegateDivisionWithPlusAndMinusOperator() {
+        displayBuffer.formula = "2÷-3"
+        val expected = "2÷3"
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
 
