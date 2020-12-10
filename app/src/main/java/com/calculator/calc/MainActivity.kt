@@ -68,7 +68,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_divide -> "÷"
                 else -> throw IllegalArgumentException("Operator not found")
             }
-            binding.activeScreen.text = displayBuffer.addOperator(operator)
+            val (previous, current) = displayBuffer.addOperator(operator)
+            binding.previousScreen.text = previous
+            binding.activeScreen.text = current
         } catch (e: Exception) {
             binding.activeScreen.text = "Error:3 ${e.message} "
         }

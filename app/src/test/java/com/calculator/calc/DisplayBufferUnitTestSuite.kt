@@ -45,24 +45,14 @@ class DisplayBufferUnitTestSuite {
     fun testAddOperator() {
         displayBuffer.formula = "9"
         val input = "+"
-        val expected = "9+"
+        val expected = Pair("","9+")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
-/*    @Test
-    fun testAddSecondOperator() {
-        displayBuffer.formula = "9+1"
-        displayBuffer.previous = ""
-        val input = "*"
-        val expectedFormula = "10*"
-        val expectedPrevious = "(9+1)*"
-        assertEquals(expectedFormula, displayBuffer.addOperator(input))
-        assertEquals(expectedPrevious, displayBuffer.previous)
-    }*/
     @Test
-    fun testAddPercent() {
-        displayBuffer.formula = "2275"
-        val input = "%"
-        val expected = "2275%"
+    fun testSecondAddOperator() {
+        displayBuffer.formula = "9*2"
+        val input = "+"
+        val expected = Pair("9*2+", "18+")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
@@ -76,7 +66,7 @@ class DisplayBufferUnitTestSuite {
     fun testExtraneousAdjacentOperator() {
         displayBuffer.formula = "3+"
         val input = "*"
-        val expected = "3*"
+        val expected = Pair("", "3*")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
@@ -104,7 +94,7 @@ class DisplayBufferUnitTestSuite {
     fun testMissingFirstOperator() {
         displayBuffer.formula = "0"
         val input = "/"
-        val expected = "0/"
+        val expected = Pair("", "0/")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
@@ -118,7 +108,7 @@ class DisplayBufferUnitTestSuite {
     fun testExtraneousOperator() {
         displayBuffer.formula = "8-"
         val input = "-"
-        val expected = "8-"
+        val expected = Pair("", "8-")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test

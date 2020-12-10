@@ -38,7 +38,17 @@ class DisplayBuffer {
         }
         return formula
     }
-    fun addOperator(input: String): String {
+    fun addOperator(input: String): Pair<String, String> {
+        val regex = """^([\d|\.]+[\D]+[\d|.]+)$""".toRegex()
+        val matchResult = regex.find(formula)
+        if (matchResult == null) {
+        } else {
+            val engine = Engine()
+            val (prev, current) = engine.calculate(formula)
+            formula = current + input
+            previous = prev + input
+            return Pair(previous, formula)
+        }
         if (listOf('+','-','*', '×','/', '÷').contains(formula.last())) {
             formula = when(input) {
                 "+", "*", "×", "/", "÷", "-" -> formula.dropLast(1) + input
@@ -47,7 +57,8 @@ class DisplayBuffer {
         } else {
             formula += input
         }
-        return formula
+        if (previous == "0") previous = ""
+        return Pair(previous, formula)
     }
     fun addDecimal(): String {
         val regex = """[\d|.]+$""".toRegex()
