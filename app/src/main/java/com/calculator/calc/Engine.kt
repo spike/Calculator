@@ -39,31 +39,40 @@ class Engine {
     }
 
     fun calculateNegation(formula: String): String {
-
-
-        var negativeOrPositiveRegex = """^-[\d|.]+$""".toRegex()
-        var matchResult = negativeOrPositiveRegex.find(formula)
+        var result = ""
+        var onlyOneOperatorRegex = """^([-]?)([\d|.]+)$""".toRegex()
+        var matchResult = onlyOneOperatorRegex.find(formula)
+        var replacement = ""
         if (matchResult == null) {
-            negativeOrPositiveRegex = """-[\d|.]+$""".toRegex()
-            matchResult = negativeOrPositiveRegex.find(formula)
-            if (matchResult == null) {
-
+            val regex = """([\D]?[\+\-×÷])([\d|.]+)$""".toRegex()
+            matchResult = regex.find(formula)
+            val operators = matchResult?.groups?.get(1)?.value.toString()
+            val secondOperand = matchResult?.groups?.get(2)?.value.toString()
+            replacement =
+                when (operators) {
+                    "+" -> "-"
+                    "-" -> "+"
+                    "×+", "×" -> "×-"
+                    "×-" -> "×"
+                    "÷+", "÷" -> "÷-"
+                    "÷-" -> "÷"
+                    "++", "--" -> "-"
+                    "-+", "+-" -> "+"
+                    else -> "ERROR5:"
+                }
+            replacement += secondOperand
+            result = regex.replaceFirst(formula, replacement)
+        } else {
+            val operator = matchResult?.groups?.get(1)?.value.toString()
+            val operand = matchResult?.groups?.get(2)?.value.toString()
+            if (operator == "-") {
+                result = operand
             } else {
-                var result =
-                    BigDecimal(matchResult!!.value).setScale(27) * BigDecimal("-1.0")
-                val resultString = "+" + removeTrailingZeros(result.toPlainString())
-                return negativeOrPositiveRegex.replaceFirst(formula, resultString)
+                result = "-$operand"
             }
         }
-        if (matchResult == null) {
-            negativeOrPositiveRegex = """[\d|.]+$""".toRegex()
-            matchResult = negativeOrPositiveRegex.find(formula)
-        }
-        var result =
-            BigDecimal(matchResult!!.value).setScale(27) * BigDecimal("-1.0")
-
-        val resultString = removeTrailingZeros(result.toPlainString())
-            return negativeOrPositiveRegex.replaceFirst(formula, resultString)
+            return result
     }
 }
+
 
