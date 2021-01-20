@@ -103,6 +103,12 @@ class EngineUnitTestSuite {
         val expected = "2÷3"
         assertEquals(expected, engine.calculateNegation(displayBuffer.formula))
     }
+    @Test
+    fun testCalculateCorrectOrderOfExecution() {
+        displayBuffer.formula = "6-2*3+4"
+        val expected = Pair("6-2*3+4", "4")
+        assertEquals(expected, engine.calculate(displayBuffer.formula))
+    }
 
 }
 
