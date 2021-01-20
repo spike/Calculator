@@ -10,7 +10,7 @@ Tech Stack:
 
 * ConstraintLayout
 * auto-sizing TextView
-* selectable TextView (to make copy and paste possible on long press)
+* selectable TextView to enable copying/sharing on long press
 * onSaveInstanceState for keeping state across config changes
 * view binding
 * JUnit [tests](https://github.com/spike/Calculator/blob/master/app/src/test/java/com/calculator/calc/)
