@@ -7,10 +7,12 @@ import org.junit.Before
 
 class DisplayBufferUnitTestSuite {
     private lateinit var displayBuffer: DisplayBuffer
+    private lateinit var stackBuffer: StackBuffer
 
     @Before
     fun setUp(): Unit {
         displayBuffer = DisplayBuffer()
+
     }
     @After
     fun tearDown(): Unit {
