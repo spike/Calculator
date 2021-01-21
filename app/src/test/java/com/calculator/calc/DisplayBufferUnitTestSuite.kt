@@ -77,21 +77,24 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testExtraneousSecondDecimal() {
-        displayBuffer.formula = "3.4"
+        val formula = "3.4"
+        displayBuffer.stack.refill(formula)
         val input = "."
         val expected = "3.4"
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
     fun testExtraneousSecondDecimalInSecondOperand() {
-        displayBuffer.formula = "35.2*1.5"
+        val formula = "35.2*1.5"
+        displayBuffer.stack.refill(formula)
         val input = "."
         val expected = "35.2*1.5"
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
     fun testSecondDecimalInSecondNumber() {
-        displayBuffer.formula = "3.4+6"
+        val formula = "3.4+6"
+        displayBuffer.stack.refill(formula)
         val input = "."
         val expected = "3.4+6."
         assertEquals(expected, displayBuffer.addDecimal())
@@ -121,7 +124,8 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testDecimal() {
-        displayBuffer.formula = "0"
+        val formula = "0"
+        displayBuffer.stack.refill(formula)
         val input = "."
         val expected = "0."
         assertEquals(expected, displayBuffer.addDecimal())

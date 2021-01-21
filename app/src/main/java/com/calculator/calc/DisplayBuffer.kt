@@ -79,11 +79,12 @@ class DisplayBuffer {
     }
     fun addDecimal(): String {
         val regex = """[\d|.]+$""".toRegex()
-        val matchResult = regex.find(formula)
-        formula = if (matchResult!!.value.contains(".")) {
-                formula
+        val matchResult = regex.find(stack.toString())
+        if (matchResult!!.value.contains(".")) {
+                formula = stack.toString()
             } else {
-                formula + "."
+                stack.push('.')
+                formula = stack.toString()
             }
         return formula
     }
