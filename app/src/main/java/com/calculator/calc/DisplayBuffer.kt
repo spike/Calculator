@@ -10,21 +10,25 @@ class DisplayBuffer {
 
 
     fun backspace(): Pair<String, String> {
-        previous = formula
+        previous = stack.toString()
+        formula = stack.toString()
         if (frozen) {  // what is frozen?
             formula = "0"
+            stack.refill("0")
         }
-        formula = if (formula == "0")
-            "0"
-        else
-            formula.dropLast(1)
-        if (formula == "") formula = "0"
+        if (formula == "0")
+            formula = "0"
+        else {
+            stack.pop()
+            formula = stack.toString()
+        }
+/*        if (formula == "") formula = "0" */
         if (previous == "0") previous = ""
         return Pair(previous, formula)
     }
     fun clear(): String {
-        stack.clear()
-        formula = "0"
+        stack.refill("0")
+        formula = stack.toString()
         previous = ""
         frozen = false  // again, what is frozen?
         return formula
@@ -32,7 +36,15 @@ class DisplayBuffer {
     fun addDigit(input: String): String {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(formula)
-        stack.push(input[0])
+
+        if (input[0] == '0') {
+            if (!stack.isEmpty() && stack.peek() != '0') {
+                stack.push(input[0])
+            }
+        } else {
+            stack.push(input[0])
+        }
+        formula = stack.toString()
 
 /*        formula = if (formula == "0")
             input
@@ -43,12 +55,7 @@ class DisplayBuffer {
                 formula + input
             }
         }*/
-        formula = if (stack.isEmpty()) {
-            input
-        } else {
-            stack.push(input[0])
-            stack.toString()
-        }
+
         return formula
     }
     fun addOperator(input: String): Pair<String, String> {
