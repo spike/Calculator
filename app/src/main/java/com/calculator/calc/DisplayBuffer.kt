@@ -6,6 +6,7 @@ class DisplayBuffer {
     var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
+    var stack: StackBuffer = StackBuffer()
 
 
     fun backspace(): Pair<String, String> {
@@ -22,6 +23,7 @@ class DisplayBuffer {
         return Pair(previous, formula)
     }
     fun clear(): String {
+        stack.clear()
         formula = "0"
         previous = ""
         frozen = false  // again, what is frozen?

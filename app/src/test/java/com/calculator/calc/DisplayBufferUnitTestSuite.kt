@@ -12,17 +12,15 @@ class DisplayBufferUnitTestSuite {
     @Before
     fun setUp(): Unit {
         displayBuffer = DisplayBuffer()
-        stackBuffer = StackBuffer()
     }
     @After
     fun tearDown(): Unit {
         displayBuffer.clear()
-        stackBuffer.clear()
     }
     @Test
     fun testBackspace() {
-        displayBuffer.formula = "12345+5"
-        stackBuffer.refill("12345+5")
+        // displayBuffer.formula = "12345+5"
+        displayBuffer.stack.refill("12345+5")
         val expected = Pair(displayBuffer.formula, "12345+")
         assertEquals(expected, displayBuffer.backspace())
     }
