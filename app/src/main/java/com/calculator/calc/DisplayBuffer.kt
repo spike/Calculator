@@ -6,6 +6,9 @@ class DisplayBuffer {
     var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
+    // I think frozen is when you press on an operator button
+    // on older calculators. I should be able to remove it once
+    // I'm done with my refactoring.
     var stack: StackBuffer = StackBuffer()
 
 
@@ -30,13 +33,10 @@ class DisplayBuffer {
         stack.refill("0")
         formula = stack.toString()
         previous = ""
-        frozen = false  // again, what is frozen?
+        frozen = false
         return formula
     }
     fun addDigit(input: String): String {
-        val regex = """[\d|.]+$""".toRegex()
-        val matchResult = regex.find(formula)
-
         if (input[0] == '0') {
             if (!stack.isEmpty() && stack.peek() != '0') {
                 stack.push(input[0])
@@ -45,37 +45,34 @@ class DisplayBuffer {
             stack.push(input[0])
         }
         formula = stack.toString()
-
-/*        formula = if (formula == "0")
-            input
-        else {
-            if (input == "0" && matchResult!!.value == "0") {
-                formula
-            } else {
-                formula + input
-            }
-        }*/
-
         return formula
     }
     fun addOperator(input: String): Pair<String, String> {
         val regex = """^([\d|\.]+[\D]+[\d|.]+)$""".toRegex()
-        val matchResult = regex.find(formula)
+        val matchResult = regex.find(stack.toString())
         if (matchResult == null) {
         } else {
             val engine = Engine()
-            val (prev, current) = engine.calculate(formula)
+            val (prev, current) = engine.calculate(stack.toString())
             formula = current + input
             previous = prev + input
             return Pair(previous, formula)
         }
-        if (listOf('+','-','*', '×','/', '÷').contains(formula.last())) {
-            formula = when(input) {
-                "+", "*", "×", "/", "÷", "-" -> formula.dropLast(1) + input
-                else -> formula + input
+        if (listOf('+','-','*', '×','/', '÷').contains(stack.peek())) {
+            when(input) {
+                "+", "*", "×", "/", "÷", "-" -> {
+                    stack.pop()
+                    stack.push(input[0])
+                    formula = stack.toString()
+                }
+                else -> {
+                    stack.push(input[0])
+                    formula = stack.toString()
+                }
             }
         } else {
-            formula += input
+            stack.push(input[0])
+            formula = stack.toString()
         }
         if (previous == "0") previous = ""
         return Pair(previous, formula)

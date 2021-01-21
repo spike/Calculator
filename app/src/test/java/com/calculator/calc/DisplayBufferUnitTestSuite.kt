@@ -39,23 +39,22 @@ class DisplayBufferUnitTestSuite {
     @Test
     fun testAddDigit() {
         displayBuffer.stack.refill("90+4")
-        // println(displayBuffer.stack.size())
-        // println(displayBuffer.stack.toString())
-        // displayBuffer.formula = "90+4"
         val input = "8"
         val expected = "90+48"
         assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
     fun testAddOperator() {
-        displayBuffer.formula = "9"
+        val formula = "9"
+        displayBuffer.stack.refill(formula)
         val input = "+"
         val expected = Pair("","9+")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
     fun testSecondAddOperator() {
-        displayBuffer.formula = "9*2"
+        val formula = "9*2"
+        displayBuffer.stack.refill(formula)
         val input = "+"
         val expected = Pair("9*2+", "18+")
         assertEquals(expected, displayBuffer.addOperator(input))
@@ -70,7 +69,8 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testExtraneousAdjacentOperator() {
-        displayBuffer.formula = "3+"
+        val formula = "3+"
+        displayBuffer.stack.refill(formula)
         val input = "*"
         val expected = Pair("", "3*")
         assertEquals(expected, displayBuffer.addOperator(input))
@@ -98,7 +98,8 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testMissingFirstOperator() {
-        displayBuffer.formula = "0"
+        val formula = "0"
+        displayBuffer.stack.refill(formula)
         val input = "/"
         val expected = Pair("", "0/")
         assertEquals(expected, displayBuffer.addOperator(input))
@@ -106,14 +107,14 @@ class DisplayBufferUnitTestSuite {
     @Test
     fun testLeadingZerosInSecondOperator() {
         displayBuffer.stack.refill("5-0")
-       // displayBuffer.formula = "5-0"
         val input = "0"
         val expected = "5-0"
         assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
     fun testExtraneousOperator() {
-        displayBuffer.formula = "8-"
+        val formula = "8-"
+        displayBuffer.stack.refill(formula)
         val input = "-"
         val expected = Pair("", "8-")
         assertEquals(expected, displayBuffer.addOperator(input))
