@@ -3,29 +3,33 @@ package com.calculator.calc
 import java.util.*
 
 class StackBuffer {
-    var stack: Stack<String> = Stack<String>()
+    var stack: Stack<Char> = Stack<Char>()
 
-    init {
-        stack.push("0")
+    fun push(item: Char) {
+        stack.push(item)
+    }
+    fun pop(): Char {
+        return stack.pop()
     }
 
-    fun push(item: String) {
-
-    }
-    fun pop(): String {
-        return ""
-    }
-
-    fun peek(): String {
-        return ""
+    fun peek(): Char {
+        return stack.peek()
     }
 
     fun isEmpty(): Boolean {
-        return true
+        return stack.isEmpty()
     }
 
     fun size(): Int {
-        return 0
+        return stack.size
+    }
+    fun clear() {
+        stack.clear()
+    }
+    fun refill(s: String) {
+        for (e in s) {
+            stack.push(e)
+        }
     }
 
 }
