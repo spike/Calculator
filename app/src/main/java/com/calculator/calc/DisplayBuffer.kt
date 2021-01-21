@@ -6,15 +6,11 @@ class DisplayBuffer {
     var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
-    var stack: Stack<String> = Stack<String>()
 
-    init {
-        stack.push("0")
-    }
 
     fun backspace(): Pair<String, String> {
         previous = formula
-        if (frozen) {  // what is frozen, I forget what it is?
+        if (frozen) {  // what is frozen?
             formula = "0"
         }
         formula = if (formula == "0")

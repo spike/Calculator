@@ -9,4 +9,23 @@ class StackBuffer {
         stack.push("0")
     }
 
+    fun push(item: String) {
+
+    }
+    fun pop(): String {
+        return ""
+    }
+
+    fun peek(): String {
+        return ""
+    }
+
+    fun isEmpty(): Boolean {
+        return true
+    }
+
+    fun size(): Int {
+        return 0
+    }
+
 }
