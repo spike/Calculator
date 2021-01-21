@@ -1,13 +1,20 @@
 package com.calculator.calc
 
+import java.util.*
+
 class DisplayBuffer {
     var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
+    var stack: Stack<String> = Stack<String>()
+
+    init {
+        stack.push("0")
+    }
 
     fun backspace(): Pair<String, String> {
         previous = formula
-        if (frozen) {
+        if (frozen) {  // what is frozen, I forget what it is?
             formula = "0"
         }
         formula = if (formula == "0")
@@ -21,7 +28,7 @@ class DisplayBuffer {
     fun clear(): String {
         formula = "0"
         previous = ""
-        frozen = false
+        frozen = false  // again, what is frozen?
         return formula
     }
     fun addDigit(input: String): String {

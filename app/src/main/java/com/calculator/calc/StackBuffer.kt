@@ -3,6 +3,10 @@ package com.calculator.calc
 import java.util.*
 
 class StackBuffer {
-    var formula: Stack<String> = Stack<String>()
+    var stack: Stack<String> = Stack<String>()
+
+    init {
+        stack.push("0")
+    }
 
 }
