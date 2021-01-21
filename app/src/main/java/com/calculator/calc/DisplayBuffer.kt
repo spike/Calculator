@@ -32,7 +32,9 @@ class DisplayBuffer {
     fun addDigit(input: String): String {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(formula)
-        formula = if (formula == "0")
+        stack.push(input[0])
+
+/*        formula = if (formula == "0")
             input
         else {
             if (input == "0" && matchResult!!.value == "0") {
@@ -40,6 +42,12 @@ class DisplayBuffer {
             } else {
                 formula + input
             }
+        }*/
+        formula = if (stack.isEmpty()) {
+            input
+        } else {
+            stack.push(input[0])
+            stack.toString()
         }
         return formula
     }

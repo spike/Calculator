@@ -31,5 +31,12 @@ class StackBuffer {
             stack.push(e)
         }
     }
+    fun String.toString(): String {
+        var result = ""
+        for (e in stack) {
+            result += e
+        }
+        return result
+    }
 
 }

@@ -19,7 +19,7 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testBackspace() {
-        // displayBuffer.formula = "12345+5"
+        displayBuffer.formula = "12345+5"
         displayBuffer.stack.refill("12345+5")
         val expected = Pair(displayBuffer.formula, "12345+")
         assertEquals(expected, displayBuffer.backspace())
@@ -38,7 +38,10 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testAddDigit() {
-        displayBuffer.formula = "90+4"
+        displayBuffer.stack.refill("90+4")
+        println(displayBuffer.stack.size())
+        println(displayBuffer.stack.toString())
+        // displayBuffer.formula = "90+4"
         val input = "8"
         val expected = "90+48"
         assertEquals(expected, displayBuffer.addDigit(input))
