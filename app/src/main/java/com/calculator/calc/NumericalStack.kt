@@ -2,11 +2,11 @@ package com.calculator.calc
 
 import java.util.*
 
-class OperandStack {
+class NumericalStack {
     var stack: Stack<String> = Stack<String>()
 
-    fun push(item: String) {
-        stack.push(item)
+    fun push(value: String) {
+        stack.push(value)
     }
     fun pop(): String {
         return stack.pop()

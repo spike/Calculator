@@ -5,8 +5,8 @@ import java.util.*
 class OperationStack {
     var stack: Stack<Char> = Stack<Char>()
 
-    fun push(item: Char) {
-        stack.push(item)
+    fun push(operator: Char) {
+        stack.push(operator)
     }
     fun pop(): Char {
         return stack.pop()
