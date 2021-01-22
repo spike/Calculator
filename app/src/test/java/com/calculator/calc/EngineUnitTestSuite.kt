@@ -118,10 +118,17 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculateNegation(displayBuffer.stack.toString()))
     }
     @Test
-    fun testCalculateCorrectOrderOfExecution() {
+    fun testCalculateCorrectOrderOfPrecedence() {
         val starting = "6-2*3+4"
         displayBuffer.stack.refill(starting)
         val expected = Pair("6-2*3+4", "4")
+        assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
+    }
+    @Test
+    fun testCalculateCorrectOrderOfPrecendenceSimple() {
+        val starting = "5+10*3"
+        displayBuffer.stack.refill(starting)
+        val expected = Pair("5+10*3", "35")
         assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
     }
 
