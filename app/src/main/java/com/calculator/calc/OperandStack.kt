@@ -2,17 +2,17 @@ package com.calculator.calc
 
 import java.util.*
 
-class StackBuffer {
-    var stack: Stack<Char> = Stack<Char>()
+class OperandStack {
+    var stack: Stack<Double> = Stack<Double>()
 
-    fun push(item: Char) {
+    fun push(item: Double) {
         stack.push(item)
     }
-    fun pop(): Char {
+    fun pop(): Double {
         return stack.pop()
     }
 
-    fun peek(): Char {
+    fun peek(): Double {
         return stack.peek()
     }
 
@@ -25,17 +25,13 @@ class StackBuffer {
     }
     fun clear() {
         stack.clear()
-        stack.push('0')
+        stack.push(0.0)
     }
-    fun refill(s: String) {
-        for (e in s) {
-            stack.push(e)
-        }
-    }
+
     override fun toString(): String {
         var result = ""
         for (e in stack) {
-            result += e
+            result += e.toString()
         }
         return result
     }

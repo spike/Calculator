@@ -1,13 +1,11 @@
 package com.calculator.calc
 
-import java.util.*
-
 class DisplayBuffer {
     private var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
-    var stack: StackBuffer = StackBuffer()
-    var operatorStack: StackBuffer = StackBuffer()
+    var stack: DisplayStack = DisplayStack()
+    var operatorStack: OperationStack = OperationStack()
 
 
     fun backspace(): Pair<String, String> {
