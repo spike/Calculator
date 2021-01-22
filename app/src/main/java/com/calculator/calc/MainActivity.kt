@@ -62,10 +62,10 @@ class MainActivity : AppCompatActivity() {
         displayBuffer.frozen = false
         try {
             val operator = when (buttonClicked.id) {
-                R.id.button_plus -> "+"
-                R.id.button_minus -> "-"
-                R.id.button_multiply -> "×"
-                R.id.button_divide -> "÷"
+                R.id.button_plus -> '+'
+                R.id.button_minus -> '-'
+                R.id.button_multiply -> '×'
+                R.id.button_divide -> '÷'
                 else -> throw IllegalArgumentException("Operator not found")
             }
             val (previous, current) = displayBuffer.addOperator(operator)

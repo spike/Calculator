@@ -18,45 +18,46 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testBackspace() {
-        val formula = "12345+5"
-        displayBuffer.stack.refill(formula)
-        val expected = Pair(formula, "12345+")
+        val starting = "12345+5"
+        displayBuffer.stack.refill(starting)
+        val expected = Pair(starting, "12345+")
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test
     fun testBackspaceZero() {
-        val formula ="0"
-        displayBuffer.stack.refill(formula)
-        val expected = Pair("", formula)
+        val starting ="0"
+        displayBuffer.stack.refill(starting)
+        val expected = Pair("", starting)
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test
     fun testClear() {
-        val formula = "1234567"
-        displayBuffer.stack.refill(formula)
+        val starting = "1234567"
+        displayBuffer.stack.refill(starting)
         val expected = "0"
         assertEquals(expected, displayBuffer.clear())
     }
     @Test
     fun testAddDigit() {
-        displayBuffer.stack.refill("90+4")
+        val starting = "90+4"
+        displayBuffer.stack.refill(starting)
         val input = '8'
         val expected = "90+48"
         assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
     fun testAddOperator() {
-        val formula = "9"
-        displayBuffer.stack.refill(formula)
-        val input = "+"
+        val starting = "9"
+        displayBuffer.stack.refill(starting)
+        val input = '+'
         val expected = Pair("","9+")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
     fun testSecondAddOperator() {
-        val formula = "9*2"
-        displayBuffer.stack.refill(formula)
-        val input = "+"
+        val starting = "9*2"
+        displayBuffer.stack.refill(starting)
+        val input = '+'
         val expected = Pair("9*2+", "18+")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
@@ -70,63 +71,64 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testExtraneousAdjacentOperator() {
-        val formula = "3+"
-        displayBuffer.stack.refill(formula)
-        val input = "*"
+        val starting = "3+"
+        displayBuffer.stack.refill(starting)
+        val input = '*'
         val expected = Pair("", "3*")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
     fun testExtraneousSecondDecimal() {
-        val formula = "3.4"
-        displayBuffer.stack.refill(formula)
+        val starting = "3.4"
+        displayBuffer.stack.refill(starting)
         val input = "."
         val expected = "3.4"
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
     fun testExtraneousSecondDecimalInSecondOperand() {
-        val formula = "35.2*1.5"
-        displayBuffer.stack.refill(formula)
+        val starting = "35.2*1.5"
+        displayBuffer.stack.refill(starting)
         val input = "."
         val expected = "35.2*1.5"
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
     fun testSecondDecimalInSecondNumber() {
-        val formula = "3.4+6"
-        displayBuffer.stack.refill(formula)
+        val starting = "3.4+6"
+        displayBuffer.stack.refill(starting)
         val input = "."
         val expected = "3.4+6."
         assertEquals(expected, displayBuffer.addDecimal())
     }
     @Test
     fun testMissingFirstOperator() {
-        val formula = "0"
-        displayBuffer.stack.refill(formula)
-        val input = "/"
+        val starting = "0"
+        displayBuffer.stack.refill(starting)
+        val input = '/'
         val expected = Pair("", "0/")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
     fun testLeadingZerosInSecondOperator() {
-        displayBuffer.stack.refill("5-0")
+        val starting = "5-0"
+        displayBuffer.stack.refill(starting)
         val input = '0'
-        val expected = "5-0"
+        val expected = starting
         assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
     fun testExtraneousOperator() {
-        val formula = "8-"
-        displayBuffer.stack.refill(formula)
-        val input = "-"
+        val starting = "8-"
+        displayBuffer.stack.refill(starting)
+        val input = '-'
         val expected = Pair("", "8-")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
     fun testDecimal() {
-        val formula = "0"
-        displayBuffer.stack.refill(formula)
+        val starting = "0"
+        displayBuffer.stack.refill(starting)
         val input = "."
         val expected = "0."
         assertEquals(expected, displayBuffer.addDecimal())

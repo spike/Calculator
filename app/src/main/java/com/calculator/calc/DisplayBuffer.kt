@@ -47,7 +47,7 @@ class DisplayBuffer {
         formula = stack.toString()
         return formula
     }
-    fun addOperator(input: String): Pair<String, String> {
+    fun addOperator(input: Char): Pair<String, String> {
         val regex = """^([\d|\.]+[\D]+[\d|.]+)$""".toRegex()
         val matchResult = regex.find(stack.toString())
         if (matchResult == null) {
@@ -60,18 +60,18 @@ class DisplayBuffer {
         }
         if (listOf('+','-','*', '×','/', '÷').contains(stack.peek())) {
             when(input) {
-                "+", "*", "×", "/", "÷", "-" -> {
+                '+', '*', '×', '/', '÷', '-' -> {
                     stack.pop()
-                    stack.push(input[0])
+                    stack.push(input)
                     formula = stack.toString()
                 }
                 else -> {
-                    stack.push(input[0])
+                    stack.push(input)
                     formula = stack.toString()
                 }
             }
         } else {
-            stack.push(input[0])
+            stack.push(input)
             formula = stack.toString()
         }
         if (previous == "0") previous = ""
