@@ -81,8 +81,7 @@ class MainActivity : AppCompatActivity() {
             displayBuffer.frozen = true
             val (previous, current) = engine.calculatePercentage(displayBuffer.stack.toString())
             displayBuffer.previous = previous
-            displayBuffer.stack.refill(current)
-            binding.activeScreen.text = displayBuffer.stack.toString()
+            binding.activeScreen.text = current
             binding.previousScreen.text = displayBuffer.previous
         } catch (e: Exception) {
             binding.activeScreen.text = "Error:2 ${e.message}"
