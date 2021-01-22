@@ -31,7 +31,7 @@ class DisplayBuffer {
     }
     fun clear(): String {
         stack.refill("0")
-        formula = stack.toString()
+        formula = "0"
         previous = ""
         frozen = false
         return formula

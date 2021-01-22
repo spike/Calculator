@@ -32,7 +32,8 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testClear() {
-        displayBuffer.formula = "1234567"
+        val formula = "1234567"
+        displayBuffer.stack.refill(formula)
         val expected = "0"
         assertEquals(expected, displayBuffer.clear())
     }
