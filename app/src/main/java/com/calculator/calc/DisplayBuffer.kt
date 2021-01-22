@@ -6,6 +6,7 @@ class DisplayBuffer {
     var frozen: Boolean = false
     var stack: DisplayStack = DisplayStack()
     var operatorStack: OperationStack = OperationStack()
+    var operandStack: OperandStack = OperandStack()
 
 
     fun backspace(): Pair<String, String> {

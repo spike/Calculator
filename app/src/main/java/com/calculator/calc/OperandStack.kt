@@ -3,16 +3,16 @@ package com.calculator.calc
 import java.util.*
 
 class OperandStack {
-    var stack: Stack<Double> = Stack<Double>()
+    var stack: Stack<String> = Stack<String>()
 
-    fun push(item: Double) {
+    fun push(item: String) {
         stack.push(item)
     }
-    fun pop(): Double {
+    fun pop(): String {
         return stack.pop()
     }
 
-    fun peek(): Double {
+    fun peek(): String {
         return stack.peek()
     }
 
@@ -25,13 +25,13 @@ class OperandStack {
     }
     fun clear() {
         stack.clear()
-        stack.push(0.0)
+        stack.push("0")
     }
 
     override fun toString(): String {
         var result = ""
         for (e in stack) {
-            result += e.toString()
+            result += e
         }
         return result
     }
