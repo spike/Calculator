@@ -93,9 +93,8 @@ class MainActivity : AppCompatActivity() {
             displayBuffer.frozen = true
             val (previous, current) = engine.calculate(displayBuffer.stack.toString())
             displayBuffer.previous = previous
-            displayBuffer.stack.refill(current)
             binding.previousScreen.text = displayBuffer.previous
-            binding.activeScreen.text = displayBuffer.stack.toString()
+            binding.activeScreen.text = current
         } catch (e: Exception) {
             binding.activeScreen.text = "ERROR:0 ${e.message}"
         }
