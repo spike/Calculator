@@ -6,10 +6,8 @@ class DisplayBuffer {
     private var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
-    // I think frozen is when you press on an operator button
-    // on older calculators. I should be able to remove it once
-    // I'm done with my refactoring.
     var stack: StackBuffer = StackBuffer()
+    var operatorStack: StackBuffer = StackBuffer()
 
 
     fun backspace(): Pair<String, String> {
