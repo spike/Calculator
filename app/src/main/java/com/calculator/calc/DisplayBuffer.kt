@@ -25,7 +25,6 @@ class DisplayBuffer {
             stack.pop()
             formula = stack.toString()
         }
-/*        if (formula == "") formula = "0" */
         if (previous == "0") previous = ""
         return Pair(previous, formula)
     }
@@ -37,10 +36,9 @@ class DisplayBuffer {
         return formula
     }
     fun addDigit(input: Char): String {
-        if (input == '0') {
-            if (!stack.isEmpty() && stack.peek() != '0') {
-                stack.push(input)
-            }
+        if (stack.size() == 1 && stack.peek() == '0') {
+            stack.pop()
+            stack.push(input)
         } else {
             stack.push(input)
         }
