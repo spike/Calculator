@@ -3,7 +3,7 @@ package com.calculator.calc
 import java.util.*
 
 class DisplayBuffer {
-    var formula: String = "0"
+    private var formula: String = "0"
     var previous: String = "0"
     var frozen: Boolean = false
     // I think frozen is when you press on an operator button
@@ -30,19 +30,19 @@ class DisplayBuffer {
         return Pair(previous, formula)
     }
     fun clear(): String {
-        stack.refill("0")
-        formula = "0"
+        stack.clear()
+        formula = stack.toString()
         previous = ""
         frozen = false
         return formula
     }
-    fun addDigit(input: String): String {
-        if (input[0] == '0') {
+    fun addDigit(input: Char): String {
+        if (input == '0') {
             if (!stack.isEmpty() && stack.peek() != '0') {
-                stack.push(input[0])
+                stack.push(input)
             }
         } else {
-            stack.push(input[0])
+            stack.push(input)
         }
         formula = stack.toString()
         return formula

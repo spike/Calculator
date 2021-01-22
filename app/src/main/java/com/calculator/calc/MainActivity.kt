@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        binding.activeScreen.text = displayBuffer.formula
-        outState.putString("screen", displayBuffer.formula)
+        binding.activeScreen.text = displayBuffer.stack.toString()
+        outState.putString("screen", displayBuffer.stack.toString())
         binding.previousScreen.text = displayBuffer.previous
         outState.putString("previous", displayBuffer.previous)
         outState.putBoolean("frozen", displayBuffer.frozen)
@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        displayBuffer.formula = savedInstanceState.getString("screen").toString()
-        binding.activeScreen.text = displayBuffer.formula
+        displayBuffer.stack.refill(savedInstanceState.getString("screen").toString())
+        binding.activeScreen.text = displayBuffer.stack.toString()
         displayBuffer.previous = savedInstanceState.getString("previous").toString()
         binding.previousScreen.text = displayBuffer.previous
         displayBuffer.frozen = savedInstanceState.getBoolean("frozen")
@@ -44,16 +44,16 @@ class MainActivity : AppCompatActivity() {
             binding.previousScreen.text = ""
         }
         val inputDigit = when (buttonClicked.id) {
-            R.id.button_one -> "1"
-            R.id.button_two -> "2"
-            R.id.button_three -> "3"
-            R.id.button_four -> "4"
-            R.id.button_five -> "5"
-            R.id.button_six -> "6"
-            R.id.button_seven -> "7"
-            R.id.button_eight -> "8"
-            R.id.button_nine -> "9"
-            else -> "0"
+            R.id.button_one -> '1'
+            R.id.button_two -> '2'
+            R.id.button_three -> '3'
+            R.id.button_four -> '4'
+            R.id.button_five -> '5'
+            R.id.button_six -> '6'
+            R.id.button_seven -> '7'
+            R.id.button_eight -> '8'
+            R.id.button_nine -> '9'
+            else -> '0'
         }
         binding.activeScreen.text = displayBuffer.addDigit(inputDigit)
     }
@@ -79,10 +79,10 @@ class MainActivity : AppCompatActivity() {
     fun percentOperator(v: View) {
         try {
             displayBuffer.frozen = true
-            val (previous, current) = engine.calculatePercentage(displayBuffer.formula)
+            val (previous, current) = engine.calculatePercentage(displayBuffer.stack.toString())
             displayBuffer.previous = previous
-            displayBuffer.formula = current
-            binding.activeScreen.text = displayBuffer.formula
+            displayBuffer.stack.refill(current)
+            binding.activeScreen.text = displayBuffer.stack.toString()
             binding.previousScreen.text = displayBuffer.previous
         } catch (e: Exception) {
             binding.activeScreen.text = "Error:2 ${e.message}"
@@ -92,11 +92,11 @@ class MainActivity : AppCompatActivity() {
     fun resultIs(v: View) {
         try {
             displayBuffer.frozen = true
-            val (previous, current) = engine.calculate(displayBuffer.formula)
+            val (previous, current) = engine.calculate(displayBuffer.stack.toString())
             displayBuffer.previous = previous
-            displayBuffer.formula = current
+            displayBuffer.stack.refill(current)
             binding.previousScreen.text = displayBuffer.previous
-            binding.activeScreen.text = displayBuffer.formula
+            binding.activeScreen.text = displayBuffer.stack.toString()
         } catch (e: Exception) {
             binding.activeScreen.text = "ERROR:0 ${e.message}"
         }
@@ -115,8 +115,8 @@ class MainActivity : AppCompatActivity() {
 
     fun operatorMinusOrPlus(v: View) {
         try {
-            displayBuffer.formula = engine.calculateNegation(displayBuffer.formula)
-            binding.activeScreen.text = displayBuffer.formula
+            displayBuffer.stack.refill(engine.calculateNegation(displayBuffer.stack.toString()))
+            binding.activeScreen.text = displayBuffer.stack.toString()
         } catch (e: Exception) {
             binding.activeScreen.text = "Error:1 ${e.message}"
         }

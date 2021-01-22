@@ -40,7 +40,7 @@ class DisplayBufferUnitTestSuite {
     @Test
     fun testAddDigit() {
         displayBuffer.stack.refill("90+4")
-        val input = "8"
+        val input = '8'
         val expected = "90+48"
         assertEquals(expected, displayBuffer.addDigit(input))
     }
@@ -62,10 +62,10 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testAddUpfrontZeros() {
-        // displayBuffer.formula = "0"
-        displayBuffer.stack.refill("0")
-        val input = "0"
-        val expected = "0"
+        val starting = "0"
+        displayBuffer.stack.refill(starting)
+        val input = '0'
+        val expected = starting
         assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
@@ -111,7 +111,7 @@ class DisplayBufferUnitTestSuite {
     @Test
     fun testLeadingZerosInSecondOperator() {
         displayBuffer.stack.refill("5-0")
-        val input = "0"
+        val input = '0'
         val expected = "5-0"
         assertEquals(expected, displayBuffer.addDigit(input))
     }
