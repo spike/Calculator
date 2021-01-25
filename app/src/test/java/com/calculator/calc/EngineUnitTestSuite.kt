@@ -135,7 +135,7 @@ class EngineUnitTestSuite {
     fun testCalculateCorrectOrderOfPrecendenceSimpleStack() {
         val starting = "3*5+10"
         displayBuffer.stack.refill(starting)
-        val expected = Pair("5+10*3", "25")
+        val expected = Pair("3*5+10", "25")
         assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
     }
 
