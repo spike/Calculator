@@ -25,7 +25,6 @@ class OperationStack {
     }
     fun clear() {
         stack.clear()
-        stack.push('0')
     }
     fun refill(s: String) {
         for (e in s) {

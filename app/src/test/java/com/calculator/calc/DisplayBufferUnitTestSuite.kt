@@ -135,12 +135,15 @@ class DisplayBufferUnitTestSuite {
     }
 
     @Test
-    fun testCalculateCorrectOrderOfPrecedenceSimpleStack() {
+    fun testAddPlusOperator2() {
         val starting = "3*5"
+        displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("3")
+        displayBuffer.stackOfNums.push("5")
+        displayBuffer.stackOfOperators.push('*')
+
         // displayBuffer.stackOfNums = [3, 5]
         // displayBuffer.stackOfOperators = ['*']
-
-        displayBuffer.stack.refill(starting)
         val input = '+'
         val expected = Pair("3*5+", "15+")
         assertEquals(expected, displayBuffer.addOperator2(input))

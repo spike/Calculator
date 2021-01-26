@@ -25,7 +25,6 @@ class NumericalStack {
     }
     fun clear() {
         stack.clear()
-        stack.push("0")
     }
 
     override fun toString(): String {
