@@ -26,6 +26,10 @@ class Engine {
         val resultString = removeTrailingZeros(result.toPlainString())
         return Pair(formula, regex2.replaceFirst(formula, resultString))
     }
+    fun calculate2(sn: NumericalStack, so: OperationStack): Pair<String, String> {
+        return Pair("0", "0")
+    }
+
     fun calculatePercentage(formula: String): Pair<String, String> {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(formula)

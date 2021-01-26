@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 else -> throw IllegalArgumentException("Operator not found")
             }
             val (previous, current) = displayBuffer.addOperator(operator)
+
             binding.previousScreen.text = previous
             binding.activeScreen.text = current
         } catch (e: Exception) {

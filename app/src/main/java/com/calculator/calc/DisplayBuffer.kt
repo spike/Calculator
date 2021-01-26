@@ -42,7 +42,10 @@ class DisplayBuffer {
         formula = stack.toString()
         return formula
     }
-    fun addOperator(input: Char): Pair<String, String> {
+    fun addOperator2(input: Char): Pair<String, String> {
+        return Pair(previous, formula)
+    }
+        fun addOperator(input: Char): Pair<String, String> {
         val regex = """^([\d|\.]+[\D]+[\d|.]+)$""".toRegex()
         val matchResult = regex.find(stack.toString())
         if (matchResult == null) {
