@@ -1,5 +1,7 @@
 package com.calculator.calc
 
+import java.math.BigDecimal
+
 class DisplayBuffer {
     private var formula: String = "0"
     var previous: String = "0"
@@ -43,7 +45,29 @@ class DisplayBuffer {
         return formula
     }
     fun addOperator2(input: Char): Pair<String, String> {
-        return Pair(previous, formula)
+        previous = stack.toString() + input
+        var result = BigDecimal("0".toString()).setScale(27)
+        if (listOf('*', '/', '=').contains(stackOfOperators.peek())) {
+            val a = stackOfNums.pop()
+            val b = stackOfNums.pop()
+            val op = stackOfOperators.pop()
+            result = when (op!!) {
+                '*', '×' -> BigDecimal(a!!.toString()).setScale(27) *
+                        BigDecimal(b!!.toString())
+                else -> BigDecimal(a!!.toString()).setScale(27) /
+                        BigDecimal(b!!.toString())
+            }
+            stackOfOperators.push(input)
+        } else {
+
+        }
+        val resultString = removeTrailingZeros(result.toPlainString())
+        stackOfNums.push(resultString)
+        return Pair(previous, resultString + input)
+    }
+
+    private fun removeTrailingZeros(number: String): String {
+        return number.replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
     }
         fun addOperator(input: Char): Pair<String, String> {
         val regex = """^([\d|\.]+[\D]+[\d|.]+)$""".toRegex()
