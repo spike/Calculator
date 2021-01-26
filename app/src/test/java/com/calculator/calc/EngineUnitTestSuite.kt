@@ -132,10 +132,12 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
     }
     @Test
-    fun testCalculateCorrectOrderOfPrecendenceSimpleStack() {
+    fun testCalculateCorrectOrderOfPrecedenceSimpleStack() {
         val starting = "3*5+10"
+        // displayBuffer.stackOfNums = [3, 5]
+        // displayBuffer.stackOfOperators = ['*']
         displayBuffer.stack.refill(starting)
-        val expected = Pair("3*5+10", "25")
+        val expected = Pair("3*5+", "15")
         assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
     }
 
