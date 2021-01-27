@@ -38,14 +38,6 @@ class DisplayBufferUnitTestSuite {
         assertEquals(expected, displayBuffer.clear())
     }
     @Test
-    fun testAddDigit() {
-        val starting = "90+4"
-        displayBuffer.stack.refill(starting)
-        val input = '8'
-        val expected = "90+48"
-        assertEquals(expected, displayBuffer.addDigit(input))
-    }
-    @Test
     fun testAddOperator() {
         val starting = "9"
         displayBuffer.stack.refill(starting)
@@ -132,6 +124,15 @@ class DisplayBufferUnitTestSuite {
         val input = "."
         val expected = "0."
         assertEquals(expected, displayBuffer.addDecimal())
+    }
+
+    @Test
+    fun testAddDigit() {
+        val starting = "90+4"
+        displayBuffer.stack.refill(starting)
+        val input = '8'
+        val expected = "90+48"
+        assertEquals(expected, displayBuffer.addDigit(input))
     }
 
     @Test
