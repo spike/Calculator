@@ -38,6 +38,7 @@ class DisplayBuffer {
         if (stack.size() == 1 && stack.peek() == '0') {
             stack.pop()
             stack.push(input)
+
         } else {
             stack.push(input)
         }
