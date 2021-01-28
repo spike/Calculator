@@ -45,32 +45,47 @@ class DisplayBuffer {
         formula = stack.toString()
         return formula
     }
-    fun addOperator2(input: Char): Pair<String, String> {
-        previous = stack.toString() + input
+    fun addOperator(input: Char): Pair<String, String> {
+
         var result = BigDecimal("0".toString()).setScale(27)
-        if (listOf('*', '/', '=').contains(stackOfOperators.peek())) {
-            val a = stackOfNums.pop()
-            val b = stackOfNums.pop()
-            val op = stackOfOperators.pop()
-            result = when (op!!) {
-                '*', '×' -> BigDecimal(a!!.toString()).setScale(27) *
-                        BigDecimal(b!!.toString())
-                else -> BigDecimal(a!!.toString()).setScale(27) /
-                        BigDecimal(b!!.toString())
+        if (!stackOfOperators.isEmpty()) {
+            if (listOf('*', '/', '=').contains(stackOfOperators.peek())) {
+                previous = stack.toString() + input
+                val a = stackOfNums.pop()
+                val b = stackOfNums.pop()
+                val op = stackOfOperators.pop()
+                result = when (op!!) {
+                    '*', '×' -> BigDecimal(a!!.toString()).setScale(27) *
+                            BigDecimal(b!!.toString())
+                    else -> BigDecimal(a!!.toString()).setScale(27) /
+                            BigDecimal(b!!.toString())
+                }
+                stackOfOperators.push(input)
+            } else {
+                if (stackOfNums.size() == 1) {
+                    stackOfOperators.pop()
+                    stackOfOperators.push(input)
+                    val a = stackOfNums.peek()
+                    result = BigDecimal(a!!.toString()).setScale(27)
+                }
+
             }
-            stackOfOperators.push(input)
         } else {
+            stackOfOperators.push(input)
+            val a = stackOfNums.peek()
+            result = BigDecimal(a!!.toString()).setScale(27)
 
         }
         val resultString = removeTrailingZeros(result.toPlainString())
         stackOfNums.push(resultString)
+        if (previous.equals("0")) previous = ""
         return Pair(previous, resultString + input)
     }
 
     private fun removeTrailingZeros(number: String): String {
         return number.replace("[0]*$".toRegex(), "").replace("\\.$".toRegex(), "")
     }
-        fun addOperator(input: Char): Pair<String, String> {
+    /*fun addOperator(input: Char): Pair<String, String> {
         val regex = """^([\d|\.]+[\D]+[\d|.]+)$""".toRegex()
         val matchResult = regex.find(stack.toString())
         if (matchResult == null) {
@@ -99,7 +114,7 @@ class DisplayBuffer {
         }
         if (previous == "0") previous = ""
         return Pair(previous, formula)
-    }
+    }*/
     fun addDecimal(): String {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(stack.toString())
