@@ -79,14 +79,6 @@ class DisplayBufferUnitTestSuite {
         val expected = "3.4+6."
         assertEquals(expected, displayBuffer.addDecimal())
     }
-/*    @Test
-    fun testMissingFirstOperator() {
-        val starting = "0"
-        displayBuffer.stack.refill(starting)
-        val input = '/'
-        val expected = Pair("", "0/")
-        assertEquals(expected, displayBuffer.addOperator(input))
-    }*/
     @Test
     fun testLeadingZerosInSecondOperator() {
         val starting = "5-0"
