@@ -34,6 +34,7 @@ class DisplayBufferUnitTestSuite {
     fun testClear() {
         val starting = "1234567"
         displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("1234567")
         val expected = "0"
         assertEquals(expected, displayBuffer.clear())
     }
@@ -67,6 +68,9 @@ class DisplayBufferUnitTestSuite {
     fun testExtraneousSecondDecimalInSecondOperand() {
         val starting = "35.2*1.5"
         displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("35.2")
+        displayBuffer.stackOfOperators.push('*')
+        displayBuffer.stackOfNums.push("1.5")
         val input = "."
         val expected = "35.2*1.5"
         assertEquals(expected, displayBuffer.addDecimal())
@@ -75,6 +79,9 @@ class DisplayBufferUnitTestSuite {
     fun testSecondDecimalInSecondNumber() {
         val starting = "3.4+6"
         displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("3.4")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfNums.push("6")
         val input = "."
         val expected = "3.4+6."
         assertEquals(expected, displayBuffer.addDecimal())
@@ -122,6 +129,9 @@ class DisplayBufferUnitTestSuite {
     fun testAddDigit() {
         val starting = "90+4"
         displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("90")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfNums.push("4")
         val input = '8'
         val expected = "90+48"
         assertEquals(expected, displayBuffer.addDigit(input))
