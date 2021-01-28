@@ -91,6 +91,15 @@ class DisplayBufferUnitTestSuite {
         assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
+    fun testAddDigitToAnExistingDigit() {
+        val starting = "5"
+        displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("5")
+        val input = '0'
+        val expected = "50"
+        assertEquals(expected, displayBuffer.addDigit(input))
+    }
+    @Test
     fun testExtraneousOperator() {
         val starting = "8-"
         displayBuffer.stack.refill(starting)
@@ -119,16 +128,16 @@ class DisplayBufferUnitTestSuite {
     }
     @Test
     fun testAddPlusOperator2() {
-        val starting = "3*5"
+        val starting = "30*5"
         displayBuffer.stack.refill(starting)
-        displayBuffer.stackOfNums.push("3")
+        displayBuffer.stackOfNums.push("30")
         displayBuffer.stackOfNums.push("5")
         displayBuffer.stackOfOperators.push('*')
 
         // displayBuffer.stackOfNums = [3, 5]
         // displayBuffer.stackOfOperators = ['*']
         val input = '+'
-        val expected = Pair("3*5+", "15+")
+        val expected = Pair("30*5+", "150+")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
