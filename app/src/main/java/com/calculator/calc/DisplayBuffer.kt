@@ -48,33 +48,40 @@ class DisplayBuffer {
     fun addOperator(input: Char): Pair<String, String> {
 
         var result = BigDecimal("0".toString()).setScale(27)
-        if (!stackOfOperators.isEmpty()) {
-            if (listOf('*', '/', '=').contains(stackOfOperators.peek())) {
-                previous = stack.toString() + input
-                val a = stackOfNums.pop()
-                val b = stackOfNums.pop()
-                val op = stackOfOperators.pop()
-                result = when (op!!) {
-                    '*', '×' -> BigDecimal(a!!.toString()).setScale(27) *
-                            BigDecimal(b!!.toString())
-                    else -> BigDecimal(a!!.toString()).setScale(27) /
-                            BigDecimal(b!!.toString())
-                }
-                stackOfOperators.push(input)
-            } else {
-                if (stackOfNums.size() == 1) {
-                    stackOfOperators.pop()
-                    stackOfOperators.push(input)
-                    val a = stackOfNums.peek()
-                    result = BigDecimal(a!!.toString()).setScale(27)
-                }
+        when (stackOfNums.size()) {
+            0 -> {
 
             }
-        } else {
-            stackOfOperators.push(input)
-            val a = stackOfNums.peek()
-            result = BigDecimal(a!!.toString()).setScale(27)
+            1 -> {
+                stackOfOperators.push(input)
+                val a = stackOfNums.peek()
+                result = BigDecimal(a!!.toString()).setScale(27)
+            }
+            2, 3, 4, 5, 6, 7 -> {
+                if (!stackOfOperators.isEmpty()) {
+                    if (listOf('*', '/', '=').contains(stackOfOperators.peek())) {
+                        previous = stack.toString() + input
+                        val a = stackOfNums.pop()
+                        val b = stackOfNums.pop()
+                        val op = stackOfOperators.pop()
+                        result = when (op!!) {
+                            '*', '×' -> BigDecimal(a!!.toString()).setScale(27) *
+                                    BigDecimal(b!!.toString())
+                            else -> BigDecimal(a!!.toString()).setScale(27) /
+                                    BigDecimal(b!!.toString())
+                        }
+                        stackOfOperators.push(input)
+                    } else {
+                        if (stackOfNums.size() == 1) {
+                            stackOfOperators.pop()
+                            stackOfOperators.push(input)
+                            val a = stackOfNums.peek()
+                            result = BigDecimal(a!!.toString()).setScale(27)
+                        }
 
+                    }
+                }
+            }
         }
         val resultString = removeTrailingZeros(result.toPlainString())
         stackOfNums.push(resultString)
