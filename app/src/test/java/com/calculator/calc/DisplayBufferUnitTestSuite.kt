@@ -20,14 +20,14 @@ class DisplayBufferUnitTestSuite {
     fun testBackspace() {
         val starting = "12345+5"
         displayBuffer.stack.refill(starting)
-        val expected = Pair(starting, "12345+")
+        val expected = Pair("12345+", "")
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test
     fun testBackspaceZero() {
         val starting ="0"
         displayBuffer.stack.refill(starting)
-        val expected = Pair("", starting)
+        val expected = Pair(starting, "")
         assertEquals(expected, displayBuffer.backspace())
     }
     @Test
@@ -53,7 +53,7 @@ class DisplayBufferUnitTestSuite {
         displayBuffer.stackOfNums.push("3")
         displayBuffer.stackOfOperators.push('+')
         val input = '*'
-        val expected = Pair("", "3*")
+        val expected = Pair("3*", "")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
@@ -113,7 +113,7 @@ class DisplayBufferUnitTestSuite {
         displayBuffer.stackOfNums.push("8")
         displayBuffer.stackOfOperators.push('-')
         val input = '-'
-        val expected = Pair("", "8-")
+        val expected = Pair("8-", "")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
@@ -147,8 +147,45 @@ class DisplayBufferUnitTestSuite {
         // displayBuffer.stackOfNums = [3, 5]
         // displayBuffer.stackOfOperators = ['*']
         val input = '+'
-        val expected = Pair("30*5+", "150+")
+        val expected = Pair("30*5+", "150")
         assertEquals(expected, displayBuffer.addOperator(input))
+    }
+    @Test
+    fun testTwoOperationsAddPlusOperatorSimpler() {
+        val starting = "2+2*"
+        displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("2")
+        displayBuffer.stackOfNums.push("2")
+        displayBuffer.stackOfOperators.push('+')
+        val input = '*'
+        val expected = Pair("2+2*", "4")
+        assertEquals(expected, displayBuffer.addOperator(input))
+    }
+    @Test
+    fun testTwoOperationsAddPlusOperator() {
+        val starting = "2+2*3"
+        displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("2")
+        displayBuffer.stackOfNums.push("2")
+        displayBuffer.stackOfNums.push("3")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfOperators.push('*')
+        val input = '/'
+        val expected = Pair("2+2*3/", "8")
+        assertEquals(expected, displayBuffer.addOperator(input))
+    }
+
+    @Test
+    fun testTwoOperationsAddDigit() {
+        val starting = "2+2*3"
+        displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("2")
+        displayBuffer.stackOfNums.push("2")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfOperators.push('*')
+        val input = '3'
+        val expected = Pair("2+2*3", "8")
+        assertEquals(expected, displayBuffer.addDigit(input))
     }
     @Test
     fun testAddOperator() {
@@ -156,7 +193,7 @@ class DisplayBufferUnitTestSuite {
         displayBuffer.stack.refill(starting)
         displayBuffer.stackOfNums.push("9")
         val input = '+'
-        val expected = Pair("","9+")
+        val expected = Pair("9+", "")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
     @Test
@@ -167,7 +204,7 @@ class DisplayBufferUnitTestSuite {
         displayBuffer.stackOfNums.push("2")
         displayBuffer.stackOfOperators.push('*')
         val input = '+'
-        val expected = Pair("9*2+", "18+")
+        val expected = Pair("9*2+", "18")
         assertEquals(expected, displayBuffer.addOperator(input))
     }
 }

@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         binding.activeScreen.text = displayBuffer.stack.toString()
         outState.putString("screen", displayBuffer.stack.toString())
-        binding.previousScreen.text = displayBuffer.previous
-        outState.putString("previous", displayBuffer.previous)
+        binding.previousScreen.text = displayBuffer.currentScreen
+        outState.putString("previous", displayBuffer.currentScreen)
         outState.putBoolean("frozen", displayBuffer.frozen)
     }
 
@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         displayBuffer.stack.refill(savedInstanceState.getString("screen").toString())
         binding.activeScreen.text = displayBuffer.stack.toString()
-        displayBuffer.previous = savedInstanceState.getString("previous").toString()
-        binding.previousScreen.text = displayBuffer.previous
+        displayBuffer.currentScreen = savedInstanceState.getString("previous").toString()
+        binding.previousScreen.text = displayBuffer.currentScreen
         displayBuffer.frozen = savedInstanceState.getBoolean("frozen")
     }
 
@@ -81,9 +81,9 @@ class MainActivity : AppCompatActivity() {
         try {
             displayBuffer.frozen = true
             val (previous, current) = engine.calculatePercentage(displayBuffer.stack.toString())
-            displayBuffer.previous = previous
+            displayBuffer.currentScreen = previous
             binding.activeScreen.text = current
-            binding.previousScreen.text = displayBuffer.previous
+            binding.previousScreen.text = displayBuffer.currentScreen
         } catch (e: Exception) {
             binding.activeScreen.text = "Error:2 ${e.message}"
         }
@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity() {
         try {
             displayBuffer.frozen = true
             val (previous, current) = engine.calculate(displayBuffer.stack.toString())
-            displayBuffer.previous = previous
-            binding.previousScreen.text = displayBuffer.previous
+            displayBuffer.currentScreen = previous
+            binding.previousScreen.text = displayBuffer.currentScreen
             binding.activeScreen.text = current
         } catch (e: Exception) {
             binding.activeScreen.text = "ERROR:0 ${e.message}"
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
     fun clearScreen(v: View) {
         binding.activeScreen.text = displayBuffer.clear()
-        binding.previousScreen.text = displayBuffer.previous
+        binding.previousScreen.text = displayBuffer.currentScreen
     }
 
     fun doBackspace(v: View) {
