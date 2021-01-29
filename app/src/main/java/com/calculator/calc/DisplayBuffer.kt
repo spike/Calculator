@@ -3,8 +3,8 @@ package com.calculator.calc
 import java.math.BigDecimal
 
 class DisplayBuffer {
-    private var previewResult: String = "0"
-    var currentScreen: String = "0"
+    private var currentScreen: String = "0"
+    var previewResult: String = "0"
     var frozen: Boolean = false
     var stack: DisplayStack = DisplayStack()
     var stackOfOperators: OperationStack = OperationStack()
@@ -12,27 +12,27 @@ class DisplayBuffer {
 
 
     fun backspace(): Pair<String, String> {
-        currentScreen = stack.toString()
         previewResult = stack.toString()
+        currentScreen = stack.toString()
         if (frozen) {  // what is frozen?
-            previewResult = "0"
+            currentScreen = "0"
             stack.refill("0")
         }
-        if (previewResult == "0")
-            previewResult = "0"
+        if (currentScreen == "0")
+            currentScreen = "0"
         else {
             stack.pop()
-            previewResult = stack.toString()
+            currentScreen = stack.toString()
         }
-        if (currentScreen == "0") currentScreen = ""
+        if (previewResult == "0") previewResult = ""
         return Pair(currentScreen, previewResult)
     }
     fun clear(): String {
         stack.clear()
-        previewResult = stack.toString()
-        currentScreen = ""
+        currentScreen = stack.toString()
+        previewResult = ""
         frozen = false
-        return previewResult
+        return currentScreen
     }
     fun addDigit(input: Char): String {
         if (stack.size() == 1 && stack.peek() == '0') {
@@ -42,8 +42,8 @@ class DisplayBuffer {
         } else {
             stack.push(input)
         }
-        previewResult = stack.toString()
-        return previewResult
+        currentScreen = stack.toString()
+        return currentScreen
     }
     fun addOperator(input: Char): Pair<String, String> {
 
@@ -60,7 +60,7 @@ class DisplayBuffer {
             2, 3, 4, 5, 6, 7 -> {
                 if (!stackOfOperators.isEmpty()) {
                     if (listOf('*', '/', '=').contains(stackOfOperators.peek())) {
-                        currentScreen = stack.toString() + input
+                        previewResult = stack.toString() + input
                         val a = stackOfNums.pop()
                         val b = stackOfNums.pop()
                         val op = stackOfOperators.pop()
@@ -85,8 +85,8 @@ class DisplayBuffer {
         }
         val resultString = removeTrailingZeros(result.toPlainString())
         stackOfNums.push(resultString)
-        if (currentScreen.equals("0")) currentScreen = ""
-        return Pair(currentScreen, resultString + input)
+        if (previewResult.equals("0")) previewResult = ""
+        return Pair(resultString + input, previewResult)
     }
 
     private fun removeTrailingZeros(number: String): String {
@@ -96,11 +96,11 @@ class DisplayBuffer {
         val regex = """[\d|.]+$""".toRegex()
         val matchResult = regex.find(stack.toString())
         if (matchResult!!.value.contains(".")) {
-                previewResult = stack.toString()
+                currentScreen = stack.toString()
             } else {
                 stack.push('.')
-                previewResult = stack.toString()
+                currentScreen = stack.toString()
             }
-        return previewResult
+        return currentScreen
     }
 }
