@@ -19,11 +19,33 @@ class EngineUnitTestSuite {
         displayBuffer.clear()
     }
     @Test
-    fun testCalculateAddition() {
+    fun testPreviewCalculateNothing() {
+        val starting ="0"
+        val expected = Pair("0", "")
+        assertEquals(expected, engine.previewCalculate(displayBuffer))
+    }
+    @Test
+    fun testPreviewCalculateZero() {
+        val starting ="0"
+        displayBuffer.stackOfNums.push("0")
+        val expected = Pair("0", "")
+        assertEquals(expected, engine.previewCalculate(displayBuffer))
+    }
+    @Test
+    fun testPreviewCalculateSingleNumber() {
+        val starting ="45"
+        displayBuffer.stackOfNums.push("45")
+        val expected = Pair("45", "")
+        assertEquals(expected, engine.previewCalculate(displayBuffer))
+    }
+    @Test
+    fun testPreviewCalculateAddition() {
         val starting ="45+5"
-        displayBuffer.stack.refill(starting)
+        displayBuffer.stackOfNums.push("45")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfNums.push("5")
         val expected = Pair("45+5", "50")
-        assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
+        assertEquals(expected, engine.previewCalculate(displayBuffer))
     }
     @Test
     fun testCalculateSingleOperand() {
@@ -117,14 +139,14 @@ class EngineUnitTestSuite {
         val expected = "2÷3"
         assertEquals(expected, engine.calculateNegation(displayBuffer.stack.toString()))
     }
-    @Test
+    // @Test
     fun testCalculateCorrectOrderOfPrecedence() {
         val starting = "6-2*3+4"
         displayBuffer.stack.refill(starting)
         val expected = Pair("6-2*3+4", "4")
         assertEquals(expected, engine.calculate(displayBuffer.stack.toString()))
     }
-    @Test
+    // @Test
     fun testCalculateCorrectOrderOfPrecendenceSimple() {
         val starting = "5+10*3"
         displayBuffer.stack.refill(starting)

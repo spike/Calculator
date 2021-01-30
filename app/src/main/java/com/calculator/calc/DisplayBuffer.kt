@@ -45,6 +45,8 @@ class DisplayBuffer {
         currentScreen = stack.toString()
         return currentScreen
     }
+
+
     fun addOperator(input: Char): Pair<String, String> {
 
         var result = BigDecimal("0".toString()).setScale(27)

@@ -3,6 +3,16 @@ package com.calculator.calc
 import java.math.BigDecimal
 
 class Engine {
+
+    fun previewCalculate(displayBuffer: DisplayBuffer): Pair<String, String> {
+        return when (displayBuffer.stackOfNums.size()) {
+            0 -> Pair("0","")
+            1 -> Pair(displayBuffer.stackOfNums.peek(), "")
+
+            else -> Pair("ERROR", "ERROR")
+        }
+    }
+
     fun calculate(formula: String): Pair<String, String> {
         val regex2 = """([-]?[\d|.]+)([\D]?)([-]?[\d|.]+)$""".toRegex()
         val matchResult = regex2.find(formula)
