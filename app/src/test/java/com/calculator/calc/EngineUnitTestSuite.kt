@@ -55,7 +55,18 @@ class EngineUnitTestSuite {
         displayBuffer.stackOfNums.push("5")
         displayBuffer.stackOfOperators.push('*')
         displayBuffer.stackOfNums.push("3")
-        val expected = Pair("45+5*3", "60")
+        val expected = Pair(starting, "60")
+        assertEquals(expected, engine.previewCalculate(displayBuffer))
+    }
+    @Test
+    fun testPreviewCalculateMultiplicationAndAddition() {
+        val starting ="5*4+1"
+        displayBuffer.stackOfNums.push("5")
+        displayBuffer.stackOfOperators.push('*')
+        displayBuffer.stackOfNums.push("4")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfNums.push("1")
+        val expected = Pair(starting, "21")
         assertEquals(expected, engine.previewCalculate(displayBuffer))
     }
     @Test
