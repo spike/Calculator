@@ -64,11 +64,11 @@ class DisplayBuffer {
                         val a = stackOfNums.pop()
                         val b = stackOfNums.pop()
                         val op = stackOfOperators.pop()
-                        result = when (op!!) {
-                            '*', '×' -> BigDecimal(a!!.toString()).setScale(27) *
-                                    BigDecimal(b!!.toString())
-                            else -> BigDecimal(a!!.toString()).setScale(27) /
-                                    BigDecimal(b!!.toString())
+                        result = when (op) {
+                            '*', '×' -> BigDecimal(a.toString()).setScale(27) *
+                                    BigDecimal(b.toString())
+                            else -> BigDecimal(a.toString()).setScale(27) /
+                                    BigDecimal(b.toString())
                         }
                         stackOfOperators.push(input)
                     } else {
@@ -76,9 +76,8 @@ class DisplayBuffer {
                             stackOfOperators.pop()
                             stackOfOperators.push(input)
                             val a = stackOfNums.peek()
-                            result = BigDecimal(a!!.toString()).setScale(27)
+                            result = BigDecimal(a.toString()).setScale(27)
                         }
-
                     }
                 }
             }
