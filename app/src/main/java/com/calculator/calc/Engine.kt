@@ -3,8 +3,11 @@ package com.calculator.calc
 import java.math.BigDecimal
 
 class Engine {
-
     fun previewCalculate(displayBuffer: DisplayBuffer): Pair<String, String> {
+
+        return previewCalculate("", displayBuffer)
+    }
+    fun previewCalculate(previousFormula: String, displayBuffer: DisplayBuffer): Pair<String, String> {
         val nums: NumericalStack = displayBuffer.stackOfNums
         val ops: OperationStack = displayBuffer.stackOfOperators
         return when (Pair<Int, Int>(nums.size(), ops.size())) {
@@ -12,9 +15,10 @@ class Engine {
             Pair<Int, Int>(1, 0) -> Pair(nums.peek(), "")
             Pair<Int, Int>(2, 1) -> {
                 val b = nums.pop()
-                val a = nums.pop()
-                val c = ops.pop()
-                var result = when (c) {
+                val a = nums.peek()
+                nums.push(b)
+                val op = ops.peek()
+                var result = when (op) {
                     '+' -> BigDecimal(a.toString()).setScale(27) +
                             BigDecimal(b.toString())
                     '-' -> BigDecimal(a.toString()).setScale(27) -
@@ -25,9 +29,31 @@ class Engine {
                             BigDecimal(b.toString())
                 }
                 val resultString = removeTrailingZeros(result.toPlainString())
-                Pair("$a$c$b", resultString)
+                if (previousFormula.length > 0) {
+                    Pair("$a$op$previousFormula", resultString)
+                } else {
+                    Pair("$a$op$b", resultString)
+                }
             }
-            else -> Pair("ERROR", "ERROR")
+            else -> {
+                val b = nums.pop()
+                val a = nums.pop()
+                val op = ops.pop()
+                // if previous operator has a higher or the same precedence
+                // do this
+
+                // if previous operator has a lower precedence
+                // do this:
+                val result = when (op) {
+                    '*', '×' -> BigDecimal(a.toString()).setScale(27) *
+                            BigDecimal(b.toString())
+                    else -> BigDecimal(a.toString()).setScale(27) /
+                            BigDecimal(b.toString())
+                }
+                val resultString = removeTrailingZeros(result.toPlainString())
+                nums.push(resultString)
+                previewCalculate("$a$op$b", displayBuffer)
+            }
         }
     }
 

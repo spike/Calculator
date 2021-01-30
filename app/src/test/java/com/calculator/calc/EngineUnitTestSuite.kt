@@ -48,6 +48,17 @@ class EngineUnitTestSuite {
         assertEquals(expected, engine.previewCalculate(displayBuffer))
     }
     @Test
+    fun testPreviewCalculateAdditionAndMultiplication() {
+        val starting ="45+5*3"
+        displayBuffer.stackOfNums.push("45")
+        displayBuffer.stackOfOperators.push('+')
+        displayBuffer.stackOfNums.push("5")
+        displayBuffer.stackOfOperators.push('*')
+        displayBuffer.stackOfNums.push("3")
+        val expected = Pair("45+5*3", "60")
+        assertEquals(expected, engine.previewCalculate(displayBuffer))
+    }
+    @Test
     fun testCalculateSingleOperand() {
         val starting ="44.5"
         displayBuffer.stack.refill(starting)
