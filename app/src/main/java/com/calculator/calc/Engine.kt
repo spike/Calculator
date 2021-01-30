@@ -4,7 +4,6 @@ import java.math.BigDecimal
 
 class Engine {
     fun previewCalculate(displayBuffer: DisplayBuffer): Pair<String, String> {
-
         return previewCalculate("", displayBuffer)
     }
     fun previewCalculate(previousFormula: String, displayBuffer: DisplayBuffer): Pair<String, String> {
@@ -29,7 +28,7 @@ class Engine {
                             BigDecimal(b.toString())
                 }
                 val resultString = removeTrailingZeros(result.toPlainString())
-                if (previousFormula.length > 0) {
+                if (previousFormula.isNotEmpty()) {
                     Pair("$a$op$previousFormula", resultString)
                 } else {
                     Pair("$a$op$b", resultString)
