@@ -5,10 +5,28 @@ import java.math.BigDecimal
 class Engine {
 
     fun previewCalculate(displayBuffer: DisplayBuffer): Pair<String, String> {
-        return when (displayBuffer.stackOfNums.size()) {
-            0 -> Pair("0","")
-            1 -> Pair(displayBuffer.stackOfNums.peek(), "")
-
+        val nums: NumericalStack = displayBuffer.stackOfNums
+        val ops: OperationStack = displayBuffer.stackOfOperators
+        return when (Pair<Int, Int>(nums.size(), ops.size())) {
+            Pair<Int, Int>(0, 0) -> Pair("0","")
+            Pair<Int, Int>(1, 0) -> Pair(nums.peek(), "")
+            Pair<Int, Int>(2, 1) -> {
+                val b = nums.pop()
+                val a = nums.pop()
+                val c = ops.pop()
+                var result = when (c) {
+                    '+' -> BigDecimal(a.toString()).setScale(27) +
+                            BigDecimal(b.toString())
+                    '-' -> BigDecimal(a.toString()).setScale(27) -
+                            BigDecimal(b.toString())
+                    '*', '×' -> BigDecimal(a.toString()).setScale(27) *
+                            BigDecimal(b.toString())
+                    else -> BigDecimal(a.toString()).setScale(27) /
+                            BigDecimal(b.toString())
+                }
+                val resultString = removeTrailingZeros(result.toPlainString())
+                Pair("$a$c$b", resultString)
+            }
             else -> Pair("ERROR", "ERROR")
         }
     }
