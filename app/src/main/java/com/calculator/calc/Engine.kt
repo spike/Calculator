@@ -40,18 +40,22 @@ class Engine {
                 val op = ops.pop()
                 // if previous operator has a higher or the same precedence
                 // do this
+                if (true) {
 
-                // if previous operator has a lower precedence
-                // do this:
-                val result = when (op) {
-                    '*', '×' -> BigDecimal(a.toString()).setScale(27) *
-                            BigDecimal(b.toString())
-                    else -> BigDecimal(a.toString()).setScale(27) /
-                            BigDecimal(b.toString())
+                    previewCalculate("$a$op$b", displayBuffer)
+                } else {
+                    // if previous operator has a lower precedence
+                    // do this:
+                    val result = when (op) {
+                        '*', '×' -> BigDecimal(a.toString()).setScale(27) *
+                                BigDecimal(b.toString())
+                        else -> BigDecimal(a.toString()).setScale(27) /
+                                BigDecimal(b.toString())
+                    }
+                    val resultString = removeTrailingZeros(result.toPlainString())
+                    nums.push(resultString)
+                    previewCalculate("$a$op$b", displayBuffer)
                 }
-                val resultString = removeTrailingZeros(result.toPlainString())
-                nums.push(resultString)
-                previewCalculate("$a$op$b", displayBuffer)
             }
         }
     }
