@@ -9,6 +9,8 @@ class DisplayBuffer {
     var stack: DisplayStack = DisplayStack()
     var stackOfOperators: OperationStack = OperationStack()
     var stackOfNums: NumericalStack = NumericalStack()
+    var stackOfOperatorsRight: OperationStack = OperationStack()
+    var stackOfNumsRight: NumericalStack = NumericalStack()
 
 
     fun backspace(): Pair<String, String> {

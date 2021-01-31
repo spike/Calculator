@@ -36,13 +36,15 @@ class Engine {
             }
             else -> {
                 val b = nums.pop()
-                val a = nums.pop()
+                val a = nums.peek()
                 val op = ops.pop()
                 // if previous operator has a higher or the same precedence
                 // do this
                 if (true) {
-
-                    previewCalculate("$a$op$b", displayBuffer)
+                    displayBuffer.stackOfNumsRight.push(a)
+                    displayBuffer.stackOfNumsRight.push(b)
+                    displayBuffer.stackOfOperatorsRight.push(op)
+                    previewCalculate("$a$op$b$previousFormula", displayBuffer)
                 } else {
                     // if previous operator has a lower precedence
                     // do this:
