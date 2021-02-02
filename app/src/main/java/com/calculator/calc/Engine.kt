@@ -40,6 +40,7 @@ class Engine {
                 val op = ops.pop()
                 // if previous operator has a higher or the same precedence
                 // do this
+
                 if (true) {
                     displayBuffer.stackOfNumsRight.push(a)
                     displayBuffer.stackOfNumsRight.push(b)
