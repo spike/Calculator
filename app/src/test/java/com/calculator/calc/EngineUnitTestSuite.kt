@@ -14,6 +14,7 @@ class EngineUnitTestSuite {
         engine = Engine()
         displayBuffer = DisplayBuffer()
     }
+
     @After
     fun tearDown() {
         displayBuffer.clear()
