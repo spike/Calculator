@@ -18,6 +18,7 @@ class EngineUnitTestSuite {
     fun tearDown() {
         displayBuffer.clear()
     }
+
     @Test
     fun testPreviewCalculateNothing() {
         val starting ="0"
