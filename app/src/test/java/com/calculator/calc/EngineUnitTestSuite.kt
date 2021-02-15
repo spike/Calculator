@@ -8,7 +8,6 @@ import org.junit.After
 class EngineUnitTestSuite {
     private lateinit var engine: Engine
     private lateinit var displayBuffer: DisplayBuffer
-
     @Before
     fun setUp(): Unit {
         engine = Engine()
